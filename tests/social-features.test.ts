@@ -55,3 +55,5 @@ let deliveries=0;const originalSend=webpush.sendNotification;webpush.sendNotific
 const {notify}=await import('../server/notifications');await notify('push-unit-test',ownerRow.id,'Private message','Private text','/messages/example');await notify('push-unit-test',ownerRow.id,'Private message','Private text','/messages/example');assert.equal(deliveries,1);
 webpush.sendNotification=(async()=>{throw {statusCode:410};}) as any;await notify('push-expired-test',ownerRow.id,'Test','Test','/notifications');assert.equal((await one<any>('SELECT COUNT(*) n FROM push_subscriptions'))!.n,0);webpush.sendNotification=originalSend;
 console.log('PASS generic browser push payload, notification deduplication and expired subscription cleanup');
+
+const poster=await call('posters?title=THE%20PARADISE');assert.equal(poster.status,302);assert.ok(poster.headers.get('location')?.startsWith('https://m.media-amazon.com/'));assert.equal(poster.headers.get('cache-control'),'public, max-age=3600');console.log('PASS case-insensitive poster resolution and cacheable image redirect');
