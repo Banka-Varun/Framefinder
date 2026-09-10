@@ -12,7 +12,7 @@ export async function commerce(req:Request,path:string[]){const a=(await user(re
  if(path[0]==='my-tickets'){
   if(req.method!=='GET')throw new ApiError(405,'Method not allowed');
   const query=new URL(req.url).searchParams,page=Math.max(1,Math.min(10000,Number(query.get('page'))||1)),selling=query.get('kind')==='selling';
-  const fields='t.id,t.movie,t.theater,t.show_at,t.language,t.format,t.quantity,t.price,t.status,t.created_at';
+  const fields='t.id,t.movie,t.theater,t.show_at,t.language,t.format,t.quantity,t.price,t.status,t.created_at,(SELECT decision FROM admin_reviews WHERE ticket_id=t.id ORDER BY created_at DESC,id DESC LIMIT 1) review_decision';
   const rows=selling?await all('SELECT '+fields+' FROM tickets t WHERE t.seller_id=? ORDER BY t.created_at DESC,t.id LIMIT 51 OFFSET ?',[a.id,(page-1)*50]):await all('SELECT '+fields+',r.amount,r.reserved_at,r.purchased_at,r.confirmed_at FROM tickets t LEFT JOIN ticket_receipts r ON r.listing_id=t.id AND r.buyer_id=t.buyer_id WHERE t.buyer_id=? ORDER BY COALESCE(r.reserved_at,t.created_at) DESC,t.id LIMIT 51 OFFSET ?',[a.id,(page-1)*50]);
   return Response.json({tickets:rows.slice(0,50),hasMore:rows.length>50,page,kind:selling?'selling':'purchases'});
  }

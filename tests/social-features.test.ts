@@ -42,6 +42,8 @@ assert.equal((await call('admin/access','POST',{},outsider.cookie)).status,200);
 assert.equal((await call('admin','GET',undefined,outsider.cookie)).status,200);
 assert.equal((await call('admin/review','POST',{ticketId:tid,decision:'approved',note:'Booking proof reviewed.'},outsider.cookie)).status,200);
 assert.equal((await one<any>('SELECT status FROM tickets WHERE id=?',[tid]))!.status,'pending_verification');
+const reviewedList=await(await call('tickets','GET',undefined,buyer.cookie)).json() as any;assert.equal(reviewedList.tickets.find((t:any)=>t.id===tid).review_decision,'approved');
+const reviewedDetail=await(await call('tickets/'+tid,'GET',undefined,buyer.cookie)).json() as any;assert.equal(reviewedDetail.review.decision,'approved');assert.equal(reviewedDetail.ticket.status,'pending_verification');
 assert.equal((await call('admin/notify','POST',{userId:ownerRow.id,title:'Review update',message:'Your proof has been reviewed.'},outsider.cookie)).status,200);
 settings.ADMIN_USER_IDS=ownerRow.id;
 assert.equal((await call('admin/review','POST',{ticketId:tid,decision:'approved',note:'Own listing review.'},owner.cookie)).status,403);
