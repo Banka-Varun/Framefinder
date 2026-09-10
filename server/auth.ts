@@ -25,12 +25,32 @@ export async function auth(req:Request,path:string){
   const tokens=await response.json() as {access_token?:string;id_token?:string};if(!response.ok||!tokens.access_token||!tokens.id_token)throw new ApiError(400,'Google sign-in could not be completed.');
   // Google tokeninfo verifies the token issued over the authenticated token exchange.
   const vr=await fetch('https://oauth2.googleapis.com/tokeninfo?id_token='+encodeURIComponent(tokens.id_token),{signal:AbortSignal.timeout(10000)});const info=await vr.json() as Record<string,string>;
-  if(!vr.ok||info.aud!==setting('GOOGLE_CLIENT_ID')||!['accounts.google.com','https://accounts.google.com'].includes(info.iss)||Number(info.exp)*1000<Date.now()||info.nonce!==flow.nonce||String(info.email_verified)!=='true')throw new ApiError(400,'Google identity could not be verified.');
+  if(!vr.ok||info.aud!==setting('GOOGLE_CLIENT_ID')||!['accounts.google.com','https://accounts.google.com'].includes(info.iss)||!Number.isFinite(Number(info.exp))||Number(info.exp)*1000<=Date.now()||info.nonce!==flow.nonce||String(info.email_verified)!=='true'||!info.sub||!email.safeParse(info.email).success)throw new ApiError(400,'Google identity could not be verified.');
   let a=await one<Account>('SELECT * FROM accounts WHERE google_id=?',[info.sub]);
-  if(!a){if(await one('SELECT id FROM accounts WHERE email=?',[info.email.toLowerCase()]))throw new ApiError(409,'An email/password account already uses this email. Sign in with that account.');const id=crypto.randomUUID(),uname='film_'+id.replaceAll('-','').slice(0,12);await run('INSERT INTO accounts(id,email,username,name,google_id,verified,created_at) VALUES(?,?,?,?,?,1,?)',[id,info.email.toLowerCase(),uname,info.name||uname,info.sub,now()]);a=await one<Account>('SELECT * FROM accounts WHERE id=?',[id]);}
-  const headers=new Headers({Location:'/onboarding'});headers.append('Set-Cookie',await newSession(a!.id));headers.append('Set-Cookie','ff_oauth=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0');return new Response(null,{status:302,headers});
+  if(!a){
+   const existing=await one<Account>('SELECT * FROM accounts WHERE email=?',[info.email.toLowerCase()]);
+   if(existing){
+    if(existing.google_id)throw new ApiError(409,'This account is linked to a different Google identity. Use your existing sign-in method.');
+    const pending=token();await run('INSERT INTO auth_tokens(token,user_id,purpose,expires) VALUES(?,?,?,?)',[hash(pending),JSON.stringify({accountId:existing.id,email:existing.email,sub:info.sub}),'google-link',new Date(Date.now()+600000).toISOString()]);
+    const headers=new Headers({Location:'/link-google'});headers.append('Set-Cookie',`ff_google_link=${pending}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`);headers.append('Set-Cookie','ff_oauth=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0');return new Response(null,{status:302,headers});
+   }
+   const id=crypto.randomUUID(),uname='film_'+id.replaceAll('-','').slice(0,12);await run('INSERT INTO accounts(id,email,username,name,google_id,verified,created_at) VALUES(?,?,?,?,?,1,?)',[id,info.email.toLowerCase(),uname,info.name||uname,info.sub,now()]);a=await one<Account>('SELECT * FROM accounts WHERE id=?',[id]);
+  }
+  const headers=new Headers({Location:a!.onboarded?'/for-you':'/onboarding'});headers.append('Set-Cookie',await newSession(a!.id));headers.append('Set-Cookie','ff_oauth=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0');return new Response(null,{status:302,headers});
  }
  const b=await body(req);const identity=String(b.email||b.identity||'').toLowerCase();await limit('auth:'+identity,12);await limit('auth-ip:'+(req.headers.get('cf-connecting-ip')||req.headers.get('x-forwarded-for')||'unknown'),50);
+ if(path==='link-google'){
+  const pending=cookie(req,'ff_google_link');const row=pending?await one<{user_id:string}>('SELECT user_id FROM auth_tokens WHERE token=? AND purpose=? AND expires>?',[hash(pending),'google-link',now()]):null;
+  if(!row)throw new ApiError(400,'Google confirmation expired. Start Continue with Google again.');
+  const link=JSON.parse(row.user_id);await limit('google-link:'+link.accountId,6);
+  const a=await one<Account>('SELECT * FROM accounts WHERE id=?',[link.accountId]);
+  const supplied=z.string().min(1).max(128).parse(b.password);
+  if(!a||a.email!==link.email||!a.password||!passwordMatches(supplied,a.password))throw new ApiError(401,'Incorrect Framefinder password. Try again or reset your password.');
+  if(a.google_id&&a.google_id!==link.sub)throw new ApiError(409,'This account is already linked to a different Google identity.');
+  const claimed=await run('DELETE FROM auth_tokens WHERE token=? AND purpose=? AND expires>?',[hash(pending),'google-link',now()]);if(!claimed.changes)throw new ApiError(400,'This confirmation has already been used.');
+  const updated=await run('UPDATE accounts SET google_id=?,verified=1 WHERE id=? AND (google_id IS NULL OR google_id=?)',[link.sub,a.id,link.sub]);if(!updated.changes)throw new ApiError(409,'Account linking changed. Start Google sign-in again.');
+  const headers=new Headers();headers.append('Set-Cookie',await newSession(a.id));headers.append('Set-Cookie','ff_google_link=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0');return Response.json({ok:true,next:a.onboarded?'/for-you':'/onboarding'},{headers});
+ }
  if(path==='signup'){
   const p=z.object({email,username,password,name:z.string().trim().min(1).max(60)}).parse(b);await captcha(req,b.captchaToken||'');
   if(await one('SELECT id FROM accounts WHERE email=? OR username=?',[p.email,p.username]))throw new ApiError(409,'That email or username is already registered.');

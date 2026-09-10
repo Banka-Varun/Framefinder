@@ -34,15 +34,16 @@
       "Emotional"
     ],
     "description": "Two men on opposing missions forge a friendship in an epic story of rebellion.",
-    "poster": "https://im.rediff.com/movies/2021/aug/04-patriotic-films3.jpg?h=450&w=450",
-    "source": "https://m.rediff.com/movies/report/bollywood-gets-very-patriotic/20210812.htm"
+    "poster": "https://image.tmdb.org/t/p/w500/u0XUBNQWlOvrh0Gd97ARGpIkL0.jpg",
+    "source": "https://www.themoviedb.org/movie/579974",
+    "tmdbId": 579974
   },
   {
     "id": 3,
     "title": "Jersey",
     "year": 2019,
     "language": "Telugu",
-    "minutes": 157,
+    "minutes": 160,
     "genres": [
       "Drama",
       "Sport"
@@ -52,15 +53,16 @@
       "Uplifting"
     ],
     "description": "A former cricketer returns to the pitch, determined to become the hero his son believes he is.",
-    "poster": "https://static.moviecrow.com/gallery/20190102/155195-jersey.jpg",
-    "source": "https://nettv4u.com/celebrity/telugu/child-artist/ronit-kamra/list-of-movie-review"
+    "poster": "https://image.tmdb.org/t/p/w500/bU9q9yVtxeBiC0Do27CekHXNE6D.jpg",
+    "source": "https://www.themoviedb.org/movie/592898",
+    "tmdbId": 592898
   },
   {
     "id": 4,
     "title": "Mahanati",
     "year": 2018,
     "language": "Telugu",
-    "minutes": 177,
+    "minutes": 176,
     "genres": [
       "Drama",
       "Biography",
@@ -70,15 +72,16 @@
       "Emotional"
     ],
     "description": "The extraordinary rise and complicated life of legendary actor Savitri.",
-    "poster": "https://data1.ibtimes.co.in/en/full/686808/mahanati.jpg",
-    "source": "https://www.ibtimes.co.in/mahanati-us-premieres-box-office-collection-keerthy-sureshs-film-beats-naa-peru-surya-record-768781"
+    "poster": "https://image.tmdb.org/t/p/w500/5hwtlwoLdSpkoeusT0sf8qW5VFB.jpg",
+    "source": "https://www.themoviedb.org/movie/459713",
+    "tmdbId": 459713
   },
   {
     "id": 5,
     "title": "Sita Ramam",
     "year": 2022,
     "language": "Telugu",
-    "minutes": 163,
+    "minutes": 158,
     "genres": [
       "Romance",
       "Drama"
@@ -88,8 +91,9 @@
       "Slow evening"
     ],
     "description": "A letter connects a lonely soldier to a woman whose identity becomes a decades-long mystery.",
-    "poster": "https://image.tmdb.org/t/p/original/t1O94ZBzsQXJihtVkrsStRLyUDR.jpg",
-    "source": "https://actoragecheck.com/movie/Sita-Ramam/894803"
+    "poster": "https://image.tmdb.org/t/p/w500/t1O94ZBzsQXJihtVkrsStRLyUDR.jpg",
+    "source": "https://www.themoviedb.org/movie/894803",
+    "tmdbId": 894803
   },
   {
     "id": 6,
@@ -224,7 +228,7 @@
     "title": "Eega",
     "year": 2012,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 145,
     "genres": [
       "Fantasy",
       "Thriller"
@@ -233,15 +237,16 @@
       "Mind-bending"
     ],
     "description": "",
-    "poster": "https://media.senscritique.com/media/000023029389/0/eega.png",
-    "source": "https://www.senscritique.com/film/eega/21983875/images"
+    "poster": "https://image.tmdb.org/t/p/w500/pX7fn4EZrg2YFlV4GNMIfHDOQZ6.jpg",
+    "source": "https://www.themoviedb.org/movie/148265",
+    "tmdbId": 148265
   },
   {
     "id": 103,
     "title": "Rangasthalam",
     "year": 2018,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 179,
     "genres": [
       "Drama",
       "Action"
@@ -251,15 +256,16 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://images.moviebuff.com/5f826138-08cd-4d93-a7ac-14cbdcf715e1?w=1000",
-    "source": "https://www.moviebuff.com/ram-charan-teja"
+    "poster": "https://image.tmdb.org/t/p/w500/yiEzDgBBFC25Zd6z0r7sMngn5vr.jpg",
+    "source": "https://www.themoviedb.org/movie/461126",
+    "tmdbId": 461126
   },
   {
     "id": 104,
     "title": "Pelli Choopulu",
     "year": 2016,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 124,
     "genres": [
       "Romance",
       "Comedy"
@@ -269,15 +275,16 @@
       "Uplifting"
     ],
     "description": "",
-    "poster": "https://static.digit.in/OTT/v2/images/pelli-choopulu-1235125.jpg",
-    "source": "https://www.digit.in/digit-binge/movies/pelli-choopulu-13035.html"
+    "poster": "https://image.tmdb.org/t/p/w500/um5GCXgYAVwP46yzt9vD83MAXKd.jpg",
+    "source": "https://www.themoviedb.org/movie/393841",
+    "tmdbId": 393841
   },
   {
     "id": 105,
     "title": "Arjun Reddy",
     "year": 2017,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 187,
     "genres": [
       "Romance",
       "Drama"
@@ -286,15 +293,16 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://i.pinimg.com/736x/81/55/c4/8155c40d03bf6a379a7a564d3667ba5f.jpg",
-    "source": "https://in.pinterest.com/pin/arjun-reddy-movie-poster--307792955797225218/"
+    "poster": "https://image.tmdb.org/t/p/w500/kHubDgL59I5hCn7ccBYvU7bKY1r.jpg",
+    "source": "https://www.themoviedb.org/movie/473234",
+    "tmdbId": 473234
   },
   {
     "id": 106,
     "title": "Agent Sai Srinivasa Athreya",
     "year": 2019,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 144,
     "genres": [
       "Comedy",
       "Thriller"
@@ -304,15 +312,16 @@
       "Uplifting"
     ],
     "description": "",
-    "poster": "https://images.plex.tv/photo?size=large-1280&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fe%2Fgracenote%2Fe32f77e790045b0f8893bd82cc175cbb.jpg",
-    "source": "https://watch.plex.tv/movie/agent-sai-srinivasa-athreya"
+    "poster": "https://image.tmdb.org/t/p/w500/jMVfhhWfHLawVp3kd55KBy3VBsW.jpg",
+    "source": "https://www.themoviedb.org/movie/610482",
+    "tmdbId": 610482
   },
   {
     "id": 107,
     "title": "C/o Kancharapalem",
     "year": 2018,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 152,
     "genres": [
       "Romance",
       "Drama"
@@ -321,15 +330,16 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://movieassetsdigital.sgp1.cdn.digitaloceanspaces.com/original/471e82409880f757540a9f0211e936fefde441ce",
-    "source": "https://www.komparify.com/entertainment/movie/co-kancharapalem"
+    "poster": "https://image.tmdb.org/t/p/w500/8bgyfPih4bORxtnFCwinqVElkYg.jpg",
+    "source": "https://www.themoviedb.org/movie/544795",
+    "tmdbId": 544795
   },
   {
     "id": 108,
     "title": "Athadu",
     "year": 2005,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 175,
     "genres": [
       "Action",
       "Thriller"
@@ -339,15 +349,16 @@
       "Mind-bending"
     ],
     "description": "",
-    "poster": "https://cdn.district.in/movies-assets/images/cinema/G%20Athadu-f44aec70-6926-11f0-b49e-0daac2dae3b7.jpg",
-    "source": "https://ticketnew.com/movies/athadu-2005-movie-detail-202993"
+    "poster": "https://image.tmdb.org/t/p/w500/ojZAu2KOemaDEfLnJXZeuU9QQko.jpg",
+    "source": "https://www.themoviedb.org/movie/37172",
+    "tmdbId": 37172
   },
   {
     "id": 109,
     "title": "Pokiri",
     "year": 2006,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 163,
     "genres": [
       "Action",
       "Thriller"
@@ -357,15 +368,16 @@
       "Mind-bending"
     ],
     "description": "",
-    "poster": "https://image.tmdb.org/t/p/original/ubG8d8QmgXWa3YJK0UzW8aUnzTF.jpg",
-    "source": "https://www.themoviedb.org/movie/23381/images/posters"
+    "poster": "https://image.tmdb.org/t/p/w500/rQ8NH5f3CxRrmqZWMZNYPwLmjDS.jpg",
+    "source": "https://www.themoviedb.org/movie/23381",
+    "tmdbId": 23381
   },
   {
     "id": 110,
     "title": "Ala Vaikunthapurramuloo",
     "year": 2020,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 165,
     "genres": [
       "Comedy",
       "Action"
@@ -375,15 +387,16 @@
       "Uplifting"
     ],
     "description": "",
-    "poster": "https://images.moviebuff.com/16a93280-7521-4c94-a75d-45d8f895ba39?w=600",
-    "source": "https://www.moviebuff.com/ala-vaikunthapuramulo"
+    "poster": "https://image.tmdb.org/t/p/w500/2rzORJaegE2bbKNVkQXbZCeV0BP.jpg",
+    "source": "https://www.themoviedb.org/movie/628241",
+    "tmdbId": 628241
   },
   {
     "id": 111,
     "title": "Pushpa: The Rise",
     "year": 2021,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 179,
     "genres": [
       "Action",
       "Drama"
@@ -393,15 +406,16 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://media.ragalahari.com/posters/2021/pushpa-poster.jpg",
-    "source": "https://www.ragalahari.com/movies/info/95914/pushpa-allu-arjun-rashmika-mandanna-sukumar-b.aspx"
+    "poster": "https://image.tmdb.org/t/p/w500/eJ5h3LdGhwlmthpUKRmvUQlA1Ws.jpg",
+    "source": "https://www.themoviedb.org/movie/690957",
+    "tmdbId": 690957
   },
   {
     "id": 112,
     "title": "Hi Nanna",
     "year": 2023,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 155,
     "genres": [
       "Romance",
       "Drama"
@@ -410,15 +424,16 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://media.cinemaexpress.com/cinemaexpress%2Fimport%2Fuploads%2Fuser%2Fckeditor_images%2Farticle%2F2023%2F12%2F3%2F2854af7c-6dce-4a2c-bd57-06d5de432ba5.jpg",
-    "source": "https://www.cinemaexpress.com/telugu/news/2023/Dec/03/nani-mrunal-thakur--starrer-hi-nanna-clears-censorship-formalities-50094.html"
+    "poster": "https://image.tmdb.org/t/p/w500/hhMLtq9m1aK0dpY9Wcq26XeDH2z.jpg",
+    "source": "https://www.themoviedb.org/movie/1068452",
+    "tmdbId": 1068452
   },
   {
     "id": 113,
     "title": "Dasara",
     "year": 2023,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 159,
     "genres": [
       "Action",
       "Drama"
@@ -428,15 +443,16 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://popcornsg.s3.amazonaws.com/movies/650/13177-48728-Dasarajpg",
-    "source": "https://www.popcorn.app/my/dasara/movie/17366"
+    "poster": "https://image.tmdb.org/t/p/w500/8O4V2PHkI8mDvxAW3aeZDvRsYZd.jpg",
+    "source": "https://www.themoviedb.org/movie/885184",
+    "tmdbId": 885184
   },
   {
     "id": 114,
     "title": "Hanu-Man",
     "year": 2024,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 159,
     "genres": [
       "Fantasy",
       "Action"
@@ -445,15 +461,16 @@
       "Adrenaline"
     ],
     "description": "",
-    "poster": "https://media.ragalahari.com/news/jun2023/hanuman-release-date-announced-jul1.jpg",
-    "source": "https://www.ragalahari.com/tollywood-news-2023-july/169797/hanu-man-new-release-date-creates-anticipation"
+    "poster": "https://image.tmdb.org/t/p/w500/m1zq48rWSXxplzoJR8YtbXWnnHM.jpg",
+    "source": "https://www.themoviedb.org/movie/869760",
+    "tmdbId": 869760
   },
   {
     "id": 115,
     "title": "Kalki 2898 AD",
     "year": 2024,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 176,
     "genres": [
       "Sci-fi",
       "Action"
@@ -463,15 +480,16 @@
       "Mind-bending"
     ],
     "description": "",
-    "poster": "https://static.moviecrow.com/gallery/20240625/230568-Kalki%202898%20AD%20Prabhas%20Bhairava%20Bounty%20Hunter%20Super%20Hero%20Character.jpg",
-    "source": "https://www.moviecrow.com/News/33397/kalki-2898-ad-prabhas-deepika-amitabh-kamal-characters"
+    "poster": "https://image.tmdb.org/t/p/w500/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
+    "source": "https://www.themoviedb.org/movie/801688",
+    "tmdbId": 801688
   },
   {
     "id": 116,
     "title": "Lucky Baskhar",
     "year": 2024,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 151,
     "genres": [
       "Thriller",
       "Drama"
@@ -481,15 +499,16 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://www.cinejosh.com/newsimg/newsmainimg/dulquer-salmaan-crime-drama-lucky-baskhar-set-to-stream-on-netflix-in-december_b_0211240948.jpg",
-    "source": "https://www.cinejosh.com/news/1/113520/dulquer-salmaan-lucky-baskhar-set-to-stream-on-netflix.html"
+    "poster": "https://image.tmdb.org/t/p/w500/a47JQFl9L7VDa79tEvnTOJe0rPa.jpg",
+    "source": "https://www.themoviedb.org/movie/1239511",
+    "tmdbId": 1239511
   },
   {
     "id": 117,
     "title": "Brochevarevarura",
     "year": 2019,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 122,
     "genres": [
       "Comedy",
       "Thriller"
@@ -499,15 +518,16 @@
       "Uplifting"
     ],
     "description": "",
-    "poster": "https://m.media-amazon.com/images/M/MV5BNjc5MDIwYmMtN2E1Yi00NGMyLWFhYWItMzM2ODQ3MTM2NjZmXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg",
-    "source": "https://www.imdb.com/title/tt9742334/mediaviewer/rm3273242113/"
+    "poster": "https://image.tmdb.org/t/p/w500/3DecGcOCBoFQ8dPyGbYOPoS4I4r.jpg",
+    "source": "https://www.themoviedb.org/movie/611754",
+    "tmdbId": 611754
   },
   {
     "id": 118,
     "title": "Mathu Vadalara",
     "year": 2019,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 130,
     "genres": [
       "Comedy",
       "Thriller"
@@ -517,15 +537,16 @@
       "Uplifting"
     ],
     "description": "",
-    "poster": "https://m.media-amazon.com/images/M/MV5BOWI1YzYyNzktM2UyZS00YzZlLTlmOTYtNTljOGM4NjI4MjBjXkEyXkFqcGc%40._V1_.jpg",
-    "source": "https://www.imdb.com/title/tt11469744/"
+    "poster": "https://image.tmdb.org/t/p/w500/lo0ALsfiSv5sxNBhCNh35AD1p0x.jpg",
+    "source": "https://www.themoviedb.org/movie/657853",
+    "tmdbId": 657853
   },
   {
     "id": 119,
     "title": "Ante Sundaraniki",
     "year": 2022,
     "language": "Telugu",
-    "minutes": 0,
+    "minutes": 173,
     "genres": [
       "Romance",
       "Comedy"
@@ -535,8 +556,9 @@
       "Uplifting"
     ],
     "description": "",
-    "poster": "https://assets.gadgets360cdn.com/pricee/assets/product/202203/Ante-Sundharaniki-Poster_1648055227.jpg",
-    "source": "https://www.gadgets360.com/entertainment/ante-sundaraniki-movie-106948"
+    "poster": "https://image.tmdb.org/t/p/w500/yzMsEhiW8ip3hweLCnu48t4RdWD.jpg",
+    "source": "https://www.themoviedb.org/movie/834654",
+    "tmdbId": 834654
   },
   {
     "id": 120,
@@ -622,7 +644,7 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://www.impawards.com/2016/posters/arrival_ver12_xxlg.jpg",
+    "poster": "",
     "source": "https://www.impawards.com/2016/arrival_ver12_xxlg.html"
   },
   {
@@ -1974,7 +1996,7 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BN2ViYTFiZmUtOTIxZi00YzIxLWEyMzUtYjQwZGNjMjNhY2IwXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg",
+    "poster": "",
     "source": "https://github.com/erik-sytnyk/movies-list/blob/master/db.json"
   },
   {
@@ -2099,7 +2121,7 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjM4NTI5NzYyNV5BMl5BanBnXkFtZTgwNTkxNTYxMTE@._V1_SX300.jpg",
+    "poster": "",
     "source": "https://github.com/erik-sytnyk/movies-list/blob/master/db.json"
   },
   {
@@ -2344,7 +2366,7 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BYmJkODkwOTItZThjZC00MTE0LWIxNzQtYTM3MmQwMGI1OWFiXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_SX300.jpg",
+    "poster": "",
     "source": "https://github.com/erik-sytnyk/movies-list/blob/master/db.json"
   },
   {
@@ -2397,7 +2419,7 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BYThjM2MwZGMtMzg3Ny00NGRkLWE4M2EtYTBiNWMzOTY0YTI4XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SX300.jpg",
+    "poster": "",
     "source": "https://github.com/erik-sytnyk/movies-list/blob/master/db.json"
   },
   {
@@ -2727,7 +2749,7 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjE4MjA1NTAyMV5BMl5BanBnXkFtZTcwNzM1NDQyMQ@@._V1_SX300.jpg",
+    "poster": "",
     "source": "https://github.com/erik-sytnyk/movies-list/blob/master/db.json"
   },
   {
@@ -3436,7 +3458,7 @@
       "Emotional"
     ],
     "description": "",
-    "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNTEyMjAwMDU1OV5BMl5BanBnXkFtZTcwNDQyNTkxMw@@._V1_SX300.jpg",
+    "poster": "",
     "source": "https://github.com/erik-sytnyk/movies-list/blob/master/db.json"
   },
   {
@@ -3566,5 +3588,2139 @@
     "description": "",
     "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNDc4MThhN2EtZjMzNC00ZDJmLThiZTgtNThlY2UxZWMzNjdkXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg",
     "source": "https://github.com/erik-sytnyk/movies-list/blob/master/db.json"
+  },
+  {
+    "id": 500147,
+    "title": "Magadheera",
+    "year": 2009,
+    "language": "Telugu",
+    "minutes": 164,
+    "genres": [
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/xK7MEV56GF291VG0U5XnVJuvNv3.jpg",
+    "source": "https://www.themoviedb.org/movie/23790",
+    "tmdbId": 23790
+  },
+  {
+    "id": 500148,
+    "title": "Maryada Ramanna",
+    "year": 2010,
+    "language": "Telugu",
+    "minutes": 125,
+    "genres": [
+      "Comedy",
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/mdhZF0tSHkdh0GSuyOLQZLS22wm.jpg",
+    "source": "https://www.themoviedb.org/movie/54757",
+    "tmdbId": 54757
+  },
+  {
+    "id": 500149,
+    "title": "Vikramarkudu",
+    "year": 2006,
+    "language": "Telugu",
+    "minutes": 161,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/cRwUQdFPqNmECWLElxBxonuCixX.jpg",
+    "source": "https://www.themoviedb.org/movie/40909",
+    "tmdbId": 40909
+  },
+  {
+    "id": 500150,
+    "title": "Chatrapathi",
+    "year": 2005,
+    "language": "Telugu",
+    "minutes": 158,
+    "genres": [
+      "Drama",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/f9SjU4lj4jraX9WBYZAasbc79GX.jpg",
+    "source": "https://www.themoviedb.org/movie/79210",
+    "tmdbId": 79210
+  },
+  {
+    "id": 500151,
+    "title": "Yamadonga",
+    "year": 2007,
+    "language": "Telugu",
+    "minutes": 178,
+    "genres": [
+      "Fantasy",
+      "Action",
+      "Comedy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/3CcAZYYkG0dralHCyOmouS6dNPh.jpg",
+    "source": "https://www.themoviedb.org/movie/77043",
+    "tmdbId": 77043
+  },
+  {
+    "id": 500152,
+    "title": "Simhadri",
+    "year": 2003,
+    "language": "Telugu",
+    "minutes": 171,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/pTzdNOtWSXB32OGPCI5ayE4NgiX.jpg",
+    "source": "https://www.themoviedb.org/movie/80805",
+    "tmdbId": 80805
+  },
+  {
+    "id": 500153,
+    "title": "Student No. 1",
+    "year": 2001,
+    "language": "Telugu",
+    "minutes": 155,
+    "genres": [
+      "Action",
+      "Drama",
+      "Crime",
+      "Romance",
+      "Mystery",
+      "Comedy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Uplifting",
+      "Mind-bending",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/5R3plOFdnoZyIVcXRKUcsHhI9RW.jpg",
+    "source": "https://www.themoviedb.org/movie/82572",
+    "tmdbId": 82572
+  },
+  {
+    "id": 500154,
+    "title": "Sye",
+    "year": 2004,
+    "language": "Telugu",
+    "minutes": 167,
+    "genres": [
+      "Drama",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/yetEKct1tQ1RDLQJKReaYirh5BI.jpg",
+    "source": "https://www.themoviedb.org/movie/87614",
+    "tmdbId": 87614
+  },
+  {
+    "id": 500155,
+    "title": "Nuvvu Naaku Nachav",
+    "year": 2001,
+    "language": "Telugu",
+    "minutes": 180,
+    "genres": [
+      "Drama",
+      "Comedy",
+      "Romance",
+      "Family"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/z6F2Y7zddPFZ2ls9OY006egVClP.jpg",
+    "source": "https://www.themoviedb.org/movie/82255",
+    "tmdbId": 82255
+  },
+  {
+    "id": 500156,
+    "title": "Malliswari",
+    "year": 2004,
+    "language": "Telugu",
+    "minutes": 150,
+    "genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/kY5BFcSodBPz3P2KVNLaT6DZyLW.jpg",
+    "source": "https://www.themoviedb.org/movie/81082",
+    "tmdbId": 81082
+  },
+  {
+    "id": 500157,
+    "title": "Malliswari",
+    "year": 1951,
+    "language": "Telugu",
+    "minutes": 175,
+    "genres": [
+      "Romance",
+      "Drama",
+      "Fantasy"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/63Av9DNlSRu0qq0WAIpheqcApJl.jpg",
+    "source": "https://www.themoviedb.org/movie/94957",
+    "tmdbId": 94957
+  },
+  {
+    "id": 500158,
+    "title": "Manmadhudu",
+    "year": 2002,
+    "language": "Telugu",
+    "minutes": 142,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/bHjMjCmtpfQzQoDjiL9rWWo4ahd.jpg",
+    "source": "https://www.themoviedb.org/movie/81083",
+    "tmdbId": 81083
+  },
+  {
+    "id": 500159,
+    "title": "Nuvve... Nuvve...",
+    "year": 2002,
+    "language": "Telugu",
+    "minutes": 161,
+    "genres": [
+      "Family",
+      "Drama",
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/7oTCYwdRnTP9HyPxnOBebC23pj3.jpg",
+    "source": "https://www.themoviedb.org/movie/82214",
+    "tmdbId": 82214
+  },
+  {
+    "id": 500160,
+    "title": "Nuvvostanante Nenoddantana",
+    "year": 2005,
+    "language": "Telugu",
+    "minutes": 165,
+    "genres": [
+      "Drama",
+      "Comedy",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/zixbDSR1gOHgcATGdMaq20LjZEL.jpg",
+    "source": "https://www.themoviedb.org/movie/74154",
+    "tmdbId": 74154
+  },
+  {
+    "id": 500161,
+    "title": "Bommarillu",
+    "year": 2006,
+    "language": "Telugu",
+    "minutes": 168,
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/oYN5XJzV9dYGwzq4fmp41xcIaDS.jpg",
+    "source": "https://www.themoviedb.org/movie/31626",
+    "tmdbId": 31626
+  },
+  {
+    "id": 500162,
+    "title": "Happy Days",
+    "year": 2007,
+    "language": "Telugu",
+    "minutes": 160,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/9PTzngN3VOmxQg6vFOkAGFMSxWi.jpg",
+    "source": "https://www.themoviedb.org/movie/199160",
+    "tmdbId": 199160
+  },
+  {
+    "id": 500163,
+    "title": "Kotha Bangaru Lokam",
+    "year": 2008,
+    "language": "Telugu",
+    "minutes": 157,
+    "genres": [
+      "Family",
+      "Drama",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/zMfB7i1KSyaEbJWX2selBPCcG8Z.jpg",
+    "source": "https://www.themoviedb.org/movie/81999",
+    "tmdbId": 81999
+  },
+  {
+    "id": 500164,
+    "title": "Leader",
+    "year": 2010,
+    "language": "Telugu",
+    "minutes": 172,
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/kh4YPMvpyore0jFPyQ2eV5JSihv.jpg",
+    "source": "https://www.themoviedb.org/movie/55283",
+    "tmdbId": 55283
+  },
+  {
+    "id": 500165,
+    "title": "Anand",
+    "year": 2004,
+    "language": "Telugu",
+    "minutes": 179,
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/nEy1ue2wOGPfGsgVAhRzurRo6Xt.jpg",
+    "source": "https://www.themoviedb.org/movie/154913",
+    "tmdbId": 154913
+  },
+  {
+    "id": 500166,
+    "title": "Godavari",
+    "year": 2006,
+    "language": "Telugu",
+    "minutes": 157,
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/3SDynWhHwPrQ3pjouFgTKqBrI02.jpg",
+    "source": "https://www.themoviedb.org/movie/81051",
+    "tmdbId": 81051
+  },
+  {
+    "id": 500167,
+    "title": "Fidaa",
+    "year": 2017,
+    "language": "Telugu",
+    "minutes": 145,
+    "genres": [
+      "Drama",
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/cvpwHdJuUzm544lvleBIAxGdzBB.jpg",
+    "source": "https://www.themoviedb.org/movie/467649",
+    "tmdbId": 467649
+  },
+  {
+    "id": 500168,
+    "title": "Love Story",
+    "year": 2021,
+    "language": "Telugu",
+    "minutes": 165,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/zP9tXuxoPRpCJM0UxbxZUHYB83n.jpg",
+    "source": "https://www.themoviedb.org/movie/663909",
+    "tmdbId": 663909
+  },
+  {
+    "id": 500169,
+    "title": "Ye Maaya Chesave",
+    "year": 2010,
+    "language": "Telugu",
+    "minutes": 162,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/w6mHYrsmDK9EZh75JcFwv5xGJDO.jpg",
+    "source": "https://www.themoviedb.org/movie/63430",
+    "tmdbId": 63430
+  },
+  {
+    "id": 500170,
+    "title": "Majili",
+    "year": 2019,
+    "language": "Telugu",
+    "minutes": 154,
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/zR8ib7DFEten3AdbGDCqDxCI4Cx.jpg",
+    "source": "https://www.themoviedb.org/movie/571610",
+    "tmdbId": 571610
+  },
+  {
+    "id": 500171,
+    "title": "100% Love",
+    "year": 2011,
+    "language": "Telugu",
+    "minutes": 140,
+    "genres": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/xDuAT2K7kcN2kM9BP9lwwNqNWCD.jpg",
+    "source": "https://www.themoviedb.org/movie/63378",
+    "tmdbId": 63378
+  },
+  {
+    "id": 500172,
+    "title": "Ishq",
+    "year": 2021,
+    "language": "Telugu",
+    "minutes": 121,
+    "genres": [
+      "Thriller",
+      "Romance"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/q1af0hb9qjn5WYJKU7dem0Qh7w4.jpg",
+    "source": "https://www.themoviedb.org/movie/833422",
+    "tmdbId": 833422
+  },
+  {
+    "id": 500173,
+    "title": "Ishq",
+    "year": 2012,
+    "language": "Telugu",
+    "minutes": 160,
+    "genres": [
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/3GMErqjnUNobNmKq9dBqZkOAf79.jpg",
+    "source": "https://www.themoviedb.org/movie/94372",
+    "tmdbId": 94372
+  },
+  {
+    "id": 500174,
+    "title": "Gunde Jaari Gallanthayyinde",
+    "year": 2013,
+    "language": "Telugu",
+    "minutes": 150,
+    "genres": [
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/tHnIXiVSqGD4MNXZtK8csXq3aId.jpg",
+    "source": "https://www.themoviedb.org/movie/181929",
+    "tmdbId": 181929
+  },
+  {
+    "id": 500175,
+    "title": "Ala Modalaindi",
+    "year": 2011,
+    "language": "Telugu",
+    "minutes": 136,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/cKX4ySefAsNhMDb2TbjLyLBCsi3.jpg",
+    "source": "https://www.themoviedb.org/movie/57010",
+    "tmdbId": 57010
+  },
+  {
+    "id": 500176,
+    "title": "Ashta Chamma",
+    "year": 2008,
+    "language": "Telugu",
+    "minutes": 126,
+    "genres": [
+      "Family",
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/fxIOKsfPqFL7CBEwln0otGjCgUQ.jpg",
+    "source": "https://www.themoviedb.org/movie/80889",
+    "tmdbId": 80889
+  },
+  {
+    "id": 500177,
+    "title": "Pilla Zamindar",
+    "year": 2011,
+    "language": "Telugu",
+    "minutes": 140,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/5xO7sOhqb2Avx52gqySMCS6Ie1d.jpg",
+    "source": "https://www.themoviedb.org/movie/85818",
+    "tmdbId": 85818
+  },
+  {
+    "id": 500178,
+    "title": "Bhale Bhale Magadivoy",
+    "year": 2015,
+    "language": "Telugu",
+    "minutes": 145,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/fa2Nv68gcmgZJbKCJV5T45fwA8P.jpg",
+    "source": "https://www.themoviedb.org/movie/367553",
+    "tmdbId": 367553
+  },
+  {
+    "id": 500179,
+    "title": "Krishna Gaadi Veera Prema Gaadha",
+    "year": 2016,
+    "language": "Telugu",
+    "minutes": 145,
+    "genres": [
+      "Romance",
+      "Comedy",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/hhSJy8zMncrf1daXnyaH8YdFx9y.jpg",
+    "source": "https://www.themoviedb.org/movie/384420",
+    "tmdbId": 384420
+  },
+  {
+    "id": 500180,
+    "title": "Ninnu Kori",
+    "year": 2017,
+    "language": "Telugu",
+    "minutes": 135,
+    "genres": [
+      "Comedy",
+      "Romance",
+      "Family"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/tSqphL6d7slQ0zFmnhliYE9oyAS.jpg",
+    "source": "https://www.themoviedb.org/movie/465099",
+    "tmdbId": 465099
+  },
+  {
+    "id": 500181,
+    "title": "Gentleman",
+    "year": 2016,
+    "language": "Telugu",
+    "minutes": 152,
+    "genres": [
+      "Romance",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/9ntagSmaXYUBVMjikmqMqKJ3Pcq.jpg",
+    "source": "https://www.themoviedb.org/movie/400247",
+    "tmdbId": 400247
+  },
+  {
+    "id": 500182,
+    "title": "Devadas",
+    "year": 2018,
+    "language": "Telugu",
+    "minutes": 124,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/gKXUai8TVBIwkMCNIXSF6f7K6WG.jpg",
+    "source": "https://www.themoviedb.org/movie/550864",
+    "tmdbId": 550864
+  },
+  {
+    "id": 500183,
+    "title": "Shyam Singha Roy",
+    "year": 2021,
+    "language": "Telugu",
+    "minutes": 157,
+    "genres": [
+      "Romance",
+      "Thriller",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/5C2wGMdwTQDUMIltYnn9qGrOs8w.jpg",
+    "source": "https://www.themoviedb.org/movie/799676",
+    "tmdbId": 799676
+  },
+  {
+    "id": 500184,
+    "title": "Saripodhaa Sanivaaram",
+    "year": 2024,
+    "language": "Telugu",
+    "minutes": 172,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/e2yVhbMkpi4JvvdIhvRpS0Muge7.jpg",
+    "source": "https://www.themoviedb.org/movie/1194915",
+    "tmdbId": 1194915
+  },
+  {
+    "id": 500185,
+    "title": "Nenu Local",
+    "year": 2017,
+    "language": "Telugu",
+    "minutes": 150,
+    "genres": [
+      "Action",
+      "Comedy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/2CjWcUIvoYFvvlm8773CYSnEYvA.jpg",
+    "source": "https://www.themoviedb.org/movie/439057",
+    "tmdbId": 439057
+  },
+  {
+    "id": 500186,
+    "title": "Nenu.. Sailaja...",
+    "year": 2016,
+    "language": "Telugu",
+    "minutes": 135,
+    "genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/buQQUkoBTjt3nJftJLh8WqQ5cfX.jpg",
+    "source": "https://www.themoviedb.org/movie/376998",
+    "tmdbId": 376998
+  },
+  {
+    "id": 500187,
+    "title": "Ready",
+    "year": 2008,
+    "language": "Telugu",
+    "minutes": 171,
+    "genres": [
+      "Family",
+      "Action",
+      "Comedy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/7OMenpYP2riOMS4FVdFgrTrYntc.jpg",
+    "source": "https://www.themoviedb.org/movie/73583",
+    "tmdbId": 73583
+  },
+  {
+    "id": 500188,
+    "title": "Kandireega",
+    "year": 2011,
+    "language": "Telugu",
+    "minutes": 130,
+    "genres": [
+      "Romance",
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/xXUSBOvhVyiu6CwndguABwK3MgI.jpg",
+    "source": "https://www.themoviedb.org/movie/86712",
+    "tmdbId": 86712
+  },
+  {
+    "id": 500189,
+    "title": "iSmart Shankar",
+    "year": 2019,
+    "language": "Telugu",
+    "minutes": 141,
+    "genres": [
+      "Action",
+      "Sci-fi",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/9jZjnhm1SpceX4KKLOR2S8YMHCQ.jpg",
+    "source": "https://www.themoviedb.org/movie/609108",
+    "tmdbId": 609108
+  },
+  {
+    "id": 500190,
+    "title": "Red",
+    "year": 2021,
+    "language": "Telugu",
+    "minutes": 146,
+    "genres": [
+      "Crime",
+      "Mystery",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/7cEEDAHhMGtoWfYXJxelVMRwLu0.jpg",
+    "source": "https://www.themoviedb.org/movie/681435",
+    "tmdbId": 681435
+  },
+  {
+    "id": 500191,
+    "title": "Sagara Sangamam",
+    "year": 1983,
+    "language": "Telugu",
+    "minutes": 160,
+    "genres": [
+      "Drama",
+      "Romance",
+      "Music"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/hdg47CcaBfLf0DttUoav45boYtL.jpg",
+    "source": "https://www.themoviedb.org/movie/30153",
+    "tmdbId": 30153
+  },
+  {
+    "id": 500192,
+    "title": "Swathi Muthyam",
+    "year": 2022,
+    "language": "Telugu",
+    "minutes": 124,
+    "genres": [
+      "Romance",
+      "Family"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/mR8pmOhp4zYwwFadX8TLX5goH64.jpg",
+    "source": "https://www.themoviedb.org/movie/900471",
+    "tmdbId": 900471
+  },
+  {
+    "id": 500193,
+    "title": "Sankarabharanam",
+    "year": 1980,
+    "language": "Telugu",
+    "minutes": 143,
+    "genres": [
+      "Romance",
+      "Drama",
+      "Music"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/9LDbi3KsrpBQL48uXIPWTYsdjyF.jpg",
+    "source": "https://www.themoviedb.org/movie/30088",
+    "tmdbId": 30088
+  },
+  {
+    "id": 500194,
+    "title": "Sankarabharanam",
+    "year": 2015,
+    "language": "Telugu",
+    "minutes": 154,
+    "genres": [
+      "Thriller",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/xNcBpesh3t81GCUg4SbZ9UG6UQQ.jpg",
+    "source": "https://www.themoviedb.org/movie/405800",
+    "tmdbId": 405800
+  },
+  {
+    "id": 500195,
+    "title": "Mayabazar",
+    "year": 1957,
+    "language": "Telugu",
+    "minutes": 181,
+    "genres": [
+      "Fantasy",
+      "Drama",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/pJfpDHlmVgMgg0VNCufj9gIhnbU.jpg",
+    "source": "https://www.themoviedb.org/movie/158023",
+    "tmdbId": 158023
+  },
+  {
+    "id": 500196,
+    "title": "Missamma",
+    "year": 2003,
+    "language": "Telugu",
+    "minutes": 150,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/6HIQ6aFHhM8YB8y97AKhBgqgrxo.jpg",
+    "source": "https://www.themoviedb.org/movie/81089",
+    "tmdbId": 81089
+  },
+  {
+    "id": 500197,
+    "title": "Missamma",
+    "year": 1955,
+    "language": "Telugu",
+    "minutes": 181,
+    "genres": [
+      "Comedy",
+      "Drama",
+      "Family",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/fIeYfW1WGB8mOyxjwbt0FBXbFSg.jpg",
+    "source": "https://www.themoviedb.org/movie/86148",
+    "tmdbId": 86148
+  },
+  {
+    "id": 500198,
+    "title": "Gundamma Katha",
+    "year": 1962,
+    "language": "Telugu",
+    "minutes": 166,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/iUQjWRkbIOZTbyAdITWj6uQJZRP.jpg",
+    "source": "https://www.themoviedb.org/movie/86146",
+    "tmdbId": 86146
+  },
+  {
+    "id": 500199,
+    "title": "Aditya 369",
+    "year": 1991,
+    "language": "Telugu",
+    "minutes": 140,
+    "genres": [
+      "Sci-fi",
+      "Adventure"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/c2hMK5jAZYsEiiGIkeVtx7AeOK4.jpg",
+    "source": "https://www.themoviedb.org/movie/280363",
+    "tmdbId": 280363
+  },
+  {
+    "id": 500200,
+    "title": "Jagadeka Veerudu Athiloka Sundari",
+    "year": 1990,
+    "language": "Telugu",
+    "minutes": 150,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Fantasy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/q1B0XgJmzlSP6sujx95ny2tSwrK.jpg",
+    "source": "https://www.themoviedb.org/movie/77031",
+    "tmdbId": 77031
+  },
+  {
+    "id": 500201,
+    "title": "Kshana Kshanam",
+    "year": 2021,
+    "language": "Telugu",
+    "minutes": 110,
+    "genres": [
+      "Crime",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/vDIjgCsdba5bpujTGUbqzsw2kng.jpg",
+    "source": "https://www.themoviedb.org/movie/802104",
+    "tmdbId": 802104
+  },
+  {
+    "id": 500202,
+    "title": "Kshana Kshanam",
+    "year": 1991,
+    "language": "Telugu",
+    "minutes": 152,
+    "genres": [
+      "Drama",
+      "Thriller",
+      "Crime",
+      "Action",
+      "Comedy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/9qQyvepQkpPeeNFk04tea2vLTuY.jpg",
+    "source": "https://www.themoviedb.org/movie/81072",
+    "tmdbId": 81072
+  },
+  {
+    "id": 500203,
+    "title": "Geethanjali",
+    "year": 1989,
+    "language": "Telugu",
+    "minutes": 137,
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/qZVWloCwvgP5JtaqBWoFY6YspzT.jpg",
+    "source": "https://www.themoviedb.org/movie/148808",
+    "tmdbId": 148808
+  },
+  {
+    "id": 500204,
+    "title": "Manam",
+    "year": 2014,
+    "language": "Telugu",
+    "minutes": 163,
+    "genres": [
+      "Comedy",
+      "Drama",
+      "Fantasy",
+      "Family"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/pas4iupGgxk0UuhiILiWHDSkMBC.jpg",
+    "source": "https://www.themoviedb.org/movie/253533",
+    "tmdbId": 253533
+  },
+  {
+    "id": 500205,
+    "title": "Soggade Chinni Nayana",
+    "year": 2016,
+    "language": "Telugu",
+    "minutes": 145,
+    "genres": [
+      "Drama",
+      "Family",
+      "Fantasy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/zCAk3HdAfWbhd7JHl9XqFz7nops.jpg",
+    "source": "https://www.themoviedb.org/movie/378777",
+    "tmdbId": 378777
+  },
+  {
+    "id": 500206,
+    "title": "Ninne Pelladatha",
+    "year": 1996,
+    "language": "Telugu",
+    "minutes": 145,
+    "genres": [
+      "Romance",
+      "Family"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/liRlXPeZbTQR4oQb1nqaE7COx5i.jpg",
+    "source": "https://www.themoviedb.org/movie/137455",
+    "tmdbId": 137455
+  },
+  {
+    "id": 500207,
+    "title": "Annamayya",
+    "year": 1997,
+    "language": "Telugu",
+    "minutes": 150,
+    "genres": [
+      "Drama",
+      "History",
+      "Music"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/jmgzq8MWSMthVYE08H9bAKVTpu8.jpg",
+    "source": "https://www.themoviedb.org/movie/80798",
+    "tmdbId": 80798
+  },
+  {
+    "id": 500208,
+    "title": "Gabbar Singh",
+    "year": 2012,
+    "language": "Telugu",
+    "minutes": 153,
+    "genres": [
+      "Action",
+      "Comedy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/tFDhzLPhWnjDNda7YHcbeB4gcGi.jpg",
+    "source": "https://www.themoviedb.org/movie/111836",
+    "tmdbId": 111836
+  },
+  {
+    "id": 500209,
+    "title": "Kushi",
+    "year": 2023,
+    "language": "Telugu",
+    "minutes": 163,
+    "genres": [
+      "Romance",
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/tiEnkpOarH20cCSikeLiWlvY1We.jpg",
+    "source": "https://www.themoviedb.org/movie/965489",
+    "tmdbId": 965489
+  },
+  {
+    "id": 500210,
+    "title": "Tholi Prema",
+    "year": 1998,
+    "language": "Telugu",
+    "minutes": 136,
+    "genres": [
+      "Romance",
+      "Drama",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/jx7BcuTXozA58uVXA3Em6142zfa.jpg",
+    "source": "https://www.themoviedb.org/movie/112846",
+    "tmdbId": 112846
+  },
+  {
+    "id": 500211,
+    "title": "Tholi Prema",
+    "year": 2018,
+    "language": "Telugu",
+    "minutes": 146,
+    "genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/txF7kvjr9lAbGCsykvsqhkvD6LI.jpg",
+    "source": "https://www.themoviedb.org/movie/500527",
+    "tmdbId": 500527
+  },
+  {
+    "id": 500212,
+    "title": "Jalsa",
+    "year": 2008,
+    "language": "Telugu",
+    "minutes": 161,
+    "genres": [
+      "Action",
+      "Comedy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/xVzwnGouqZtBDDfp3Q2fGr0Sh16.jpg",
+    "source": "https://www.themoviedb.org/movie/73578",
+    "tmdbId": 73578
+  },
+  {
+    "id": 500213,
+    "title": "Gopala Gopala",
+    "year": 2015,
+    "language": "Telugu",
+    "minutes": 153,
+    "genres": [
+      "Comedy",
+      "Romance",
+      "Fantasy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/yDPXdJIuMQNo1kzdWyQUjKzxl4i.jpg",
+    "source": "https://www.themoviedb.org/movie/279449",
+    "tmdbId": 279449
+  },
+  {
+    "id": 500214,
+    "title": "Vakeel Saab",
+    "year": 2021,
+    "language": "Telugu",
+    "minutes": 155,
+    "genres": [
+      "Action",
+      "Thriller",
+      "Crime",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/jiIKf2tXZJDnpeDxEsA5UnH6DID.jpg",
+    "source": "https://www.themoviedb.org/movie/673732",
+    "tmdbId": 673732
+  },
+  {
+    "id": 500215,
+    "title": "Bheemla Nayak",
+    "year": 2022,
+    "language": "Telugu",
+    "minutes": 145,
+    "genres": [
+      "Action",
+      "Drama",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/14KeWSkgzTbfJmmD4bXT9mwkaYz.jpg",
+    "source": "https://www.themoviedb.org/movie/811942",
+    "tmdbId": 811942
+  },
+  {
+    "id": 500216,
+    "title": "Khaleja",
+    "year": 2010,
+    "language": "Telugu",
+    "minutes": 163,
+    "genres": [
+      "Action",
+      "Fantasy",
+      "Comedy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/rsQbJT4vjyQe6Mpry1i8Tnf86wp.jpg",
+    "source": "https://www.themoviedb.org/movie/56986",
+    "tmdbId": 56986
+  },
+  {
+    "id": 500217,
+    "title": "Dookudu",
+    "year": 2011,
+    "language": "Telugu",
+    "minutes": 174,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/e9uffrN9z22uuiBF9B0bTDDvbjz.jpg",
+    "source": "https://www.themoviedb.org/movie/80276",
+    "tmdbId": 80276
+  },
+  {
+    "id": 500218,
+    "title": "Businessman",
+    "year": 2012,
+    "language": "Telugu",
+    "minutes": 133,
+    "genres": [
+      "Action",
+      "Crime"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/hLF5o53irg0ZVV4ecLptkLgiTXq.jpg",
+    "source": "https://www.themoviedb.org/movie/83889",
+    "tmdbId": 83889
+  },
+  {
+    "id": 500219,
+    "title": "1: Nenokkadine",
+    "year": 2014,
+    "language": "Telugu",
+    "minutes": 176,
+    "genres": [
+      "Mystery",
+      "Action",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/dYpqpA7BsDHeyAGs9AAEPhZmbck.jpg",
+    "source": "https://www.themoviedb.org/movie/249772",
+    "tmdbId": 249772
+  },
+  {
+    "id": 500220,
+    "title": "Srimanthudu",
+    "year": 1971,
+    "language": "Telugu",
+    "minutes": 151,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/yLLUrmxORqWvvMOlRFzGbyjSFvG.jpg",
+    "source": "https://www.themoviedb.org/movie/319817",
+    "tmdbId": 319817
+  },
+  {
+    "id": 500221,
+    "title": "Srimanthudu",
+    "year": 2015,
+    "language": "Telugu",
+    "minutes": 163,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/qHSgSMZUiIqKCe76PBs6QuA6MRM.jpg",
+    "source": "https://www.themoviedb.org/movie/353533",
+    "tmdbId": 353533
+  },
+  {
+    "id": 500222,
+    "title": "Bharat Ane Nenu",
+    "year": 2018,
+    "language": "Telugu",
+    "minutes": 173,
+    "genres": [
+      "Drama",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/a0hFV8G0ofyPgPEjVcYrueuxFex.jpg",
+    "source": "https://www.themoviedb.org/movie/501987",
+    "tmdbId": 501987
+  },
+  {
+    "id": 500223,
+    "title": "Maharshi",
+    "year": 1987,
+    "language": "Telugu",
+    "minutes": 132,
+    "genres": [
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/uCn4VUXvr0pxyNb5DONOBYUt9Kf.jpg",
+    "source": "https://www.themoviedb.org/movie/308070",
+    "tmdbId": 308070
+  },
+  {
+    "id": 500224,
+    "title": "Maharshi",
+    "year": 2019,
+    "language": "Telugu",
+    "minutes": 176,
+    "genres": [
+      "Drama",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/pV6xLQh54ga8oaQqJtUqLp12LwQ.jpg",
+    "source": "https://www.themoviedb.org/movie/541487",
+    "tmdbId": 541487
+  },
+  {
+    "id": 500225,
+    "title": "Okkadu",
+    "year": 2003,
+    "language": "Telugu",
+    "minutes": 170,
+    "genres": [
+      "Romance",
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/nVBa5QWSPrVzFyHK2XWrsruQzyl.jpg",
+    "source": "https://www.themoviedb.org/movie/94965",
+    "tmdbId": 94965
+  },
+  {
+    "id": 500226,
+    "title": "Murari",
+    "year": 2001,
+    "language": "Telugu",
+    "minutes": 170,
+    "genres": [
+      "Drama",
+      "Romance",
+      "Thriller",
+      "Family"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/uVpP7prS0DKqxxVkjz2jFjiasbG.jpg",
+    "source": "https://www.themoviedb.org/movie/85813",
+    "tmdbId": 85813
+  },
+  {
+    "id": 500227,
+    "title": "Seethamma Vakitlo Sirimalle Chettu",
+    "year": 2013,
+    "language": "Telugu",
+    "minutes": 159,
+    "genres": [
+      "Family",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/sP0U5uHuLdc0m8pDqHhofyCqvL4.jpg",
+    "source": "https://www.themoviedb.org/movie/193197",
+    "tmdbId": 193197
+  },
+  {
+    "id": 500228,
+    "title": "Arjun",
+    "year": 2004,
+    "language": "Telugu",
+    "minutes": 166,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/q2teoYFPNUgQnClFoPRBOo0luio.jpg",
+    "source": "https://www.themoviedb.org/movie/80856",
+    "tmdbId": 80856
+  },
+  {
+    "id": 500229,
+    "title": "Temper",
+    "year": 2015,
+    "language": "Telugu",
+    "minutes": 147,
+    "genres": [
+      "Action",
+      "Drama",
+      "Crime"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/hA793thpccdoAHSOZ5GNbtdSQlC.jpg",
+    "source": "https://www.themoviedb.org/movie/325699",
+    "tmdbId": 325699
+  },
+  {
+    "id": 500230,
+    "title": "Nannaku Prematho...",
+    "year": 2016,
+    "language": "Telugu",
+    "minutes": 168,
+    "genres": [
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/t8RGpSw86jKFpxxnjywVBNiuPx7.jpg",
+    "source": "https://www.themoviedb.org/movie/365187",
+    "tmdbId": 365187
+  },
+  {
+    "id": 500231,
+    "title": "Janatha Garage",
+    "year": 2016,
+    "language": "Telugu",
+    "minutes": 165,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/1RiIzc08FG6kBr0E4LpUwSmtwcE.jpg",
+    "source": "https://www.themoviedb.org/movie/405924",
+    "tmdbId": 405924
+  },
+  {
+    "id": 500232,
+    "title": "Aravinda Sametha Veera Raghava",
+    "year": 2018,
+    "language": "Telugu",
+    "minutes": 162,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/5X6RP7hkrkTZP2TYE7r72H1cfOY.jpg",
+    "source": "https://www.themoviedb.org/movie/534530",
+    "tmdbId": 534530
+  },
+  {
+    "id": 500233,
+    "title": "Brindavanam",
+    "year": 2010,
+    "language": "Telugu",
+    "minutes": 170,
+    "genres": [
+      "Action",
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/sUzA6z2WUEwQD9trexbejoUotct.jpg",
+    "source": "https://www.themoviedb.org/movie/56981",
+    "tmdbId": 56981
+  },
+  {
+    "id": 500234,
+    "title": "Brindavanam",
+    "year": 1992,
+    "language": "Telugu",
+    "minutes": 153,
+    "genres": [
+      "Comedy"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/e0auvzQF2tvh9mJpalIVNLoVTCf.jpg",
+    "source": "https://www.themoviedb.org/movie/820892",
+    "tmdbId": 820892
+  },
+  {
+    "id": 500235,
+    "title": "Adhurs",
+    "year": 2010,
+    "language": "Telugu",
+    "minutes": 150,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/xcrwqmzYY9t6RQOHfS7KtnMbDRj.jpg",
+    "source": "https://www.themoviedb.org/movie/38677",
+    "tmdbId": 38677
+  },
+  {
+    "id": 500236,
+    "title": "Jai Lava Kusa",
+    "year": 2017,
+    "language": "Telugu",
+    "minutes": 150,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/soaeBBssklbEo3Rq8JcdxG1yfTO.jpg",
+    "source": "https://www.themoviedb.org/movie/101736",
+    "tmdbId": 101736
+  },
+  {
+    "id": 500237,
+    "title": "Race Gurram",
+    "year": 2014,
+    "language": "Telugu",
+    "minutes": 162,
+    "genres": [
+      "Comedy",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/gu3bzAFuQH3fZEFnCsj9uWGZH0v.jpg",
+    "source": "https://www.themoviedb.org/movie/262227",
+    "tmdbId": 262227
+  },
+  {
+    "id": 500238,
+    "title": "Julayi",
+    "year": 2012,
+    "language": "Telugu",
+    "minutes": 160,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Crime",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/tIUBifudyRCKhF1utslaDoDRteW.jpg",
+    "source": "https://www.themoviedb.org/movie/125835",
+    "tmdbId": 125835
+  },
+  {
+    "id": 500239,
+    "title": "Son of Satyamurthy",
+    "year": 2015,
+    "language": "Telugu",
+    "minutes": 162,
+    "genres": [
+      "Drama",
+      "Action",
+      "Comedy",
+      "Family"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/oQq3FMD952F8Rnu619O2boTK1Do.jpg",
+    "source": "https://www.themoviedb.org/movie/333876",
+    "tmdbId": 333876
+  },
+  {
+    "id": 500240,
+    "title": "Vedam",
+    "year": 2010,
+    "language": "Telugu",
+    "minutes": 141,
+    "genres": [
+      "Drama",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/fwozjObCQSZsGdUw0dJXJSdEocj.jpg",
+    "source": "https://www.themoviedb.org/movie/97342",
+    "tmdbId": 97342
+  },
+  {
+    "id": 500241,
+    "title": "Parugu",
+    "year": 2008,
+    "language": "Telugu",
+    "minutes": 173,
+    "genres": [
+      "Romance",
+      "Comedy",
+      "Family",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/3RYvVIZyNfYI6DRdljL42hA8zMr.jpg",
+    "source": "https://www.themoviedb.org/movie/23776",
+    "tmdbId": 23776
+  },
+  {
+    "id": 500242,
+    "title": "Desamuduru",
+    "year": 2007,
+    "language": "Telugu",
+    "minutes": 142,
+    "genres": [
+      "Action",
+      "Romance"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/3d6LhrRYxTv7oG51cmULdBJQ0GN.jpg",
+    "source": "https://www.themoviedb.org/movie/117058",
+    "tmdbId": 117058
+  },
+  {
+    "id": 500243,
+    "title": "Sarrainodu",
+    "year": 2016,
+    "language": "Telugu",
+    "minutes": 161,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/Kn6HWn0TDdkwZfeKlEfIWFxdSk.jpg",
+    "source": "https://www.themoviedb.org/movie/374954",
+    "tmdbId": 374954
+  },
+  {
+    "id": 500244,
+    "title": "Kick",
+    "year": 2009,
+    "language": "Telugu",
+    "minutes": 155,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/lei28oUtPXyzGjkf6YKaIlAscAV.jpg",
+    "source": "https://www.themoviedb.org/movie/60807",
+    "tmdbId": 60807
+  },
+  {
+    "id": 500245,
+    "title": "Krack",
+    "year": 2021,
+    "language": "Telugu",
+    "minutes": 154,
+    "genres": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/fMHGXVgtU9Vfb9Xg6S9SWShmRDz.jpg",
+    "source": "https://www.themoviedb.org/movie/784572",
+    "tmdbId": 784572
+  },
+  {
+    "id": 500246,
+    "title": "Balupu",
+    "year": 2013,
+    "language": "Telugu",
+    "minutes": 149,
+    "genres": [
+      "Action",
+      "Comedy"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/wo8xJqf85PylZWvTgNmhwpsZsy.jpg",
+    "source": "https://www.themoviedb.org/movie/204275",
+    "tmdbId": 204275
+  },
+  {
+    "id": 500247,
+    "title": "Mirchi",
+    "year": 2013,
+    "language": "Telugu",
+    "minutes": 154,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/rNj5OmO7KXkZsmsZO7XI6CX0aRs.jpg",
+    "source": "https://www.themoviedb.org/movie/176590",
+    "tmdbId": 176590
+  },
+  {
+    "id": 500248,
+    "title": "Darling",
+    "year": 2024,
+    "language": "Telugu",
+    "minutes": 142,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/qY4Xwbq0NnwErp2sPZOaQwpSGMv.jpg",
+    "source": "https://www.themoviedb.org/movie/1315143",
+    "tmdbId": 1315143
+  },
+  {
+    "id": 500249,
+    "title": "Darling",
+    "year": 2010,
+    "language": "Telugu",
+    "minutes": 152,
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/lUPhjbTUbOdprc9waFcB47bmKKE.jpg",
+    "source": "https://www.themoviedb.org/movie/63414",
+    "tmdbId": 63414
+  },
+  {
+    "id": 500250,
+    "title": "Mr. Perfect",
+    "year": 2011,
+    "language": "Telugu",
+    "minutes": 146,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/tOYpxUX2ISEvdJ1FqwPUZAPy2Hy.jpg",
+    "source": "https://www.themoviedb.org/movie/63376",
+    "tmdbId": 63376
+  },
+  {
+    "id": 500251,
+    "title": "Billa",
+    "year": 2009,
+    "language": "Telugu",
+    "minutes": 149,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/dJlJskiQFVDcWdb2f9FGl23x84m.jpg",
+    "source": "https://www.themoviedb.org/movie/23766",
+    "tmdbId": 23766
+  },
+  {
+    "id": 500252,
+    "title": "Saaho",
+    "year": 2019,
+    "language": "Telugu",
+    "minutes": 171,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/rWXIpR2uPkwb1Hrhjj2FA62FGdu.jpg",
+    "source": "https://www.themoviedb.org/movie/454292",
+    "tmdbId": 454292
+  },
+  {
+    "id": 500253,
+    "title": "Salaar: Part 1 - Ceasefire",
+    "year": 2023,
+    "language": "Telugu",
+    "minutes": 175,
+    "genres": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/nlu9WbcetNFRGXXPWITr30ob7W6.jpg",
+    "source": "https://www.themoviedb.org/movie/770906",
+    "tmdbId": 770906
+  },
+  {
+    "id": 500254,
+    "title": "Pushpa 2 - The Rule",
+    "year": 2024,
+    "language": "Telugu",
+    "minutes": 225,
+    "genres": [
+      "Action",
+      "Drama",
+      "Thriller",
+      "Crime"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/w500/bhxZj3y59cK7JtGdV285dhDRaMe.jpg",
+    "source": "https://www.themoviedb.org/movie/857598",
+    "tmdbId": 857598
   }
 ]

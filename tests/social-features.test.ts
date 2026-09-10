@@ -36,7 +36,9 @@ const counts=await(await call('notifications/counts','GET',undefined,owner.cooki
 assert.equal((await call('conversations/'+thread.id,'GET',undefined,outsider.cookie)).status,404);
 console.log('PASS contact rejection before persistence, message unsend ownership, request badge, offer retries and read tracking');
 assert.equal((await call('admin','GET',undefined,owner.cookie)).status,403);
+assert.equal((await call('admin/access','POST',{},owner.cookie)).status,403);
 settings.ADMIN_USER_IDS=otherRow.id;
+assert.equal((await call('admin/access','POST',{},outsider.cookie)).status,200);
 assert.equal((await call('admin','GET',undefined,outsider.cookie)).status,200);
 assert.equal((await call('admin/review','POST',{ticketId:tid,decision:'approved',note:'Booking proof reviewed.'},outsider.cookie)).status,200);
 assert.equal((await one<any>('SELECT status FROM tickets WHERE id=?',[tid]))!.status,'pending_verification');
@@ -57,3 +59,9 @@ webpush.sendNotification=(async()=>{throw {statusCode:410};}) as any;await notif
 console.log('PASS descriptive browser push payload, notification deduplication and expired subscription cleanup');
 
 const poster=await call('posters?title=THE%20PARADISE');assert.equal(poster.status,302);assert.ok(poster.headers.get('location')?.startsWith('https://m.media-amazon.com/'));assert.equal(poster.headers.get('cache-control'),'public, max-age=3600');console.log('PASS case-insensitive poster resolution and cacheable image redirect');
+
+const telugu=await(await call('movies?language=Telugu','GET',undefined,buyer.cookie)).json() as any;assert.ok(telugu.total>=100);assert.ok(telugu.movies.every((m:any)=>m.language==='Telugu'&&m.poster));
+settings.TMDB_READ_TOKEN='mock-catalog-token';const localTelugu=await(await call('movies?language=Telugu','GET',undefined,buyer.cookie)).json() as any;assert.ok(localTelugu.total>=100);delete settings.TMDB_READ_TOKEN;
+const teluguRecs=await(await call('recommendations?language=Telugu','GET',undefined,buyer.cookie)).json() as any;assert.equal(teluguRecs.movies.length,48);assert.ok(teluguRecs.movies.every((m:any)=>m.language==='Telugu'&&m.poster));
+const emptyPoster=await(await call('movies?q=Forrest%20Gump','GET',undefined,buyer.cookie)).json() as any;assert.equal(emptyPoster.movies.length,0);
+console.log('PASS 100+ Telugu movies, language-specific recommendations and posterless catalog exclusion');
