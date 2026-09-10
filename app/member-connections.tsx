@@ -1,0 +1,5 @@
+ 'use client';
+import {useState} from 'react';
+import Link from './app-link';
+import {useLoad} from './client-data';
+export default function MemberConnections({username,type}:{username:string;type:string}){const[page,setPage]=useState(1);const{data,error}=useLoad('members/'+encodeURIComponent(username)+'/'+type+'?page='+page);return <section className="section"><Link className="back-link" href={'/members/'+username}>← @{username}</Link><h1>{type==='followers'?'Followers':'Following'}</h1>{error&&<p className="notice error">{error}</p>}<div className="member-grid">{data?.members.map((m:any)=><Link className="member-card" key={m.id} href={'/members/'+m.username}>{m.avatar?<img className="avatar" src={m.avatar} alt=""/>:<span className="avatar initials">{m.name.slice(0,2)}</span>}<h3>{m.name}</h3><p>@{m.username}</p></Link>)}</div>{data&&!data.members.length&&<p>No members here yet.</p>}<div className="pagination"><button className="button secondary" disabled={page===1} onClick={()=>setPage(page-1)}>Previous</button><span>Page {page}</span><button className="button secondary" disabled={!data?.hasMore} onClick={()=>setPage(page+1)}>Next</button></div></section>;}

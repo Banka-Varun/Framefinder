@@ -1,3 +1,4 @@
+import {isAdmin} from './admin';
 import {z} from 'zod';
 import {one,run,batch,setting} from '@/lib/platform';
 import {ApiError,body,captcha,cookie,hash,limit,newSession,now,passwordHash,passwordMatches,publicAccount,sendMail,sessionCookie,token,user,type Account} from './security';
@@ -5,7 +6,7 @@ const username=z.string().trim().toLowerCase().min(3).max(24).regex(/^[a-z][a-z0
 const email=z.string().email().max(200).transform(s=>s.toLowerCase().trim());
 const password=z.string().min(10).max(128);
 export async function auth(req:Request,path:string){
- if(path==='session'){const a=await user(req,false);return Response.json({user:a?{...publicAccount(a),email:a.email,verified:!!a.verified}:null});}
+ if(path==='session'){const a=await user(req,false);return Response.json({user:a?{...publicAccount(a),email:a.email,verified:!!a.verified,admin:isAdmin(a)}:null});}
  if(path==='config')return Response.json({google:!!setting('GOOGLE_CLIENT_ID')&&!!setting('GOOGLE_CLIENT_SECRET'),captchaSiteKey:setting('TURNSTILE_SITE_KEY'),email:!!setting('RESEND_API_KEY'),captchaRequired:setting('REQUIRE_CAPTCHA')==='true'});
  if(path==='logout'){const t=cookie(req,'ff_session');if(t)await run('DELETE FROM sessions WHERE token=?',[hash(t)]);return Response.json({ok:true},{headers:{'Set-Cookie':sessionCookie('',0)}});}
  if(path==='google'){

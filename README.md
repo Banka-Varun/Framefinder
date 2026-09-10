@@ -145,4 +145,18 @@ A seller can publish an unverified listing for enquiries. Another signed-in acco
 Booking alerts, released-seat alerts and ticket submissions share an upcoming Telugu/Hollywood selector. Seven announced titles, their source URLs and poster sources are in `data/upcoming-movies.json`, checked on 2026-09-10. This list is curated and must be refreshed over time; it is not a live BookMyShow feed. Announced release dates are not theater availability and do not set the user's show date. Users can choose other included films or enter an exact title. Known titles show artwork in forms and saved listings; unavailable artwork or unmatched custom titles use a title fallback.
 
 Seat alerts accept up to 31 unique dates. Add an individual date or a consecutive range, then remove any date you do not want. Location, theater and movie selection remain in that order.
-"# Framefinder" 
+
+
+## Social notifications and manual ticket review
+
+This update adds follower/following pages, mutual connections, movie-grouped conversations, unread counts, unsend for your own messages, and server-side contact filtering before messages are saved. Search accepts partial titles and ignores capitalization.
+
+1. Vercel builds now apply pending SQL migrations using the existing `TURSO_HTTP_URL` and `TURSO_AUTH_TOKEN`. New notification tables and browser push signing keys are created once. Keep the database credentials enabled for Production. Preview deployments should use a separate preview database.
+2. Sign in on your phone, open Notifications or Settings, tap **Enable browser notifications**, and allow Chrome notifications. Delivery supports new followers, incoming conversation requests, messages, offers, admin updates and matching feed alerts. Push messages contain generic activity text; open the authenticated app to read details. No ntfy app is required. Live show/seat notifications still require the authorized collector to send matching webhook events. Browser/device settings can delay or prevent delivery.
+3. To designate an administrator, sign in with that account, open Settings > Account identifier, and copy the ID into the Vercel Production environment variable `ADMIN_USER_IDS`. Separate multiple IDs with commas. Redeploy, refresh the page, and open `/admin` or Profile > Admin review. Sign in with the account's normal credentials; there is no default or shared administrator password.
+4. Admins can inspect private proof only from the review page, approve a manual review, request more information, reject a listing, and notify an individual member. Every review records the reviewer, decision, note and time. An admin cannot review their own listing. Manual approval is displayed separately and does not claim issuer verification or activate checkout.
+5. Set `TMDB_READ_TOKEN` to your TMDB API Read Access Token in Production for broad movie search and posters from TMDB. The included catalog remains available without it. Missing or unreleased artwork uses a labeled fallback.
+
+Contact filtering catches numeric and spaced phone numbers, common number-word sequences, UPI URIs and payment handles. It is a heuristic; deliberate obfuscation is not guaranteed to be caught. Rejected text is never stored or delivered. Unsend removes the text from the conversation, but cannot erase something a recipient has already read. Push delivery failures do not cancel a saved message or offer.
+
+Run `npm test` and `npm run build` before publishing changes.
