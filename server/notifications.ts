@@ -5,13 +5,13 @@ import {ApiError,user,body,now,hash,limit} from './security';
 type Keys={publicKey:string;privateKey:string};
 async function keys():Promise<Keys|null>{const row=await one<{value:string}>('SELECT value FROM app_config WHERE key=?',['webpush-vapid']);return row?JSON.parse(row.value):null;}
 export function validPushEndpoint(value:string){try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&((u.hostname==='fcm.googleapis.com'&&/^\/(fcm\/send|wp)\//.test(u.pathname))||(u.hostname==='updates.push.services.mozilla.com'&&u.pathname.startsWith('/wpush/'))||(u.hostname==='web.push.apple.com'&&u.pathname.startsWith('/')));}catch{return false;}}
-export async function pushNotification(userId:string,id:string){
+export async function pushNotification(userId:string,id:string,event:{title:string;message:string;link:string}){
  try{const k=await keys();if(!k)return;const subscriptions=await all<{endpoint:string;payload:string}>('SELECT endpoint,payload FROM push_subscriptions WHERE user_id=?',[userId]);
- await Promise.allSettled(subscriptions.filter(s=>validPushEndpoint(s.endpoint)).map(async s=>{try{await webpush.sendNotification(JSON.parse(s.payload),JSON.stringify({title:'Framefinder',body:'You have new activity. Open Framefinder to view it.',url:'/notifications',tag:id}),{vapidDetails:{subject:'https://framefinderr.vercel.app',publicKey:k.publicKey,privateKey:k.privateKey},TTL:3600,timeout:4000});}catch(e){const status=(e as {statusCode?:number}).statusCode;if(status===404||status===410)await run('DELETE FROM push_subscriptions WHERE endpoint=?',[s.endpoint]);else console.error('Push delivery failed',status||'network');}}));
+ await Promise.allSettled(subscriptions.filter(s=>validPushEndpoint(s.endpoint)).map(async s=>{try{await webpush.sendNotification(JSON.parse(s.payload),JSON.stringify({title:Array.from(event.title).slice(0,120).join(''),body:Array.from(event.message).slice(0,500).join(''),url:event.link.startsWith('/')&&!event.link.startsWith('//')?event.link:'/notifications',tag:id}),{vapidDetails:{subject:'https://framefinderr.vercel.app',publicKey:k.publicKey,privateKey:k.privateKey},TTL:3600,timeout:4000});}catch(e){const status=(e as {statusCode?:number}).statusCode;if(status===404||status===410)await run('DELETE FROM push_subscriptions WHERE endpoint=?',[s.endpoint]);else console.error('Push delivery failed',status||'network');}}));
  }catch{console.error('Push delivery unavailable');}
 }
 export async function notify(id:string,userId:string,title:string,message:string,link:string){
- try{const result=await run('INSERT OR IGNORE INTO notifications(id,user_id,title,message,link,created_at) VALUES(?,?,?,?,?,?)',[id,userId,title,message,link,now()]);if(result.changes)await pushNotification(userId,id);}catch{console.error('Notification delivery unavailable');}
+ try{const result=await run('INSERT OR IGNORE INTO notifications(id,user_id,title,message,link,created_at) VALUES(?,?,?,?,?,?)',[id,userId,title,message,link,now()]);if(result.changes)await pushNotification(userId,id,{title,message,link});}catch{console.error('Notification delivery unavailable');}
 }
 export async function notifications(req:Request,path:string[]){const a=(await user(req))!;
  if(path[1]==='push'){

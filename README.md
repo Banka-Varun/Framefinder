@@ -152,7 +152,7 @@ Seat alerts accept up to 31 unique dates. Add an individual date or a consecutiv
 This update adds follower/following pages, mutual connections, movie-grouped conversations, unread counts, unsend for your own messages, and server-side contact filtering before messages are saved. Search accepts partial titles and ignores capitalization.
 
 1. Vercel builds now apply pending SQL migrations using the existing `TURSO_HTTP_URL` and `TURSO_AUTH_TOKEN`. New notification tables and browser push signing keys are created once. Keep the database credentials enabled for Production. Preview deployments should use a separate preview database.
-2. Sign in on your phone, open Notifications or Settings, tap **Enable browser notifications**, and allow Chrome notifications. Delivery supports new followers, incoming conversation requests, messages, offers, admin updates and matching feed alerts. Push messages contain generic activity text; open the authenticated app to read details. No ntfy app is required. Live show/seat notifications still require the authorized collector to send matching webhook events. Browser/device settings can delay or prevent delivery.
+2. Sign in on your phone, open Notifications or Settings, tap **Enable browser notifications**, and allow Chrome notifications. Delivery supports new followers, incoming conversation requests, messages, offers, admin updates and matching feed alerts. Push messages show the event title and details: follower or sender name, offer, or show/seat information. The chat message body is not included; open the authenticated conversation to read it. No ntfy app is required. Live show/seat notifications still require the authorized collector to send matching webhook events. Browser/device settings can delay or prevent delivery.
 3. To designate an administrator, sign in with that account, open Settings > Account identifier, and copy the ID into the Vercel Production environment variable `ADMIN_USER_IDS`. Separate multiple IDs with commas. Redeploy, refresh the page, and open `/admin` or Profile > Admin review. Sign in with the account's normal credentials; there is no default or shared administrator password.
 4. Admins can inspect private proof only from the review page, approve a manual review, request more information, reject a listing, and notify an individual member. Every review records the reviewer, decision, note and time. An admin cannot review their own listing. Manual approval is displayed separately and does not claim issuer verification or activate checkout.
 5. Set `TMDB_READ_TOKEN` to your TMDB API Read Access Token in Production for broad movie search and posters from TMDB. The included catalog remains available without it. Missing or unreleased artwork uses a labeled fallback.
@@ -160,3 +160,20 @@ This update adds follower/following pages, mutual connections, movie-grouped con
 Contact filtering catches numeric and spaced phone numbers, common number-word sequences, UPI URIs and payment handles. It is a heuristic; deliberate obfuscation is not guaranteed to be caught. Rejected text is never stored or delivered. Unsend removes the text from the conversation, but cannot erase something a recipient has already read. Push delivery failures do not cancel a saved message or offer.
 
 Run `npm test` and `npm run build` before publishing changes.
+
+
+## Google sign-in: owner setup
+
+The app already implements Google OAuth with state, PKCE, a nonce, and server-side identity validation. A real Google-issued OAuth client is still required.
+
+1. Open Google Cloud Console and select or create a project named Framefinder.
+2. Open Google Auth Platform. Complete Branding / Get started with app name Framefinder, your support email and developer contact email. Choose External audience for public Google accounts.
+3. Open Clients → Create client → Web application. Name it Framefinder Web.
+4. Authorized JavaScript origin: `https://framefinderr.vercel.app`
+5. Authorized redirect URI (exact): `https://framefinderr.vercel.app/api/v1/auth/google-callback`
+6. Create the client. Put the client ID in `GOOGLE_CLIENT_ID` and the client secret in `GOOGLE_CLIENT_SECRET` in Vercel Production environment variables. Keep the client secret out of GitHub and browser-side variables.
+7. Save, redeploy, then use Continue with Google. If the consent configuration limits the audience to test users, add the accounts that will test the app. Review Google's publishing requirements before opening it to everyone.
+
+For `ADMIN_USER_IDS`, use an internal account ID, not a username, email, or Google OAuth client ID. The signed-in `/admin` page displays the exact value to copy and the complete steps.
+
+Google setup reference: https://developers.google.com/identity/protocols/oauth2/web-server#create-authorization-credentials

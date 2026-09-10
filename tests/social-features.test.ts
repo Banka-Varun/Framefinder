@@ -15,7 +15,7 @@ const followers=await(await call('members/owner_test/followers','GET',undefined,
 const following=await(await call('members/buyer_test/following','GET',undefined,buyer.cookie)).json() as any;assert.equal(following.members[0].username,'owner_test');
 assert.equal((await one<any>('SELECT COUNT(*) n FROM notifications WHERE user_id=?',[ownerRow.id]))!.n,1);
 await call('members/buyer_test/follow','POST',{following:true},outsider.cookie);
-const mutual=await(await call('members/owner_test','GET',undefined,outsider.cookie)).json() as any;assert.equal(mutual.followedBy[0].username,'buyer_test');
+const mutual=await(await call('members/owner_test','GET',undefined,outsider.cookie)).json() as any;assert.equal(mutual.followedBy[0].username,'buyer_test');assert.equal(mutual.followerPreview[0].username,'buyer_test');const buyerProfile=await(await call('members/buyer_test','GET',undefined,owner.cookie)).json() as any;assert.equal(buyerProfile.followsYou,true);assert.deepEqual(buyerProfile.followedBy,[]);
 console.log('PASS partial mixed-case search, follower lists, mutual connections and follow deduplication');
 const tid=crypto.randomUUID(),proof=crypto.randomUUID();await run('INSERT INTO tickets(id,seller_id,movie,theater,show_at,language,format,quantity,face_value,price,proof_id,reference_hash,created_at,is_public) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,1)',[tid,ownerRow.id,'The Paradise','Test Cinema','2099-01-01T10:00:00Z','Telugu','2D',1,20000,18000,proof,crypto.randomUUID(),new Date().toISOString()]);
 const thread=await(await call('conversations','POST',{ticketId:tid},buyer.cookie)).json() as any;assert.ok(thread.id);
@@ -51,9 +51,9 @@ console.log('PASS admin authorization, self-review denial, manual review separat
 const {default:webpush}=await import('web-push');
 const pushKeys=webpush.generateVAPIDKeys();await run('INSERT INTO app_config(key,value) VALUES(?,?)',['webpush-vapid',JSON.stringify(pushKeys)]);
 await run('INSERT INTO push_subscriptions(endpoint,user_id,payload,created_at) VALUES(?,?,?,?)',['https://fcm.googleapis.com/fcm/send/unit-test',ownerRow.id,JSON.stringify({endpoint:'https://fcm.googleapis.com/fcm/send/unit-test',keys:{p256dh:'test',auth:'test'}}),new Date().toISOString()]);
-let deliveries=0;const originalSend=webpush.sendNotification;webpush.sendNotification=(async(_sub:any,payload:any)=>{deliveries++;assert.equal(JSON.parse(payload).body,'You have new activity. Open Framefinder to view it.');return {statusCode:201};}) as any;
-const {notify}=await import('../server/notifications');await notify('push-unit-test',ownerRow.id,'Private message','Private text','/messages/example');await notify('push-unit-test',ownerRow.id,'Private message','Private text','/messages/example');assert.equal(deliveries,1);
+let deliveries=0;let received:any;const originalSend=webpush.sendNotification;webpush.sendNotification=(async(_sub:any,payload:any)=>{deliveries++;received=JSON.parse(payload);return {statusCode:201};}) as any;
+const {notify}=await import('../server/notifications');await notify('push-unit-test',ownerRow.id,'Private message','Private text','/messages/example');await notify('push-unit-test',ownerRow.id,'Private message','Private text','/messages/example');assert.equal(deliveries,1);assert.equal(received.title,'Private message');assert.equal(received.body,'Private text');assert.equal(received.url,'/messages/example');
 webpush.sendNotification=(async()=>{throw {statusCode:410};}) as any;await notify('push-expired-test',ownerRow.id,'Test','Test','/notifications');assert.equal((await one<any>('SELECT COUNT(*) n FROM push_subscriptions'))!.n,0);webpush.sendNotification=originalSend;
-console.log('PASS generic browser push payload, notification deduplication and expired subscription cleanup');
+console.log('PASS descriptive browser push payload, notification deduplication and expired subscription cleanup');
 
 const poster=await call('posters?title=THE%20PARADISE');assert.equal(poster.status,302);assert.ok(poster.headers.get('location')?.startsWith('https://m.media-amazon.com/'));assert.equal(poster.headers.get('cache-control'),'public, max-age=3600');console.log('PASS case-insensitive poster resolution and cacheable image redirect');
