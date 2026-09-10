@@ -1,0 +1,1805 @@
+[
+  {
+    "id": 1,
+    "title": "Interstellar",
+    "year": 2014,
+    "language": "English",
+    "minutes": 169,
+    "genres": [
+      "Sci-fi",
+      "Drama",
+      "Adventure"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Emotional"
+    ],
+    "description": "A pilot leaves his family to search beyond our solar system for a future for humanity.",
+    "poster": "https://www.originalfilmart.co.uk/cdn/shop/products/interstellar_2014_advance_original_film_art_682852f2-23f6-46de-a1db-4029d5b6f0b4_5000x.jpg?v=1574284010",
+    "source": "https://famousmovieposters.co.uk/products/interstellar-original-movie-poster"
+  },
+  {
+    "id": 2,
+    "title": "RRR",
+    "year": 2022,
+    "language": "Telugu",
+    "minutes": 187,
+    "genres": [
+      "Action",
+      "Drama",
+      "Adventure"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "Two men on opposing missions forge a friendship in an epic story of rebellion.",
+    "poster": "https://im.rediff.com/movies/2021/aug/04-patriotic-films3.jpg?h=450&w=450",
+    "source": "https://m.rediff.com/movies/report/bollywood-gets-very-patriotic/20210812.htm"
+  },
+  {
+    "id": 3,
+    "title": "Jersey",
+    "year": 2019,
+    "language": "Telugu",
+    "minutes": 157,
+    "genres": [
+      "Drama",
+      "Sport"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "A former cricketer returns to the pitch, determined to become the hero his son believes he is.",
+    "poster": "https://static.moviecrow.com/gallery/20190102/155195-jersey.jpg",
+    "source": "https://nettv4u.com/celebrity/telugu/child-artist/ronit-kamra/list-of-movie-review"
+  },
+  {
+    "id": 4,
+    "title": "Mahanati",
+    "year": 2018,
+    "language": "Telugu",
+    "minutes": 177,
+    "genres": [
+      "Drama",
+      "Biography",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "The extraordinary rise and complicated life of legendary actor Savitri.",
+    "poster": "https://data1.ibtimes.co.in/en/full/686808/mahanati.jpg",
+    "source": "https://www.ibtimes.co.in/mahanati-us-premieres-box-office-collection-keerthy-sureshs-film-beats-naa-peru-surya-record-768781"
+  },
+  {
+    "id": 5,
+    "title": "Sita Ramam",
+    "year": 2022,
+    "language": "Telugu",
+    "minutes": 163,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Slow evening"
+    ],
+    "description": "A letter connects a lonely soldier to a woman whose identity becomes a decades-long mystery.",
+    "poster": "https://image.tmdb.org/t/p/original/t1O94ZBzsQXJihtVkrsStRLyUDR.jpg",
+    "source": "https://actoragecheck.com/movie/Sita-Ramam/894803"
+  },
+  {
+    "id": 6,
+    "title": "Inception",
+    "year": 2010,
+    "language": "English",
+    "minutes": 148,
+    "genres": [
+      "Sci-fi",
+      "Thriller",
+      "Action"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Adrenaline"
+    ],
+    "description": "A specialist who steals secrets through dreams takes on a mission to plant an idea instead.",
+    "poster": "https://artofthemovies.co.uk/cdn/shop/files/inception_advance_SD18120_B-731214_920c5dfe-8d66-47c7-af74-11b98a83ebbf_1024x1024%402x.jpg?v=1737545739",
+    "source": "https://artofthemovies.co.uk/products/inception-2010-ds-os-02"
+  },
+  {
+    "id": 7,
+    "title": "The Grand Budapest Hotel",
+    "year": 2014,
+    "language": "English",
+    "minutes": 100,
+    "genres": [
+      "Comedy",
+      "Adventure",
+      "Drama"
+    ],
+    "moods": [
+      "Uplifting",
+      "Slow evening"
+    ],
+    "description": "A concierge and his young protégé become caught in a stolen painting, a family fortune and a changing Europe.",
+    "poster": "https://cdn.shopify.com/s/files/1/1416/8662/products/1_aba3b3f6-35c4-4f40-ac16-feb6bf4aac28_spo_2000x.jpg?v=1562540105",
+    "source": "https://www.originalfilmart.com/products/grand-budapest-hotel"
+  },
+  {
+    "id": 8,
+    "title": "Past Lives",
+    "year": 2023,
+    "language": "Korean",
+    "minutes": 106,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Slow evening",
+      "Emotional"
+    ],
+    "description": "Childhood friends reunite in New York and consider the lives they might have lived together.",
+    "poster": "https://dx35vtwkllhj9.cloudfront.net/a24films/past-lives/images/regions/us/onesheet.jpg",
+    "source": "https://tickets.pastlives.movie/"
+  },
+  {
+    "id": 9,
+    "title": "Dune",
+    "year": 2021,
+    "language": "English",
+    "minutes": 155,
+    "genres": [
+      "Sci-fi",
+      "Adventure",
+      "Drama"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Adrenaline"
+    ],
+    "description": "A young heir travels to a desert planet where the fate of his family and an empire is contested.",
+    "poster": "https://dunenewsnet.com/wp-content/uploads/2021/08/Dune-Movie-Main-Poster.jpg",
+    "source": "https://dunenewsnet.com/2021/08/dune-poster-showcases-movies-stellar-cast/"
+  },
+  {
+    "id": 10,
+    "title": "Spider-Man: Into the Spider-Verse",
+    "year": 2018,
+    "language": "English",
+    "minutes": 117,
+    "genres": [
+      "Animation",
+      "Action",
+      "Adventure"
+    ],
+    "moods": [
+      "Uplifting",
+      "Adrenaline"
+    ],
+    "description": "Miles Morales meets Spider-People from other dimensions and learns to make the leap himself.",
+    "poster": "https://www.popmovee.com/uploads/1/9/6/2/19626163/spider-man-into-the-spider-verse-movie-2018-poster1_1_orig.jpg",
+    "source": "https://www.popmovee.com/spider-man-into-the-spider-verse-2018-movie-news-and-review.html"
+  },
+  {
+    "id": 100,
+    "title": "Baahubali: The Beginning",
+    "year": 2015,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://static.wikia.nocookie.net/baahubali2662/images/6/68/Baahubali_The_Beginning_Shivudu_Lingam_Poster.jpg/revision/latest/scale-to-width-down/1200?cb=20170507191002",
+    "source": "https://baahubali.fandom.com/wiki/Baahubali%3A_The_Beginning"
+  },
+  {
+    "id": 101,
+    "title": "Baahubali 2: The Conclusion",
+    "year": 2017,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://www.impawards.com/intl/india/2017/posters/baahubali_two_the_conclusion_ver8.jpg",
+    "source": "https://www.impawards.com/intl/india/2017/baahubali_two_the_conclusion_ver8.html"
+  },
+  {
+    "id": 102,
+    "title": "Eega",
+    "year": 2012,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Fantasy",
+      "Thriller"
+    ],
+    "moods": [
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://media.senscritique.com/media/000023029389/0/eega.png",
+    "source": "https://www.senscritique.com/film/eega/21983875/images"
+  },
+  {
+    "id": 103,
+    "title": "Rangasthalam",
+    "year": 2018,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Drama",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://images.moviebuff.com/5f826138-08cd-4d93-a7ac-14cbdcf715e1?w=1000",
+    "source": "https://www.moviebuff.com/ram-charan-teja"
+  },
+  {
+    "id": 104,
+    "title": "Pelli Choopulu",
+    "year": 2016,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://static.digit.in/OTT/v2/images/pelli-choopulu-1235125.jpg",
+    "source": "https://www.digit.in/digit-binge/movies/pelli-choopulu-13035.html"
+  },
+  {
+    "id": 105,
+    "title": "Arjun Reddy",
+    "year": 2017,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://i.pinimg.com/736x/81/55/c4/8155c40d03bf6a379a7a564d3667ba5f.jpg",
+    "source": "https://in.pinterest.com/pin/arjun-reddy-movie-poster--307792955797225218/"
+  },
+  {
+    "id": 106,
+    "title": "Agent Sai Srinivasa Athreya",
+    "year": 2019,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Thriller"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://images.plex.tv/photo?size=large-1280&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fe%2Fgracenote%2Fe32f77e790045b0f8893bd82cc175cbb.jpg",
+    "source": "https://watch.plex.tv/movie/agent-sai-srinivasa-athreya"
+  },
+  {
+    "id": 107,
+    "title": "C/o Kancharapalem",
+    "year": 2018,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://movieassetsdigital.sgp1.cdn.digitaloceanspaces.com/original/471e82409880f757540a9f0211e936fefde441ce",
+    "source": "https://www.komparify.com/entertainment/movie/co-kancharapalem"
+  },
+  {
+    "id": 108,
+    "title": "Athadu",
+    "year": 2005,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://cdn.district.in/movies-assets/images/cinema/G%20Athadu-f44aec70-6926-11f0-b49e-0daac2dae3b7.jpg",
+    "source": "https://ticketnew.com/movies/athadu-2005-movie-detail-202993"
+  },
+  {
+    "id": 109,
+    "title": "Pokiri",
+    "year": 2006,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/original/ubG8d8QmgXWa3YJK0UzW8aUnzTF.jpg",
+    "source": "https://www.themoviedb.org/movie/23381/images/posters"
+  },
+  {
+    "id": 110,
+    "title": "Ala Vaikunthapurramuloo",
+    "year": 2020,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://images.moviebuff.com/16a93280-7521-4c94-a75d-45d8f895ba39?w=600",
+    "source": "https://www.moviebuff.com/ala-vaikunthapuramulo"
+  },
+  {
+    "id": 111,
+    "title": "Pushpa: The Rise",
+    "year": 2021,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://media.ragalahari.com/posters/2021/pushpa-poster.jpg",
+    "source": "https://www.ragalahari.com/movies/info/95914/pushpa-allu-arjun-rashmika-mandanna-sukumar-b.aspx"
+  },
+  {
+    "id": 112,
+    "title": "Hi Nanna",
+    "year": 2023,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://media.cinemaexpress.com/cinemaexpress%2Fimport%2Fuploads%2Fuser%2Fckeditor_images%2Farticle%2F2023%2F12%2F3%2F2854af7c-6dce-4a2c-bd57-06d5de432ba5.jpg",
+    "source": "https://www.cinemaexpress.com/telugu/news/2023/Dec/03/nani-mrunal-thakur--starrer-hi-nanna-clears-censorship-formalities-50094.html"
+  },
+  {
+    "id": 113,
+    "title": "Dasara",
+    "year": 2023,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://popcornsg.s3.amazonaws.com/movies/650/13177-48728-Dasarajpg",
+    "source": "https://www.popcorn.app/my/dasara/movie/17366"
+  },
+  {
+    "id": 114,
+    "title": "Hanu-Man",
+    "year": 2024,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Fantasy",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://media.ragalahari.com/news/jun2023/hanuman-release-date-announced-jul1.jpg",
+    "source": "https://www.ragalahari.com/tollywood-news-2023-july/169797/hanu-man-new-release-date-creates-anticipation"
+  },
+  {
+    "id": 115,
+    "title": "Kalki 2898 AD",
+    "year": 2024,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Sci-fi",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://static.moviecrow.com/gallery/20240625/230568-Kalki%202898%20AD%20Prabhas%20Bhairava%20Bounty%20Hunter%20Super%20Hero%20Character.jpg",
+    "source": "https://www.moviecrow.com/News/33397/kalki-2898-ad-prabhas-deepika-amitabh-kamal-characters"
+  },
+  {
+    "id": 116,
+    "title": "Lucky Baskhar",
+    "year": 2024,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Thriller",
+      "Drama"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://www.cinejosh.com/newsimg/newsmainimg/dulquer-salmaan-crime-drama-lucky-baskhar-set-to-stream-on-netflix-in-december_b_0211240948.jpg",
+    "source": "https://www.cinejosh.com/news/1/113520/dulquer-salmaan-lucky-baskhar-set-to-stream-on-netflix.html"
+  },
+  {
+    "id": 117,
+    "title": "Brochevarevarura",
+    "year": 2019,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Thriller"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNjc5MDIwYmMtN2E1Yi00NGMyLWFhYWItMzM2ODQ3MTM2NjZmXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg",
+    "source": "https://www.imdb.com/title/tt9742334/mediaviewer/rm3273242113/"
+  },
+  {
+    "id": 118,
+    "title": "Mathu Vadalara",
+    "year": 2019,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Thriller"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BOWI1YzYyNzktM2UyZS00YzZlLTlmOTYtNTljOGM4NjI4MjBjXkEyXkFqcGc%40._V1_.jpg",
+    "source": "https://www.imdb.com/title/tt11469744/"
+  },
+  {
+    "id": 119,
+    "title": "Ante Sundaraniki",
+    "year": 2022,
+    "language": "Telugu",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://assets.gadgets360cdn.com/pricee/assets/product/202203/Ante-Sundharaniki-Poster_1648055227.jpg",
+    "source": "https://www.gadgets360.com/entertainment/ante-sundaraniki-movie-106948"
+  },
+  {
+    "id": 120,
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://media.senscritique.com/media/000004888675/source_big/Les_Evades.jpg",
+    "source": "https://www.senscritique.com/film/les_evades/414626/images"
+  },
+  {
+    "id": 121,
+    "title": "The Dark Knight",
+    "year": 2008,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://filmartgallery.com/cdn/shop/files/The-Dark-Knight-Vintage-Movie-Poster-Original_8fe3ff31_5000x.jpg?v=1771812181",
+    "source": "https://filmartgallery.com/products/the-dark-knight-7"
+  },
+  {
+    "id": 122,
+    "title": "The Godfather",
+    "year": 1972,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://i.ebayimg.com/images/g/lDcAAOSwWA5lZS7w/s-l1200.jpg",
+    "source": "https://www.ebay.com/itm/305290172370"
+  },
+  {
+    "id": 123,
+    "title": "The Matrix",
+    "year": 1999,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Sci-fi",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://images.squarespace-cdn.com/content/v1/5ef39ba2909bf936034233da/1593037171146-7C6NKU2VV4QK6TS3CBUO/TheMatrix.jpg",
+    "source": "https://www.ccentco.com/matrix"
+  },
+  {
+    "id": 124,
+    "title": "Arrival",
+    "year": 2016,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Sci-fi",
+      "Drama"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://www.impawards.com/2016/posters/arrival_ver12_xxlg.jpg",
+    "source": "https://www.impawards.com/2016/arrival_ver12_xxlg.html"
+  },
+  {
+    "id": 125,
+    "title": "Whiplash",
+    "year": 2014,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Music",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://www.royalqueenseeds.nl/img/cms/Whiplash-movie%20%282%29_5.jpg",
+    "source": "https://www.royalqueenseeds.nl/blog-de-top-10-films-om-te-kijken-als-je-high-bent-n1347"
+  },
+  {
+    "id": 126,
+    "title": "La La Land",
+    "year": 2016,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Music"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://artofthemovies.co.uk/cdn/shop/files/IMG_2372_23f37a49-0685-4c41-9fcb-251769035c62.jpg?v=1770883511&width=990",
+    "source": "https://artofthemovies.co.uk/products/la-la-land-2016"
+  },
+  {
+    "id": 127,
+    "title": "Everything Everywhere All at Once",
+    "year": 2022,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Sci-fi",
+      "Comedy"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://images.squarespace-cdn.com/content/v1/51c8b108e4b050e44c477323/caf391fd-16bd-4bf5-b1a3-8c05599ab36d/Everything%2BEverywhere%2BAll%2BAt%2BOnce%2BPoster%2B01.jpg",
+    "source": "https://www.greysuitcase.net/found-online/2025/3/27/moview-review-everything-everywhere-all-at-once"
+  },
+  {
+    "id": 128,
+    "title": "The Truman Show",
+    "year": 1998,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://assets.st-note.com/img/1682476209641-hNR3IQxx9n.jpg?fit=bounds&height=2000&quality=85&width=2000",
+    "source": "https://note.com/yamashin_nomaki/n/ndeae2bbde2cc"
+  },
+  {
+    "id": 129,
+    "title": "Good Will Hunting",
+    "year": 1997,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://www.originalfilmart.co.uk/cdn/shop/files/good_will_hunting_1997_original_film_art_5000x.webp?v=1684270375",
+    "source": "https://www.originalfilmart.co.uk/products/good-will-hunting"
+  },
+  {
+    "id": 130,
+    "title": "The Prestige",
+    "year": 2006,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Thriller",
+      "Drama"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://www.impawards.com/2006/posters/prestige_xxlg.jpg",
+    "source": "https://www.impawards.com/2006/prestige_xxlg.html"
+  },
+  {
+    "id": 131,
+    "title": "Memento",
+    "year": 2000,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Thriller"
+    ],
+    "moods": [
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://d1uzk9o9cg136f.cloudfront.net/f/16781421/rc/2025/12/17/3f9f69ce954a463096cf336b915fda01e90ae4ae_xlarge.jpg",
+    "source": "https://dino.singles/column/17810811"
+  },
+  {
+    "id": 132,
+    "title": "Eternal Sunshine of the Spotless Mind",
+    "year": 2004,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Sci-fi"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://image.tmdb.org/t/p/original/xEYHGaKD4lxIVIJv6mOkqv60af0.jpg",
+    "source": "https://www.themoviedb.org/movie/38-eternal-sunshine-of-the-spotless-mind/images/posters?image_language=en&language=ko"
+  },
+  {
+    "id": 133,
+    "title": "The Social Network",
+    "year": 2010,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Drama",
+      "Biography"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://images.moviebuff.com/208de229-d027-494b-9aca-6e7b17498a09?w=600",
+    "source": "https://www.moviebuff.com/the-social-network"
+  },
+  {
+    "id": 134,
+    "title": "Oppenheimer",
+    "year": 2023,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Drama",
+      "Biography"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://artofthemovies.co.uk/cdn/shop/files/IMG_2672-955819-778531-395716.jpg?v=1734368672&width=1200",
+    "source": "https://artofthemovies.co.uk/products/oppenheimer-2023-ds-os-03"
+  },
+  {
+    "id": 135,
+    "title": "Dune: Part Two",
+    "year": 2024,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Sci-fi",
+      "Adventure"
+    ],
+    "moods": [
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://filmartgallery.com/cdn/shop/files/Dune-Part-Two-Vintage-Movie-Poster-Original-1-Sheet-27x41.jpg?v=1706152200",
+    "source": "https://filmartgallery.com/products/dune-part-two"
+  },
+  {
+    "id": 136,
+    "title": "Inside Out",
+    "year": 2015,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Comedy"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://i.ebayimg.com/images/g/FoYAAOSwS-5mceVV/s-l1200.jpg",
+    "source": "https://www.ebay.com/itm/226200844506"
+  },
+  {
+    "id": 137,
+    "title": "Coco",
+    "year": 2017,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Music"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://cdn-jpr.jawapos.com/images/13/2025/05/24/aizdMBK5hwTC39RkFrkWv4niJrKqoBbaEPTqrToa-4175184346.jpg",
+    "source": "https://radarjember.jawapos.com/infotainment/796055974/sinopsis-film-dan-fakta-unik-film-coco-2017-merayakan-hidup-lewat-kematian-dalam-orkestrasi-budaya-dan-musik"
+  },
+  {
+    "id": 138,
+    "title": "WALL-E",
+    "year": 2008,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Sci-fi"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://pixieposters.co.uk/cdn/shop/files/walle-p224568.jpg?v=1714060698",
+    "source": "https://pixieposters.co.uk/products/premium-wall-e-a2-size-movie-poster"
+  },
+  {
+    "id": 139,
+    "title": "Ratatouille",
+    "year": 2007,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Comedy"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://miro.medium.com/1%2AKKSWssLs0M9QEWNQ4UrRqQ.jpeg",
+    "source": "https://medium.com/%40zainabnawal/my-favourite-animated-movies-revive-your-childhood-memories-e4a36b54fd16"
+  },
+  {
+    "id": 140,
+    "title": "Finding Nemo",
+    "year": 2003,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Adventure"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://moviepostermexico.com/cdn/shop/products/finding_nemo_xxlg_2048x.jpg?v=1586963680",
+    "source": "https://moviepostermexico.com/collections/all/buscando-a-nemo"
+  },
+  {
+    "id": 141,
+    "title": "Toy Story",
+    "year": 1995,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Adventure"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://filmartgallery.com/cdn/shop/products/Toy-Story-Vintage-Movie-Poster-Original_d0d61301_5000x.jpg?v=1771946769",
+    "source": "https://filmartgallery.com/products/toy-story-2"
+  },
+  {
+    "id": 142,
+    "title": "Up",
+    "year": 2009,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Adventure"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://www.cultura.trentino.it/var/001/storage/images/media/images/up/24856101-1-ita-IT/up_imagefullwide.jpg",
+    "source": "https://www.cultura.trentino.it/Biblio/Rubriche/Altre-rubriche/ANIMA/Up"
+  },
+  {
+    "id": 143,
+    "title": "The Martian",
+    "year": 2015,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Sci-fi",
+      "Adventure"
+    ],
+    "moods": [
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://velociraptor256.wordpress.com/wp-content/uploads/2015/10/martian-poster.jpg",
+    "source": "https://velociraptor256.wordpress.com/2015/10/01/film-review-the-martian/"
+  },
+  {
+    "id": 144,
+    "title": "Ford v Ferrari",
+    "year": 2019,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Sport",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://assets.gadgets360cdn.com/pricee/assets/product/202209/Ford-v-Ferrari-poster_1662899441.jpg",
+    "source": "https://www.gadgets360.com/entertainment/ford-v-ferrari-movie-90927"
+  },
+  {
+    "id": 145,
+    "title": "The Avengers",
+    "year": 2012,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Sci-fi"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://media.s-bol.com/EEXQx21qz43k/wpw3M3w/550x825.jpg",
+    "source": "https://www.bol.com/nl/nl/p/schilderij-wereldkaart-in-blauw-en-geel/9200000061620311/"
+  },
+  {
+    "id": 146,
+    "title": "Avengers: Infinity War",
+    "year": 2018,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Sci-fi"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://i.etsystatic.com/37166133/r/il/60f034/4087791906/il_fullxfull.4087791906_jcbj.jpg",
+    "source": "https://www.etsy.com/listing/1273597536/avengers-infinity-war-movie-poster"
+  },
+  {
+    "id": 147,
+    "title": "Avengers: Endgame",
+    "year": 2019,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Sci-fi"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://filmartgallery.com/cdn/shop/files/Avengers-Endgame-Official-Movie-Poster-Vintage-Movie-Poster-Original_c013767b_5000x.jpg?v=1771944029",
+    "source": "https://filmartgallery.com/products/avengers-endgame-295-dark-purple-advance-poster"
+  },
+  {
+    "id": 148,
+    "title": "Spider-Man: Across the Spider-Verse",
+    "year": 2023,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://artofthemovies.co.uk/cdn/shop/files/IMG_5558.jpg?v=1707494056",
+    "source": "https://artofthemovies.co.uk/products/spider-man-across-the-spider-verse-2023-stylec-ds-os-01"
+  },
+  {
+    "id": 149,
+    "title": "Knives Out",
+    "year": 2019,
+    "language": "English",
+    "minutes": 0,
+    "genres": [
+      "Thriller",
+      "Comedy"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://www.mafab.hu/static/2019/261/00/318597_1568847115.9774.jpg",
+    "source": "https://www.mafab.hu/movies/knives-out-318597.html"
+  },
+  {
+    "id": 150,
+    "title": "3 Idiots",
+    "year": 2009,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://miro.medium.com/v2/resize%3Afit%3A1400/1%2AykoSilpU1bXjXOumImNsgw.jpeg",
+    "source": "https://dzjn.medium.com/3-idiots-80f4e5557342"
+  },
+  {
+    "id": 151,
+    "title": "Dangal",
+    "year": 2016,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Sport",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://mxp-media.ilnmedia.com/media/content/2023/Feb/Bollywood-Box-Office-Milestones-Crore-Clubs-Pathaan-Ghajini-Sholay-Shah-Rukh-Khan-21_63fdda0fe1545.jpeg",
+    "source": "https://www.mensxp.com/ampstories/buzz-on-web/entertainment/130270-bollywood-films-created-crore-club-benchmarks-shah-rukh-khan-pathaan-aamir-khan-ghajini-sunny-deol-gadar-sholay.html"
+  },
+  {
+    "id": 152,
+    "title": "Lagaan",
+    "year": 2001,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Sport",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/I/91ZWAeRiIVS._SL1500_.jpg",
+    "source": "https://www.scoopwhoop.com/entertainment/memorable-bygone-bollywood-film-posters/"
+  },
+  {
+    "id": 153,
+    "title": "Swades",
+    "year": 2004,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://wp.scoopwhoop.com/wp-content/uploads/2023/08/11-2.jpg?w=709",
+    "source": "https://www.scoopwhoop.com/entertainment/shahrukh-khan-movies/"
+  },
+  {
+    "id": 154,
+    "title": "Taare Zameen Par",
+    "year": 2007,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://s1.afisha.ru/mediastorage/d7/d3/6110c088394b4db7bd6d1ee3d3d7.jpg",
+    "source": "https://www.afisha.ru/people/aamir-khan-288809/movies/"
+  },
+  {
+    "id": 155,
+    "title": "Andhadhun",
+    "year": 2018,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Thriller",
+      "Comedy"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZjc5OWIzOTgtMmM2ZS00ZjZhLTkyZWItMTFjYTc0NWQ4NzhkXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg",
+    "source": "https://www.imdb.com/de/title/tt8108198/"
+  },
+  {
+    "id": 156,
+    "title": "Tumbbad",
+    "year": 2018,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Horror",
+      "Fantasy"
+    ],
+    "moods": [],
+    "description": "",
+    "poster": "https://cs8.pikabu.ru/post_img/big/2018/10/30/4/154087314017377726.jpg",
+    "source": "https://pikabu.ru/story/indiyskiy_khorror_tumbbad_tumbbad_6249324"
+  },
+  {
+    "id": 157,
+    "title": "Zindagi Na Milegi Dobara",
+    "year": 2011,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Adventure",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BOGIzYzg5NzItNDRkYS00NmIzLTk3NzQtZWYwY2VlZDhiYWQ4XkEyXkFqcGc%40._V1_.jpg",
+    "source": "https://www.imdb.com/title/tt1562872/"
+  },
+  {
+    "id": 158,
+    "title": "Queen",
+    "year": 2014,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://images.moviebuff.com/9953e33a-f663-4c54-a6c0-2f813eb8011e?w=1000",
+    "source": "https://www.moviebuff.com/queen"
+  },
+  {
+    "id": 159,
+    "title": "The Lunchbox",
+    "year": 2013,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://pascaleweeks.com/wp-content/uploads/2025/09/6a00d8341c676f53ef01a3fb54aa84970b-scaled.jpg",
+    "source": "https://pascaleweeks.com/the-lunchbox-un-film-magnifique/"
+  },
+  {
+    "id": 160,
+    "title": "Gully Boy",
+    "year": 2019,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Music",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://br.web.img3.acsta.net/pictures/19/01/03/15/29/1761860.jpg",
+    "source": "https://www.adorocinema.com/filmes/filme-270569/"
+  },
+  {
+    "id": 161,
+    "title": "12th Fail",
+    "year": 2023,
+    "language": "Hindi",
+    "minutes": 0,
+    "genres": [
+      "Drama",
+      "Biography"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://www.eoibudapest.gov.in/content/12th-fail.jpg",
+    "source": "https://www.eoibudapest.gov.in/Indian-Film-Festival.php"
+  },
+  {
+    "id": 162,
+    "title": "Drishyam",
+    "year": 2013,
+    "language": "Malayalam",
+    "minutes": 0,
+    "genres": [
+      "Thriller",
+      "Drama"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://images.plex.tv/photo?size=large-1280&url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F7d8GLneJkF81q1POdK7VUrjWafX.jpg",
+    "source": "https://watch.plex.tv/movie/drishyam-2013"
+  },
+  {
+    "id": 163,
+    "title": "Bangalore Days",
+    "year": 2014,
+    "language": "Malayalam",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://images.filmibeat.com/ph-big/2025/02/valentines-day-2025-malayalam-romantic-movies-to-watch-on-ott-platform1739511978_2.jpg",
+    "source": "https://www.filmibeat.com/photo-gallery/valentines-day-2025-malayalam-romantic-movies-to-watch-on-ott-platform-100672.html"
+  },
+  {
+    "id": 164,
+    "title": "Premam",
+    "year": 2015,
+    "language": "Malayalam",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/2baee529323171.55edda9493f77.jpg",
+    "source": "https://www.behance.net/gallery/29323171/Premam-Malayalam-Movie-official-posters"
+  },
+  {
+    "id": 165,
+    "title": "Kumbalangi Nights",
+    "year": 2019,
+    "language": "Malayalam",
+    "minutes": 0,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BYjYyZTNkZGYtZGJjZC00NmM2LThjNjMtMjYxYTI0NTg1NzViXkEyXkFqcGdeQXVyMzQ5Njc3NzU%40._V1_.jpg",
+    "source": "https://www.imdb.com/title/tt8413338/mediaviewer/rm598305536"
+  },
+  {
+    "id": 166,
+    "title": "Manjummel Boys",
+    "year": 2024,
+    "language": "Malayalam",
+    "minutes": 0,
+    "genres": [
+      "Thriller",
+      "Adventure"
+    ],
+    "moods": [
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://cf-img-a-in.tosshub.com/sites/visualstory/wp/2024/05/MV5BMTQwZjRiMjUtYmU0OS00Y2EwLWJhZTctOWI1ZGU2NWExM2FkXkEyXkFqcGdeQXVyMTY3ODkyNDkz_V1_.jpg",
+    "source": "https://www.businesstoday.in/visualstories/entertainment/manjummal-boys-the-gut-wrenching-rescue-story-behind-this-years-sleeper-hit-133918-06-05-2024"
+  },
+  {
+    "id": 167,
+    "title": "Aavesham",
+    "year": 2024,
+    "language": "Malayalam",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BOTgyMmFiN2YtOWRmNi00ZTg4LThhNDUtYjdhNzNjYmIwNWIyXkEyXkFqcGc%40._V1_.jpg",
+    "source": "https://www.imdb.com/title/tt26660021/mediaindex/"
+  },
+  {
+    "id": 168,
+    "title": "Ustad Hotel",
+    "year": 2012,
+    "language": "Malayalam",
+    "minutes": 0,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://www.impawards.com/intl/india/2012/posters/ustad_hotel_ver13_xlg.jpg",
+    "source": "https://www.impawards.com/intl/india/2012/ustad_hotel_ver13_xlg.html"
+  },
+  {
+    "id": 169,
+    "title": "Maheshinte Prathikaaram",
+    "year": 2016,
+    "language": "Malayalam",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://imagesvs.oneindia.com/ph-big/2026/05/must-watch-5-underrated-malayalam-movies1780125007_1.jpg",
+    "source": "https://tamil.oneindia.com/photos/must-watch-5-underrated-malayalam-movies-oi127037.html"
+  },
+  {
+    "id": 170,
+    "title": "Vikram",
+    "year": 2022,
+    "language": "Tamil",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://www.behindwoods.com/uploads/62e27170ce3c0.jpeg",
+    "source": "https://tamil.behindwoods.com/tamil-movies-cinema-news-ta/vikram-once-upon-a-time-video-song-released.html"
+  },
+  {
+    "id": 171,
+    "title": "Kaithi",
+    "year": 2019,
+    "language": "Tamil",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://i.gadgets360cdn.com/products/large/Kaithi1-1200x1714-1656773605891.jpg?downsize=%2A%3A240",
+    "source": "https://www.gadgets360.com/entertainment/kaithi-movie-110802"
+  },
+  {
+    "id": 172,
+    "title": "Super Deluxe",
+    "year": 2019,
+    "language": "Tamil",
+    "minutes": 0,
+    "genres": [
+      "Drama",
+      "Thriller"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://assets.vogue.in/photos/5e5f45b8da6656000804d06a/master/w_1600%2Cc_limit/super%2520deluxe.jpg",
+    "source": "https://www.vogue.in/culture-and-living/content/samantha-akkineni-best-tamil-telugu-movies-super-deluxe-jaanu"
+  },
+  {
+    "id": 173,
+    "title": "96",
+    "year": 2018,
+    "language": "Tamil",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://flxt.tmsimg.com/assets/p15911775_p_v8_ab.jpg",
+    "source": "https://www.rottentomatoes.com/m/96"
+  },
+  {
+    "id": 174,
+    "title": "Anbe Sivam",
+    "year": 2003,
+    "language": "Tamil",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://beauty-around.com/images/sampledata/Cinema_South_India/Anbe_Sivam/Anbe-Sivam_Movie%20poster.jpg",
+    "source": "https://beauty-around.com/ru/rejtingi-filmov/item/68-samyue-luchshie-modern-yujno-indian-films"
+  },
+  {
+    "id": 175,
+    "title": "Jai Bhim",
+    "year": 2021,
+    "language": "Tamil",
+    "minutes": 0,
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://images.hindustantimes.com/img/2021/11/08/original/jai_bhim_1636345918619.jpeg",
+    "source": "https://www.hindustantimes.com/entertainment/tamil-cinema/jai-bhim-communal-symbol-digitally-altered-to-avoid-hurting-sentiments-101636345838682.html"
+  },
+  {
+    "id": 176,
+    "title": "Soorarai Pottru",
+    "year": 2020,
+    "language": "Tamil",
+    "minutes": 0,
+    "genres": [
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNGFhNDEyM2EtNDc5Zi00ZjAyLTk0ZDAtYzNlY2VlMDhlOTBiXkEyXkFqcGc%40._V1_.jpg",
+    "source": "https://www.imdb.com/title/tt10189514/mediaviewer/rm3909541377"
+  },
+  {
+    "id": 177,
+    "title": "Vada Chennai",
+    "year": 2018,
+    "language": "Tamil",
+    "minutes": 0,
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMjE4ODM5MmMtODdlYy00NWRiLWJkOWQtNmQ2MGYzNGZlYmNkXkEyXkFqcGc%40._V1_QL99_UX600_.jpg",
+    "source": "https://cbfc.watch/film/vada-chennai-2018"
+  },
+  {
+    "id": 178,
+    "title": "Kantara",
+    "year": 2022,
+    "language": "Kannada",
+    "minutes": 0,
+    "genres": [
+      "Thriller",
+      "Drama"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZGQyMmQwYzItZWIwOS00NzMxLTk1ODQtNTdiMjhiMWJlYjU5XkEyXkFqcGc%40._V1_.jpg",
+    "source": "https://www.imdb.com/title/tt15327088/mediaviewer/rm3776057601/"
+  },
+  {
+    "id": 179,
+    "title": "777 Charlie",
+    "year": 2022,
+    "language": "Kannada",
+    "minutes": 0,
+    "genres": [
+      "Adventure",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://images.moviebuff.com/45046ce6-22b8-495c-9de6-586fc05d9934?w=500",
+    "source": "https://www.moviebuff.com/777-charlie-2022-hindi"
+  },
+  {
+    "id": 180,
+    "title": "K.G.F: Chapter 1",
+    "year": 2018,
+    "language": "Kannada",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://assets.telegraphindia.com/telegraph/84300aef-2acf-481a-ba61-d9649bd0a73d.jpg",
+    "source": "https://www.telegraphindia.com/entertainment/kannada-star-yash-is-all-set-to-be-a-pan-indian-face-with-kolar-gold-field-chapter-i/cid/1677847"
+  },
+  {
+    "id": 181,
+    "title": "K.G.F: Chapter 2",
+    "year": 2022,
+    "language": "Kannada",
+    "minutes": 0,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "moods": [
+      "Adrenaline",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://www.ticketly.eu/Photos/Event/Event_26955.jpg",
+    "source": "https://www.ticketly.eu/Event.aspx?eventId=26955"
+  },
+  {
+    "id": 182,
+    "title": "Lucia",
+    "year": 2013,
+    "language": "Kannada",
+    "minutes": 0,
+    "genres": [
+      "Thriller",
+      "Sci-fi"
+    ],
+    "moods": [
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://images.moviebuff.com/9ee6dc4b-77ba-4cc7-8cdb-720cac668b72?w=1000",
+    "source": "https://www.moviebuff.com/lucia"
+  },
+  {
+    "id": 183,
+    "title": "Kirik Party",
+    "year": 2016,
+    "language": "Kannada",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://images.justwatch.com/poster/320343097/s718/kirik-party.jpg",
+    "source": "https://www.justwatch.com/in/movie/kirik-party"
+  },
+  {
+    "id": 184,
+    "title": "Parasite",
+    "year": 2019,
+    "language": "Korean",
+    "minutes": 0,
+    "genres": [
+      "Thriller",
+      "Drama"
+    ],
+    "moods": [
+      "Mind-bending",
+      "Emotional"
+    ],
+    "description": "",
+    "poster": "https://hips.hearstapps.com/hmg-prod/images/parasite-pelicula-poster-1559286150.jpg",
+    "source": "https://www.fotogramas.es/peliculas-criticas/a29534308/parasitos-critica-pelicula/"
+  },
+  {
+    "id": 185,
+    "title": "Memories of Murder",
+    "year": 2003,
+    "language": "Korean",
+    "minutes": 0,
+    "genres": [
+      "Crime",
+      "Thriller"
+    ],
+    "moods": [
+      "Mind-bending"
+    ],
+    "description": "",
+    "poster": "https://cdn.posteritati.com/posters/000/000/069/732/memories-of-murder-md-web.jpg",
+    "source": "https://posteritati.com/poster/57626/memories-of-murder-original-2003-french-grande-movie-poster"
+  },
+  {
+    "id": 186,
+    "title": "Train to Busan",
+    "year": 2016,
+    "language": "Korean",
+    "minutes": 0,
+    "genres": [
+      "Horror",
+      "Action"
+    ],
+    "moods": [
+      "Adrenaline"
+    ],
+    "description": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZTMyMjJhMDYtZTQzMC00MjcxLTkyYjQtN2RlZThlYmM3NjczXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg",
+    "source": "https://www.imdb.com/title/tt5700672/"
+  },
+  {
+    "id": 187,
+    "title": "Spirited Away",
+    "year": 2001,
+    "language": "Japanese",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Fantasy"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://a.1stdibscdn.com/unknown-prints-works-on-paper-spirited-away-original-vintage-movie-poster-hayao-miyazaki-studio-ghibli-2001-for-sale-picture-2/a_6823/a_59370321585240195194/StudioGhibli_SpiritedAway1_copy_3_master.jpg?width=768",
+    "source": "https://www.1stdibs.com/art/prints-works-on-paper/more-prints-works-on-paper/unknown-spirited-away-original-vintage-movie-poster-hayao-miyazaki-studio-ghibli-2001/id-a_5937032/"
+  },
+  {
+    "id": 188,
+    "title": "Your Name",
+    "year": 2016,
+    "language": "Japanese",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://i.etsystatic.com/15666683/r/il/695e94/1807601934/il_fullxfull.1807601934_psyl.jpg",
+    "source": "https://www.puppetonachain.com/listing/656521095/your-name-a-japan-anime-makoto-shinkai"
+  },
+  {
+    "id": 189,
+    "title": "My Neighbor Totoro",
+    "year": 1988,
+    "language": "Japanese",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Fantasy"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://a.1stdibscdn.com/tonari-no-totoro-my-neighbor-totoro-for-sale-picture-2/f_9891/f_400070221717427762318/TONARI_MY_NEIGHBOR_TOTORO_master.jpg",
+    "source": "https://www.1stdibs.com/furniture/wall-decorations/posters/tonari-no-totoro-my-neighbor-totoro/id-f_40007022/"
+  },
+  {
+    "id": 190,
+    "title": "Princess Mononoke",
+    "year": 1997,
+    "language": "Japanese",
+    "minutes": 0,
+    "genres": [
+      "Animation",
+      "Adventure"
+    ],
+    "moods": [
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://filmartgallery.com/cdn/shop/files/Princess-Mononoke-Vintage-Movie-Poster-Original_2f64d6c3_5000x.jpg?v=1765681699",
+    "source": "https://filmartgallery.com/products/princess-mononoke"
+  },
+  {
+    "id": 191,
+    "title": "Amelie",
+    "year": 2001,
+    "language": "French",
+    "minutes": 0,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://cdn.posteritati.com/posters/000/000/057/810/amelie-md-web.jpg",
+    "source": "https://posteritati.com/film/330/amelie"
+  },
+  {
+    "id": 192,
+    "title": "The Intouchables",
+    "year": 2011,
+    "language": "French",
+    "minutes": 0,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "moods": [
+      "Emotional",
+      "Uplifting"
+    ],
+    "description": "",
+    "poster": "https://www.scannain.com/media/intouchables-poster.jpeg",
+    "source": "https://www.scannain.com/movie-news/the-intouchables-uk-trailer/"
+  }
+]

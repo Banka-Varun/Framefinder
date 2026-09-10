@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env*
+!.env.example
+*.tsbuildinfo
+*.class
+__pycache__/
+*.sqlite*
+*.db

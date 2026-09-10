@@ -1,0 +1,20 @@
+[
+ {"id":"prasads","name":"Prasads Multiplex: Hyderabad","area":"Khairtabad","venueCode":"PRHN"},
+ {"id":"amb","name":"AMB Cinemas: Gachibowli","area":"Gachibowli","venueCode":"AMBH"},
+ {"id":"allu","name":"ALLU Cinemas: Kokapet","area":"Kokapet"},
+ {"id":"asian-lakshmikala","name":"Asian Lakshmikala Cinepride: Moosapet","area":"Moosapet"},
+ {"id":"art","name":"ART CINEMAS: Vanasthalipuram","area":"Vanasthalipuram"},
+ {"id":"pvr-nexus","name":"PVR: Nexus Mall Kukatpally, Hyderabad","area":"Kukatpally"},
+ {"id":"aaa","name":"AAA Cinemas: Ameerpet","area":"Ameerpet"},
+ {"id":"aparna","name":"Aparna Cinemas: Nallagandla","area":"Nallagandla"},
+ {"id":"cinepolis-tnr","name":"Cinepolis: TNR North City, Suchitra, Hyderabad","area":"Suchitra"},
+ {"id":"pvr-lakeshore","name":"PVR Lakeshore PXL 4K Laser ATMOS DTS-X Y Junction","area":"Kukatpally"},
+ {"id":"inox-gsm","name":"INOX: GSM Mall, Hyderabad","area":"Madinaguda"},
+ {"id":"moviemax-amr","name":"MovieMax: AMR, ECIL Secunderabad","area":"ECIL"},
+ {"id":"gpr","name":"GPR Multiplex: Nizampet, Hyderabad","area":"Nizampet"},
+ {"id":"sree-ramulu","name":"Sree Ramulu 70mm 4K Laser: Moosapet","area":"Moosapet"},
+ {"id":"cinepolis-lulu","name":"Cinepolis: Lulu Mall, Hyderabad","area":"Kukatpally"},
+ {"id":"asian-cinemart","name":"Asian Cinemart: RC Puram","area":"RC Puram"},
+ {"id":"cineverse","name":"Cineverse Multiplex: Uppal","area":"Uppal"},
+ {"id":"miraj-cinetown","name":"Miraj Cinemas: CineTown, Miyapur","area":"Miyapur"}
+]

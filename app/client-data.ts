@@ -1,0 +1,9 @@
+'use client';
+import {useEffect,useState,useRef} from 'react';
+type Entry={value:any;time:number};
+const cache=new Map<string,Entry>();const pending=new Map<string,Promise<any>>();
+export function clearClientData(){cache.clear();pending.clear();}
+export async function api(path:string,data?:unknown,method?:string){const verb=method||(data?'POST':'GET');if(verb==='GET'){const hit=cache.get(path);if(hit&&Date.now()-hit.time<(path==='auth/session'?300000:30000))return hit.value;if(pending.has(path))return pending.get(path);}
+const work=(async()=>{const r=await fetch('/api/v1/'+path,{method:verb,credentials:'same-origin',headers:data?{'Content-Type':'application/json'}:{},...(data?{body:JSON.stringify(data)}:{})});const d:any=await r.json();if(!r.ok){if(r.status===401&&path!=='auth/login'){clearClientData();window.dispatchEvent(new Event('ff-session-expired'));}throw new Error(d.error||'Please try again.');}if(verb==='GET')cache.set(path,{value:d,time:Date.now()});else {const session=cache.get('auth/session');cache.clear();if(session&&!path.startsWith('auth/')&&path!=='me')cache.set('auth/session',session);}return d;})();if(verb==='GET')pending.set(path,work);try{return await work;}finally{pending.delete(path);}}
+export function useLoad(path:string,revision=0){const[data,setData]=useState<any>(()=>cache.get(path)?.value||null),[error,setError]=useState('');const lastPath=useRef(path);useEffect(()=>{let active=true;setError('');if(revision)cache.delete(path);if(lastPath.current!==path){setData(cache.get(path)?.value||null);lastPath.current=path;}api(path).then(d=>active&&setData(d)).catch(e=>active&&setError(e.message));return()=>{active=false};},[path,revision]);return {data,error};}
+export function useDebounced(value:string,delay=250){const[v,set]=useState(value);useEffect(()=>{const id=setTimeout(()=>set(value),delay);return()=>clearTimeout(id)},[value,delay]);return v;}

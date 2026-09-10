@@ -1,0 +1,148 @@
+# Framefinder
+
+A film community and recommendation project with independent accounts, real URLs, a film diary, booking preferences and ticket submissions. **The repository is deployable source, not an activated payment business.** External integrations require your own credentials and provider access.
+
+## What is included
+
+- `/` public home, `/signup`, `/login`, password reset and email verification pages.
+- `/onboarding`: select languages first, then at least three watched favorites.
+- `/for-you`, `/tonight`, `/films`, `/films/[id]`, `/my-list`.
+- 203 included films with sourced poster URLs, pagination and title-cover fallback. This is a curated starter catalog, **not the complete MovieLens dataset**. TMDB enables much larger searchable results and real posters; MovieLens import is supplied below.
+- Real account-specific watched/liked/watchlist/rating/review records. Film counts reflect this app’s users, not fabricated external views or likes.
+- `/members`, `/members/[username]`, profile photos, follows and `/settings`.
+- `/booking-alerts`: title, language, release version, Hyderabad, multiple theaters, multiple formats, date, IST time range and movie URL. No seat quantity for booking-open alerts.
+- Three delivered notifications free. Razorpay order creation, server-set prices, capture verification, HMAC signature validation, idempotent credit grants and refund events. Checkout remains disabled until live-feed and payment settings are configured.
+- `/tickets`: persisted submissions, private proof upload, duplicate-booking fingerprint and separately displayed face/asking prices. Sellers can explicitly publish unverified listings for enquiries; only verified listings can enter checkout. Marketplace checkout is a documented partner adapter; **there is no built-in issuer access, escrow service or seller payout provider**.
+- Java/Python recommendation and booking-monitor services under `services/`.
+
+## Run and deploy to Vercel
+
+1. Use Node 22.13+ (Node 24 is supported) and Python 3 for the optional services.
+2. Create a Turso database. Set its HTTPS URL and database auth token in `.env.local`, using `.env.example` as a guide. Never commit the real environment file.
+3. Create a **private** Supabase Storage bucket for uploaded photos/proof, and set the three storage variables. This is storage only; account authentication belongs to this app. Both the Turso token and Supabase service role key are server secrets.
+4. Configure Turnstile with your development and production hostnames. `REQUIRE_CAPTCHA=true` deliberately prevents public registration when its secret is absent. For local-only development you can set it to `false`.
+5. Run:
+
+```bash
+npm install
+npm run db:migrate
+npm run dev
+```
+
+6. Put this folder’s contents at the root of a new GitHub repository. Import that repository in Vercel. Select **Next.js**, use the repository root, and add the same environment variables in Vercel settings. The included configuration uses `npm install` and `npm run build`.
+7. Run database migrations once before accepting traffic. Redeploy after changing runtime secrets where your hosting platform requires it.
+
+The ZIP is a standard Next.js export and contains no Cloudflare worker imports. Vercel functions serve the UI/API. Turso retains account data across deploys; Supabase Storage retains images. The private ChatGPT Site and your Vercel deployment use separate databases unless you explicitly migrate data.
+
+## Activate Google and email
+
+Create a Google OAuth **Web application** client. Add the exact callback:
+
+```
+https://YOUR_DOMAIN/api/v1/auth/google-callback
+```
+
+Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`. Google sign-in includes state, PKCE and nonce validation. A password account is not silently linked just because its email matches a Google account. The Google button explains the missing configuration until credentials are present.
+
+Set `RESEND_API_KEY` and `MAIL_FROM` using a verified sender domain. Then verification and forgotten-password email links work. Email/password registration works without Google. Passwords are salted with scrypt; only opaque session-token hashes are stored. Cookies are HttpOnly, Secure and SameSite=Lax. Use HTTPS in production. Unverified accounts cannot purchase credits or enter ticket checkout.
+
+Turnstile runs real server-side verification. There is no decorative “not a robot” checkbox that pretends to provide protection. Secrets stay on the server.
+
+## More than ten movies
+
+The included 203-film JSON works without an API key. Missing artwork uses a labeled local title cover; it is not a counterfeit official poster. Add `TMDB_READ_TOKEN` to enable paginated TMDB discovery/search and India watch-provider options. Provider links open TMDB’s film watch-options page, because the provider endpoint does not return universal Netflix/Prime deep links. JustWatch attribution is displayed.
+
+To use **every row of your own downloaded MovieLens catalog**:
+
+```bash
+python scripts/import-movielens.py /path/to/ml-latest-small/movies.csv
+npm run build
+```
+
+MovieLens does not supply language, runtime or posters. Imported entries use `Unknown` language until enriched. Do not label all entries English or invent image URLs. Imported films appear in all-language search; language-specific onboarding requires enrichment. Keep IDs stable when enriching. Respect the dataset’s own usage conditions.
+
+Letterboxd import is in `/settings`. Upload your `ratings.csv` account export. Exact title/year matches are imported; unmatched titles are reported and not fabricated. The importer does not download someone else’s private data or claim that a profile URL is a CSV. It supports up to 2,000 rows per upload, with a 500 KB file limit.
+
+## Recommendation architecture
+
+The deployed web app initially ranks films by favorite-film genre overlap and selected languages. This is a transparent content-based baseline, not a trained deep-learning model. `services/python/train_movielens.py` trains the optional neighbor model from an actual ratings dataset; the Python service can blend content and collaborative signals. The Java gateway hosts that Python recommender behind an authenticated HTTP interface. Set JAVA_RECOMMENDER_URL to its HTTPS /api/recommendations endpoint and JAVA_RECOMMENDER_TOKEN to use it from the new web app; this switches the recommendation API from the TypeScript baseline to the Java/Python service. Consult `services/README.md` for its setup.
+
+**Java and a continuously running monitor do not run inside Vercel functions.** Run them on a separate long-lived host/container. The services are included in the project; supplying an endpoint does not itself train a model or start a scheduler.
+
+## Booking automation and payments
+
+The supplied legacy scripts were reviewed but were not executed against ticket providers or used to send messages. `services/booking/monitor.py` is a normalized snapshot matcher with durable deduplication; `legacy_adapter.py` does not guess whether a blocked/unblocked seat is bookable. Connect an authorized show feed, map provider theater IDs, and run the worker on a scheduler before setting `BOOKING_FEED_READY=true`.
+
+The app accepts a trusted booking-open event at `POST /api/v1/webhooks/booking`. Sign the exact JSON bytes using HMAC-SHA256 with `BOOKING_WEBHOOK_SECRET` and put the hex signature in `x-booking-signature`. Required fields:
+
+```json
+{
+  "eventId": "stable-provider-show-event-id",
+  "alertId": "saved-alert-id",
+  "title": "Exact movie title",
+  "city": "Hyderabad",
+  "language": "English",
+  "edition": "Original release",
+  "theaterId": "local-directory-id",
+  "format": "2D",
+  "date": "2026-12-20",
+  "time": "19:30",
+  "bookingUrl": "https://in.bookmyshow.com/.../ET12345678",
+  "observedAt": "2026-12-01T10:00:00.000Z",
+  "bookable": true
+}
+```
+
+The observation must be within five minutes. The app rechecks every selected dimension, rejects unrelated shows and stale observations, limits consumption to available credits, and deduplicates notifications. Notifications persist in `/notifications`; email notifications for booking events and Web Push are not wired in this version. Password/verification emails are separate.
+
+For paid alerts, configure Razorpay in **test mode first**, a webhook at `/api/v1/webhooks/razorpay`, and a server-controlled price in paise. Subscribe to `payment.captured` and `refund.processed`. The callback must match the stored order, amount, currency and captured status before credits are granted. A browser success callback alone does not grant credits. Test provider outage, signature failure, webhook retries and refunds in your own Razorpay sandbox before live keys. Refunding a pack removes that pack’s credit entitlement; historical notifications remain visible. The app does not issue refunds itself.
+
+## Navigation, seat alerts and negotiations
+
+Navigation uses shared native-history client links and a session provider mounted in the root layout. Loading the session renders a neutral account placeholder instead of briefly showing Sign in. Ordinary link clicks update the app’s route directly; modified clicks still open a new tab and direct URLs retain server routing. Session checks are shared, concurrent API reads are deduplicated, film searches are debounced, and recently visited reads are cached in memory. Mutations invalidate cached data; logout clears it. No private profile information is stored in localStorage. Full catalog data stays on the server; only the featured selection travels with the client.
+
+`/seat-alerts` is the separate unblocked-seat flow: location → one theater → one movie → multiple dates (up to 31). `/booking-alerts` continues to group multiple theaters under one movie. The signed complete-seat-map API compares successive observations, starts with a silent baseline and deduplicates releases. See `services/booking/SEAT-ALERTS.md` and `seat_bridge.py`. Live monitoring still requires your authorized collector and scheduler.
+
+`/messages` holds private buyer–seller conversations per listing. Participants can send text, propose a total price, counteroffer, accept, decline or withdraw. Only the other participant can accept/decline an offer. Accepted offers feed the server-side checkout amount; they do not reserve, verify or transfer a ticket. Once checkout reserves a listing, its conversations become read-only. Messages refresh every seven seconds while the tab is visible. This is polling, not a WebSocket service.
+
+Asking prices may exceed the original face value, as requested; both are displayed. This capability does not establish that a particular issuer or jurisdiction permits resale or a markup. The connected issuer/payment partner must enforce the applicable terms before accepting money. The app does not bypass issuer restrictions.
+
+## Ticket partner contract and limits
+
+An uploaded screenshot is evidence for review, not verification. Booking URLs are not proof of ownership. Existing submissions remain private until the seller chooses Publish for enquiries. New submissions have an explicit publish checkbox. A published `pending_verification` listing is visible with an unverified badge; proof and booking references are never disclosed. A trusted issuer must still confirm ownership and transferability before checkout.
+
+A configured HTTPS partner receives bearer-authenticated calls:
+
+- `POST /verify`: listing ID, seller ID, original booking reference, metadata and proof image bytes in base64. The raw booking reference is sent for issuer validation but stored locally only as a fingerprint. The partner must validate the actual booking with its issuer.
+- `POST /checkout`: listing/buyer/seller IDs, total amount in paise, currency, return URL, `showStartsAt`, and `payoutCondition: show_completed_without_open_dispute`. `Idempotency-Key` is the listing ID. Return `{ "url": "https://..." }`. The partner must actually implement its compliant marketplace payment, transfer, dispute, refund and delayed-payout process. **The app does not hold funds or treat elapsed show time as proof that the buyer attended.**
+- Send signed events to `POST /api/v1/webhooks/tickets` with `x-ticket-signature = HMAC_SHA256(raw_body, TICKET_WEBHOOK_SECRET)`. Body: `{ "listingId": "uuid", "status": "verified|rejected|completed|refunded|expired", "timestamp": 1790000000000 }`; timestamp is milliseconds and must be fresh. Status transitions are checked. `completed` requires a reserved listing and should only be emitted after successful transfer/settlement confirmed by the partner.
+
+A checkout timeout leaves the reservation pending for reconciliation; it never relists a possibly paid ticket automatically. Partner calls use listing IDs for idempotency. A real ticketing agreement and payout integration remain necessary. This app cannot verify BookMyShow ownership by scraping a screenshot, bypass non-transferable ticket rules, or independently supply escrow. The UI states this before collecting buyer payment.
+
+## Validation and remaining work
+
+The Site build, TypeScript checks and local SQLite-backed API tests cover registration/login/logout, password hashing, CSRF, separate account state, private proof access, catalog pagination, booking matching/deduplication/credits, ticket duplicate rejection and Razorpay capture/signature/idempotency with **mocked provider responses**. They do not establish live OAuth, CAPTCHA, email deliverability, streaming availability, issuer approval or real payment success without your credentials.
+
+The design is responsive by code. No browser screenshot/UI automation was performed. Before a public launch, run the configured providers’ sandbox flows and an accessibility review. Add operational support for account deletion, abuse reports, email retries and disputed ticket transactions before opening a real marketplace.
+
+## Official integration references
+
+- [Google OAuth web client](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid)
+- [Turnstile server validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
+- [Turso HTTP API](https://docs.turso.tech/sdk/http/reference)
+- [TMDB discovery](https://developer.themoviedb.org/reference/discover-movie) and [watch providers](https://developer.themoviedb.org/reference/movie-watch-providers)
+- [MovieLens downloads](https://grouplens.org/datasets/movielens/latest/)
+- [Razorpay integration](https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/integration-steps/)
+
+## Ticket verification and chat access
+
+There is no built-in admin account, admin password, or manual verification dashboard. Ticket verification is performed only through the signed ticket-partner callback. The partner must validate booking ownership, current ticket validity and permitted transfer with the issuer; inspecting a screenshot is not sufficient. Do not change a database status to manufacture verification. Until a partner is connected, listings remain unverified and checkout stays unavailable.
+
+A seller can publish an unverified listing for enquiries. Another signed-in account opens that listing and selects **Chat with seller & negotiate**. The seller opens **Buyer conversations** or `/messages` to reply. A seller cannot message their own listing.
+
+## Upcoming movie selection
+
+Booking alerts, released-seat alerts and ticket submissions share an upcoming Telugu/Hollywood selector. Seven announced titles, their source URLs and poster sources are in `data/upcoming-movies.json`, checked on 2026-09-10. This list is curated and must be refreshed over time; it is not a live BookMyShow feed. Announced release dates are not theater availability and do not set the user's show date. Users can choose other included films or enter an exact title. Known titles show artwork in forms and saved listings; unavailable artwork or unmatched custom titles use a title fallback.
+
+Seat alerts accept up to 31 unique dates. Add an individual date or a consecutive range, then remove any date you do not want. Location, theater and movie selection remain in that order.
+"# Framefinder" 
