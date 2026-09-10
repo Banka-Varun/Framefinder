@@ -31,6 +31,19 @@ assert.equal((await call('conversations/'+convo.id+'/offers/'+offer.id,'POST',{a
 await run('UPDATE accounts SET verified=1 WHERE username=?',['other_viewer']);await run('UPDATE tickets SET status=? WHERE id=?',['verified',publicId]);settings.TICKET_PARTNER_URL='https://ticket-partner.test';settings.TICKET_PARTNER_TOKEN='test-token';let chargedAmount=0;const originalMock=globalThis.fetch;globalThis.fetch=async(input:any,init:any)=>{if(String(input)==='https://ticket-partner.test/checkout'){chargedAmount=JSON.parse(init.body).amount;return Response.json({url:'https://ticket-partner.test/pay'});}return originalMock(input,init)};
 assert.equal((await call('tickets/'+publicId+'/checkout','POST',{},cookie2)).status,200);assert.equal(chargedAmount,15000);assert.equal((await call('tickets/'+publicId+'/checkout','POST',{},cookie2)).status,409);assert.equal((await call('conversations/'+convo.id+'/messages','POST',{message:'late message',nonce:crypto.randomUUID()},cookie2)).status,409);console.log('PASS negotiated checkout total, single reservation and closed-listing chat (mocked partner)');
 
+const buyerTickets=await(await call('my-tickets','GET',undefined,cookie2)).json() as any;assert.equal(buyerTickets.tickets.length,1);assert.equal(buyerTickets.tickets[0].amount,15000);assert.equal(buyerTickets.tickets[0].status,'reserved');assert.ok(buyerTickets.tickets[0].reserved_at);assert.equal(buyerTickets.tickets[0].purchased_at,null);
+assert.equal((await(await call('my-tickets','GET',undefined,cookie3)).json() as any).tickets.length,0);
+assert.equal((await call('my-tickets')).status,401);
+settings.TICKET_WEBHOOK_SECRET='receipt-test-secret';
+const purchaseTime=new Date().toISOString();
+async function ticketEvent(status:string){const raw=JSON.stringify({listingId:publicId,status,timestamp:Date.now(),purchasedAt:purchaseTime});const req=new Request(base+'/api/v1/webhooks/tickets',{method:'POST',headers:{'x-ticket-signature':signed(raw,settings.TICKET_WEBHOOK_SECRET)},body:raw});return POST(req,{params:Promise.resolve({path:['webhooks','tickets']})});}
+assert.equal((await ticketEvent('completed')).status,200);
+const confirmed=await(await call('my-tickets','GET',undefined,cookie2)).json() as any;assert.equal(confirmed.tickets[0].status,'completed');assert.equal(confirmed.tickets[0].purchased_at,purchaseTime);assert.ok(confirmed.tickets[0].confirmed_at);
+await ticketEvent('completed');assert.equal((await one<any>('SELECT COUNT(*) n FROM ticket_receipts')).n,1);
+await ticketEvent('refunded');assert.equal((await call('tickets/'+publicId,'GET',undefined,cookie2)).status,200);assert.equal((await call('tickets/'+publicId,'GET',undefined,cookie3)).status,404);
+assert.equal((await(await call('my-tickets','GET',undefined,cookie2)).json() as any).tickets[0].status,'refunded');
+console.log('PASS private ticket history, agreed checkout amount, partner purchase dates and idempotent status updates');
+
 const seatAlert={id:crypto.randomUUID(),kind:'seat-release',city:'Hyderabad',theaterId:pref.theaterIds[0],title:'Interstellar',dates:['2099-12-12','2099-12-13'],bookingUrl:''};assert.equal((await call('seat-alerts','POST',seatAlert,cookie2)).status,200);assert.equal((await call('seat-alerts','POST',seatAlert,cookie)).status,404);assert.equal((await call('seat-alerts','POST',{...seatAlert,id:crypto.randomUUID(),dates:['2099-12-12','2099-12-12']},cookie2)).status,400);
 settings.SEAT_FEED_READY='true';settings.SEAT_WEBHOOK_SECRET='seat-test-key';
 const observed=Date.now()-10000;

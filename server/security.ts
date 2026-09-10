@@ -1,3 +1,4 @@
+import {avatarUrl,defaultAvatar} from '@/lib/avatar';
 import {scryptSync,randomBytes,createHash,createHmac,timingSafeEqual} from 'node:crypto';
 import {one,run,setting} from '@/lib/platform';
 export class ApiError extends Error{constructor(public status:number,message:string){super(message);}}
@@ -11,7 +12,7 @@ export function safeEqual(a:string,b:string){const x=Buffer.from(a);const y=Buff
 export function cookie(req:Request,name:string){const raw=(req.headers.get('cookie')||'').split(';').map(s=>s.trim()).find(s=>s.startsWith(name+'='));return raw?decodeURIComponent(raw.slice(name.length+1)):'';}
 export function sessionCookie(value:string,age=60*60*24*14){return `ff_session=${value}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${age}`;}
 export type Account={id:string;email:string;username:string;name:string;bio:string;avatar:string;languages:string;onboarded:number;verified:number;password:string|null;google_id:string|null;created_at:string};
-export function publicAccount(a:Account){return {id:a.id,username:a.username,name:a.name,bio:a.bio,avatar:a.avatar,languages:JSON.parse(a.languages),onboarded:!!a.onboarded,joined:a.created_at};}
+export function publicAccount(a:Account){return {id:a.id,username:a.username,name:a.name,bio:a.bio,avatar:a.avatar||avatarUrl(defaultAvatar(a.id)),languages:JSON.parse(a.languages),onboarded:!!a.onboarded,joined:a.created_at};}
 export async function user(req:Request,required=true){const t=cookie(req,'ff_session');const a=t?await one<Account>('SELECT a.* FROM accounts a JOIN sessions s ON s.user_id=a.id WHERE s.token=? AND s.expires>?',[hash(t),now()]):null;if(!a&&required)throw new ApiError(401,'Please sign in to continue.');return a;}
 export async function newSession(id:string){const t=token();await run('INSERT INTO sessions(token,user_id,expires) VALUES(?,?,?)',[hash(t),id,new Date(Date.now()+14*86400000).toISOString()]);return sessionCookie(t);}
 export async function limit(key:string,max=15,seconds=900){const bucket=Math.floor(Date.now()/1000/seconds);const k=hash(key)+':'+bucket;const r=await one<{count:number}>('INSERT INTO limits(key,count,expires) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1 RETURNING count',[k,(bucket+1)*seconds]);if((r?.count||0)>max)throw new ApiError(429,'Too many attempts. Please try again later.');}

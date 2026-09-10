@@ -1,3 +1,4 @@
+import {parseAvatar,avatarUrl} from '@/lib/avatar';
 import {notify} from './notifications';
 import {z} from 'zod';
 import {all,one,run,batch,putAsset,getAsset,setting} from '@/lib/platform';
@@ -20,6 +21,9 @@ export async function social(req:Request,path:string[]){
   const ranked=candidates.filter(m=>hasPoster(m)&&!watched.has(m.id)&&(!langs.length||langs.includes(m.language))).map(m=>({...m,score:score(m),reason:favorites.length?`Shares ${m.genres.filter(g=>favorites.some(f=>f.genres.includes(g))).slice(0,2).join(' / ')||'your selected language'} with films you like`:'Explore a film in your selected languages'})).sort((x,y)=>y.score-x.score||x.id-y.id);
   const balanced=langs.length>1?Array.from({length:48},(_,i)=>langs.map(lang=>ranked.filter(m=>m.language===lang)[i])).flat().filter(Boolean).slice(0,48):ranked.slice(0,48);
   return Response.json({movies:balanced,method:'Genre similarity + language preferences',rated:history.length});
+ }
+ if(path[0]==='me'&&path[1]==='avatar'){
+  if(req.method!=='POST')throw new ApiError(405,'Method not allowed');const p=await body(req);const design=parseAvatar(p.design);if(!design)throw new ApiError(400,'Choose a valid avatar');const avatar=avatarUrl(design);await run('UPDATE accounts SET avatar=? WHERE id=?',[avatar,a.id]);return Response.json({ok:true,avatar});
  }
  if(path[0]==='me'){
   if(req.method==='GET')return Response.json({user:publicAccount(a)});

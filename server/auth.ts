@@ -1,3 +1,4 @@
+import {parseAvatar,avatarUrl} from '@/lib/avatar';
 import {isAdmin} from './admin';
 import {z} from 'zod';
 import {one,run,batch,setting} from '@/lib/platform';
@@ -8,7 +9,7 @@ const password=z.string().min(10).max(128);
 export async function auth(req:Request,path:string){
  if(path==='session'){const a=await user(req,false);return Response.json({user:a?{...publicAccount(a),email:a.email,verified:!!a.verified,admin:isAdmin(a)}:null});}
  if(path==='config')return Response.json({google:!!setting('GOOGLE_CLIENT_ID')&&!!setting('GOOGLE_CLIENT_SECRET'),captchaSiteKey:setting('TURNSTILE_SITE_KEY'),email:!!setting('RESEND_API_KEY'),captchaRequired:setting('REQUIRE_CAPTCHA')==='true'});
- if(path==='logout'){const t=cookie(req,'ff_session');if(t)await run('DELETE FROM sessions WHERE token=?',[hash(t)]);return Response.json({ok:true},{headers:{'Set-Cookie':sessionCookie('',0)}});}
+ if(path==='logout'){const t=cookie(req,'ff_session');if(t){await run('DELETE FROM sessions WHERE token=?',[hash(t)]);await run('DELETE FROM auth_tokens WHERE token=? AND purpose=?',[hash('admin-access:'+t),'admin-access']);}return Response.json({ok:true},{headers:{'Set-Cookie':sessionCookie('',0)}});}
  if(path==='google'){
   if(!setting('GOOGLE_CLIENT_ID')||!setting('GOOGLE_CLIENT_SECRET'))throw new ApiError(503,'Google sign-in is not configured yet. Use email and password.');
   const state=token(),verifier=token(),nonce=token();
@@ -52,9 +53,9 @@ export async function auth(req:Request,path:string){
   const headers=new Headers();headers.append('Set-Cookie',await newSession(a.id));headers.append('Set-Cookie','ff_google_link=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0');return Response.json({ok:true,next:a.onboarded?'/for-you':'/onboarding'},{headers});
  }
  if(path==='signup'){
-  const p=z.object({email,username,password,name:z.string().trim().min(1).max(60)}).parse(b);await captcha(req,b.captchaToken||'');
+  const p=z.object({email,username,password,avatarDesign:z.string().refine(v=>!!parseAvatar(v),'Choose a valid avatar').optional(),name:z.string().trim().min(1).max(60)}).parse(b);await captcha(req,b.captchaToken||'');
   if(await one('SELECT id FROM accounts WHERE email=? OR username=?',[p.email,p.username]))throw new ApiError(409,'That email or username is already registered.');
-  const id=crypto.randomUUID();await run('INSERT INTO accounts(id,email,username,password,name,created_at) VALUES(?,?,?,?,?,?)',[id,p.email,p.username,passwordHash(p.password),p.name,now()]);
+  const id=crypto.randomUUID();await run('INSERT INTO accounts(id,email,username,password,name,created_at) VALUES(?,?,?,?,?,?)',[id,p.email,p.username,passwordHash(p.password),p.name,now()]);if(p.avatarDesign)await run('UPDATE accounts SET avatar=? WHERE id=?',[avatarUrl(parseAvatar(p.avatarDesign)!),id]);
   return Response.json({ok:true,next:'/onboarding'},{headers:{'Set-Cookie':await newSession(id)}});
  }
  if(path==='login'){

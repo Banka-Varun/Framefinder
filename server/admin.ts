@@ -1,10 +1,15 @@
 import {z} from 'zod';
 import {all,one,run,setting,getAsset} from '@/lib/platform';
-import {user,ApiError,body,now,limit,type Account} from './security';
+import {user,ApiError,body,now,limit,cookie,hash,type Account} from './security';
 import {notify} from './notifications';
 export const isAdmin=(a:Account)=>setting('ADMIN_USER_IDS').split(',').map(s=>s.trim()).filter(Boolean).includes(a.id);
 export async function admin(req:Request,path:string[]){const a=(await user(req))!;if(!isAdmin(a))throw new ApiError(403,'This account is not an administrator.');
- if(req.method==='POST'&&path[1]==='access')return Response.json({verified:true});
+ if(path[1]==='access'){
+  const session=cookie(req,'ff_session'),key=hash('admin-access:'+session);
+  if(req.method==='POST'){await run("INSERT OR REPLACE INTO auth_tokens(token,user_id,purpose,expires) SELECT ?,?,'admin-access',expires FROM sessions WHERE token=? AND user_id=? AND expires>?",[key,a.id,hash(session),a.id,now()]);return Response.json({verified:true});}
+  if(req.method==='GET')return Response.json({verified:!!await one('SELECT token FROM auth_tokens WHERE token=? AND user_id=? AND purpose=? AND expires>?',[key,a.id,'admin-access',now()])});
+  throw new ApiError(405,'Method not allowed');
+ }
  if(req.method==='GET'&&path[1]==='proof'){const t=await one<any>('SELECT proof_id FROM tickets WHERE id=?',[path[2]]);if(!t)throw new ApiError(404,'Listing not found');const asset=await getAsset(t.proof_id);if(!asset)throw new ApiError(404,'Proof unavailable');return new Response(asset.body,{headers:{'Content-Type':asset.mime,'Cache-Control':'no-store'}});}
  if(req.method==='GET')return Response.json({tickets:await all("SELECT t.id,t.movie,t.theater,t.show_at,t.status,t.price,t.face_value,a.username,r.decision,r.note FROM tickets t JOIN accounts a ON a.id=t.seller_id LEFT JOIN admin_reviews r ON r.id=(SELECT id FROM admin_reviews WHERE ticket_id=t.id ORDER BY created_at DESC,id DESC LIMIT 1) WHERE t.status IN ('pending_verification','verified') ORDER BY t.created_at DESC LIMIT 100"),members:await all('SELECT id,username,name FROM accounts ORDER BY username LIMIT 500')});
  if(req.method!=='POST')throw new ApiError(405,'Method not allowed');await limit('admin:'+a.id,30,60);
