@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import {ThemeProvider} from "./theme-toggle";
 import {SessionProvider} from "./session-provider";
 
 export const metadata: Metadata = {
@@ -20,8 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased"><SessionProvider>{children}</SessionProvider></body>
+    <html lang="en" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{__html: "try{var t=localStorage.getItem('ff-theme');document.documentElement.dataset.theme=t==='light'||t==='dark'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){}"}}/></head>
+      <body className="antialiased"><ThemeProvider><SessionProvider>{children}</SessionProvider></ThemeProvider></body>
     </html>
   );
 }

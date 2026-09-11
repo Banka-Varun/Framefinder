@@ -2,12 +2,19 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {GET,POST,PUT} from '../app/api/v1/[...path]/route';
 import {one,run,settings} from './platform';
-import {pictureCollections,picturePath,visiblePicture} from '../lib/profile-pictures';
+import {pictureCollections,picturePath,visiblePicture,pictureCatalog,suggestPictures} from '../lib/profile-pictures';
 const base='https://framefinder.test';
 async function call(path:string,method='GET',data?:unknown,cookie=''){return ({GET,POST,PUT} as any)[method](new Request(base+'/api/v1/'+path,{method,headers:{origin:base,cookie,'Content-Type':'application/json'},...(data===undefined?{}:{body:JSON.stringify(data)})}),{params:Promise.resolve({path:path.split('?')[0].split('/')})}) as Promise<Response>;}
 async function account(username:string,name:string,picture=''){const r=await call('auth/signup','POST',{name,username,email:username+'@example.com',password:'test account password',profilePicture:picture});assert.equal(r.status,200);return {cookie:r.headers.getSetCookie()[0].split(';')[0],...(await one<any>('SELECT id FROM accounts WHERE username=?',[username]))};}
 for(const files of Object.values(pictureCollections))for(const file of files)assert.ok(fs.existsSync('public'+picturePath(file)));
 assert.equal(visiblePicture('/api/v1/avatar?design=legacy'),'');
+assert.equal(pictureCatalog.length,33);
+assert.ok(suggestPictures(['Telugu'],[]).every(p=>p.group==='telugu'));
+assert.ok(suggestPictures(['Japanese'],[]).every(p=>p.group==='anime'));
+assert.equal(suggestPictures(['Telugu'],[{title:'Spider-Man: Homecoming',genres:['Action']}])[0].group,'superheroes');
+assert.equal(suggestPictures(['English'],[{title:'Khaleja',genres:['Action']}])[0].file,'khaleja.jpg');
+assert.equal(suggestPictures([],[]).length,0);
+
 const owner=await account('controls_owner','Owner Name'),member=await account('controls_member','Member Full Name','/profile-pictures/f5.jpg'),stranger=await account('controls_stranger','Another Name');settings.ADMIN_USER_IDS=owner.id;
 const session=await(await call('auth/session','GET',undefined,member.cookie)).json();assert.equal(session.user.name,'Member Full Name');assert.equal(session.user.avatar,'/profile-pictures/f5.jpg');
 const exact=await(await call('members?q=controls_member','GET',undefined,owner.cookie)).json();assert.equal(exact.members[0].id,member.id);
@@ -18,7 +25,12 @@ assert.equal((await call('me/picture','POST',{picture:'/profile-pictures/m3.webp
 assert.equal((await call('me/picture','POST',{picture:'/profile-pictures/m3.webp'},member.cookie)).status,200);
 assert.equal((await(await call('auth/session','GET',undefined,member.cookie)).json()).user.avatar,'/profile-pictures/m3.webp');
 assert.equal((await call('me/picture','POST',{picture:''},member.cookie)).status,200);assert.equal((await(await call('auth/session','GET',undefined,member.cookie)).json()).user.avatar,'');
-console.log('PASS all 13 picture assets, persistent selected pictures, neutral fallback, display-name search and picture validation');
+console.log('PASS all 33 picture assets, persistent selected pictures, neutral fallback, display-name search and picture validation');
+await run('UPDATE accounts SET languages=? WHERE id=?',[JSON.stringify(['Telugu']),member.id]);
+const suggested=await(await call('me/picture','GET',undefined,member.cookie)).json();assert.equal(suggested.suggestions.length,5);assert.ok(suggested.suggestions.every((p:any)=>p.group==='telugu'));
+assert.equal((await call('me/picture','POST',{picture:'/profile-pictures/khaleja.jpg'},member.cookie)).status,200);
+assert.equal((await(await call('auth/session','GET',undefined,member.cookie)).json()).user.avatar,'/profile-pictures/khaleja.jpg');
+console.log('PASS picture suggestions respect saved language and film interests without replacing the selected picture');
 assert.equal((await call('admin/members','GET',undefined,member.cookie)).status,403);
 const payload={userId:member.id,confirmUsername:'controls_member',action:'remove'};
 assert.equal((await call('admin/members','POST',payload,stranger.cookie)).status,403);

@@ -233,3 +233,12 @@ The original first-commit palette is restored: charcoal `#11171b` and green `#c2
 All 13 supplied pictures are copied unchanged into `public/profile-pictures/`. Signup, onboarding and Settings offer male/female picture collections, random selection and an explicit thumbnail choice. The chosen image is saved per account; gender is never guessed from a name or email. Existing generated avatars display initials until the member chooses a picture; uploaded profile photos remain. The browser tab references a new versioned FrameFinder mark and both legacy SVG icon paths are updated.
 
 Admin → Manage members supports searching accounts and explicitly confirmed removal/restoration. Removal is reversible deactivation, not permanent data deletion: it revokes sessions, disables future sign-in, hides the profile/listings and keeps records. Self/admin removal is prohibited. Verified/reserved exchanges must be resolved first. Removed participants' chats become read-only. Restore does not republish hidden tickets. No production member was removed by implementing this control. Migration `0008_member_removal.sql` adds the account-removal table.
+
+
+### Appearance and picture interests update
+
+- Appearance is in the profile menu and Settings, with System / Light / Dark previews. System responds to operating-system theme changes, and the browser preference persists across reloads and tabs. The header theme button is removed.
+- Ticket dividers retain their dashed line without circular ornaments. The profile menu shows both the display name and @username.
+- Twenty additional supplied pictures bring the collection to 33. Anime, superheroes, cartoons and Telugu cinema can be browsed directly; recommendations rank exact film-title matches ahead of saved languages and favorite genres. Suggestions never overwrite a saved picture, and users can choose any collection.
+- Admin review returns a viewer-specific can_review flag and disables self-review controls. Existing server self-review denial and atomic protection against a second review remain unchanged. No reviewer roles or permissions were changed pending clarification of the requested admin policy.
+- Tests cover supplied assets, film/language picture ranking, saved choices and viewer-specific review controls. Browser visual QA was not run.

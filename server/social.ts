@@ -1,4 +1,4 @@
-import {validPicture} from '@/lib/profile-pictures';
+import {validPicture,suggestPictures} from '@/lib/profile-pictures';
 import {usernameSchema} from '@/lib/username';
 import {parseAvatar,avatarUrl} from '@/lib/avatar';
 import {notify} from './notifications';
@@ -30,7 +30,7 @@ export async function social(req:Request,path:string[]){
   const balanced=langs.length>1?Array.from({length:48},(_,i)=>langs.map(lang=>ranked.filter(m=>m.language===lang)[i])).flat().filter(Boolean).slice(0,48):ranked.slice(0,48);
   return Response.json({movies:balanced,method:'Genre similarity + language preferences',rated:history.length});
  }
- if(path[0]==='me'&&path[1]==='picture'){if(req.method!=='POST')throw new ApiError(405,'Method not allowed');const p=z.object({picture:z.string().refine(v=>v===''||validPicture(v),'Choose an available profile picture')}).strict().parse(await body(req));await run('UPDATE accounts SET avatar=? WHERE id=?',[p.picture,a.id]);return Response.json({ok:true});}
+ if(path[0]==='me'&&path[1]==='picture'){if(req.method==='GET'){await limit('picture-suggestions:'+a.id,60,60);const history=await all<{movie_id:number}>('SELECT movie_id FROM social_state WHERE user_id=? AND (liked=1 OR rating>=7) ORDER BY updated_at DESC LIMIT 40',[a.id]);const favorites=(await Promise.all(history.map(row=>findFilm(row.movie_id)))).filter(Boolean) as Film[];return Response.json({suggestions:suggestPictures(JSON.parse(a.languages),favorites)});}if(req.method!=='POST')throw new ApiError(405,'Method not allowed');const p=z.object({picture:z.string().refine(v=>v===''||validPicture(v),'Choose an available profile picture')}).strict().parse(await body(req));await run('UPDATE accounts SET avatar=? WHERE id=?',[p.picture,a.id]);return Response.json({ok:true});}
  if(path[0]==='me'&&path[1]==='avatar'){
   if(req.method!=='POST')throw new ApiError(405,'Method not allowed');const p=await body(req);const design=parseAvatar(p.design);if(!design)throw new ApiError(400,'Choose a valid avatar');const avatar=avatarUrl(design);await run('UPDATE accounts SET avatar=? WHERE id=?',[avatar,a.id]);return Response.json({ok:true,avatar});
  }

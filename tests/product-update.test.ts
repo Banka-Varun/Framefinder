@@ -23,6 +23,9 @@ const conversations=await(await call('conversations','GET',undefined,seller.cook
 assert.equal((await call('conversations/'+thread.id,'GET',undefined,reviewer.cookie)).status,404);
 async function queue(){return (await(await call('admin','GET',undefined,reviewer.cookie)).json()).tickets;}
 assert.equal((await queue()).length,1);
+settings.ADMIN_USER_IDS=reviewer.id+','+seller.id;
+const ownQueue=await(await call('admin','GET',undefined,seller.cookie)).json();assert.equal(ownQueue.tickets[0].can_review,0);
+settings.ADMIN_USER_IDS=reviewer.id;
 const review={ticketId,proofId:proof,decision:'needs_info',note:'Please include the booking date in the new proof.'};
 const outcomes=await Promise.all([call('admin/review','POST',review,reviewer.cookie),call('admin/review','POST',review,reviewer.cookie)]);assert.deepEqual(outcomes.map(r=>r.status).sort(),[200,409]);assert.equal((await queue()).length,0);
 const notification=await one<any>('SELECT * FROM notifications WHERE user_id=? AND title=?',[seller.id,'New booking proof requested']);assert.equal(notification.link,'/tickets/'+ticketId);assert.match(notification.message,/upload corrected/i);
@@ -32,7 +35,7 @@ assert.equal((await call('tickets/'+ticketId+'/proof','POST',{proofId:foreign},b
 assert.equal((await call('tickets/'+ticketId+'/proof','POST',{proofId:proof},seller.cookie)).status,409);
 assert.equal((await call('tickets/'+ticketId+'/proof','POST',{proofId:replacement},seller.cookie)).status,200);
 settings.TICKET_WEBHOOK_SECRET='test-ticket-secret';const stale=JSON.stringify({listingId:ticketId,status:'verified',timestamp:Date.now()});const staleResponse=await POST(new Request(base+'/api/v1/webhooks/tickets',{method:'POST',headers:{'x-ticket-signature':signed(stale,settings.TICKET_WEBHOOK_SECRET)},body:stale}),{params:Promise.resolve({path:['webhooks','tickets']})});assert.equal(staleResponse.status,409);
-assert.equal((await queue()).length,1);assert.equal((await(await call('tickets/'+ticketId,'GET',undefined,seller.cookie)).json()).review,null);
+assert.equal((await queue()).length,1);assert.equal((await queue())[0].can_review,1);assert.equal((await(await call('tickets/'+ticketId,'GET',undefined,seller.cookie)).json()).review,null);
 assert.equal((await call('admin/review','POST',review,reviewer.cookie)).status,409);
 assert.equal((await call('admin/review','POST',{...review,proofId:replacement,decision:'rejected'},reviewer.cookie)).status,200);assert.equal((await queue()).length,0);
 const finalProof=crypto.randomUUID();await run('INSERT INTO assets(id,user_id,kind,mime) VALUES(?,?,?,?)',[finalProof,seller.id,'proof','image/png']);assert.equal((await call('tickets/'+ticketId+'/proof','POST',{proofId:finalProof},seller.cookie)).status,200);
