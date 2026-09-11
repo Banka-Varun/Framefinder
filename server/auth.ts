@@ -3,10 +3,17 @@ import {isAdmin} from './admin';
 import {z} from 'zod';
 import {one,run,batch,setting} from '@/lib/platform';
 import {ApiError,body,captcha,cookie,hash,limit,newSession,now,passwordHash,passwordMatches,publicAccount,sendMail,sessionCookie,token,user,type Account} from './security';
-const username=z.string().trim().toLowerCase().min(3).max(24).regex(/^[a-z][a-z0-9_]+$/);
+import {usernameSchema as username} from '@/lib/username';
+import {suggestUsername,createGoogleAccount} from './usernames';
 const email=z.string().email().max(200).transform(s=>s.toLowerCase().trim());
 const password=z.string().min(10).max(128);
 export async function auth(req:Request,path:string){
+ if(path==='username'){
+  await limit('username-ip:'+(req.headers.get('x-forwarded-for')||'unknown'),90,60);
+  const params=new URL(req.url).searchParams;const candidate=username.parse(params.get('username'));
+  const available=!await one('SELECT id FROM accounts WHERE username=?',[candidate]);
+  return Response.json({available,suggestion:available?candidate:await suggestUsername((params.get('name')||candidate).slice(0,60))});
+ }
  if(path==='session'){const a=await user(req,false);return Response.json({user:a?{...publicAccount(a),email:a.email,verified:!!a.verified,admin:isAdmin(a)}:null});}
  if(path==='config')return Response.json({google:!!setting('GOOGLE_CLIENT_ID')&&!!setting('GOOGLE_CLIENT_SECRET'),captchaSiteKey:setting('TURNSTILE_SITE_KEY'),email:!!setting('RESEND_API_KEY'),captchaRequired:setting('REQUIRE_CAPTCHA')==='true'});
  if(path==='logout'){const t=cookie(req,'ff_session');if(t){await run('DELETE FROM sessions WHERE token=?',[hash(t)]);await run('DELETE FROM auth_tokens WHERE token=? AND purpose=?',[hash('admin-access:'+t),'admin-access']);}return Response.json({ok:true},{headers:{'Set-Cookie':sessionCookie('',0)}});}
@@ -35,7 +42,7 @@ export async function auth(req:Request,path:string){
     const pending=token();await run('INSERT INTO auth_tokens(token,user_id,purpose,expires) VALUES(?,?,?,?)',[hash(pending),JSON.stringify({accountId:existing.id,email:existing.email,sub:info.sub}),'google-link',new Date(Date.now()+600000).toISOString()]);
     const headers=new Headers({Location:'/link-google'});headers.append('Set-Cookie',`ff_google_link=${pending}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`);headers.append('Set-Cookie','ff_oauth=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0');return new Response(null,{status:302,headers});
    }
-   const id=crypto.randomUUID(),uname='film_'+id.replaceAll('-','').slice(0,12);await run('INSERT INTO accounts(id,email,username,name,google_id,verified,created_at) VALUES(?,?,?,?,?,1,?)',[id,info.email.toLowerCase(),uname,info.name||uname,info.sub,now()]);a=await one<Account>('SELECT * FROM accounts WHERE id=?',[id]);
+   const id=await createGoogleAccount({email:info.email,name:info.name,sub:info.sub});a=await one<Account>('SELECT * FROM accounts WHERE id=?',[id]);
   }
   const headers=new Headers({Location:a!.onboarded?'/for-you':'/onboarding'});headers.append('Set-Cookie',await newSession(a!.id));headers.append('Set-Cookie','ff_oauth=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0');return new Response(null,{status:302,headers});
  }
@@ -55,7 +62,7 @@ export async function auth(req:Request,path:string){
  if(path==='signup'){
   const p=z.object({email,username,password,avatarDesign:z.string().refine(v=>!!parseAvatar(v),'Choose a valid avatar').optional(),name:z.string().trim().min(1).max(60)}).parse(b);await captcha(req,b.captchaToken||'');
   if(await one('SELECT id FROM accounts WHERE email=? OR username=?',[p.email,p.username]))throw new ApiError(409,'That email or username is already registered.');
-  const id=crypto.randomUUID();await run('INSERT INTO accounts(id,email,username,password,name,created_at) VALUES(?,?,?,?,?,?)',[id,p.email,p.username,passwordHash(p.password),p.name,now()]);if(p.avatarDesign)await run('UPDATE accounts SET avatar=? WHERE id=?',[avatarUrl(parseAvatar(p.avatarDesign)!),id]);
+  const id=crypto.randomUUID();const inserted=await run('INSERT INTO accounts(id,email,username,password,name,created_at) VALUES(?,?,?,?,?,?) ON CONFLICT DO NOTHING',[id,p.email,p.username,passwordHash(p.password),p.name,now()]);if(!inserted.changes)throw new ApiError(409,'That email or username is already registered. Choose another username or sign in.');if(p.avatarDesign)await run('UPDATE accounts SET avatar=? WHERE id=?',[avatarUrl(parseAvatar(p.avatarDesign)!),id]);
   return Response.json({ok:true,next:'/onboarding'},{headers:{'Set-Cookie':await newSession(id)}});
  }
  if(path==='login'){

@@ -1,3 +1,4 @@
+import {usernameSchema} from '@/lib/username';
 import {parseAvatar,avatarUrl} from '@/lib/avatar';
 import {notify} from './notifications';
 import {z} from 'zod';
@@ -7,6 +8,12 @@ import {catalog,findFilm,movies,providers,hasPoster,type Film} from './catalog';
 const stateSchema=z.object({rating:z.number().int().min(1).max(10).nullable().optional(),liked:z.boolean().optional(),watched:z.boolean().optional(),watchlist:z.boolean().optional(),watchedOn:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable().optional(),review:z.string().max(3000).optional(),spoiler:z.boolean().optional()}).strict();
 export async function social(req:Request,path:string[]){
  const url=new URL(req.url);const a=(await user(req))!;
+ if(path[0]==='feed'){
+  if(req.method!=='GET')throw new ApiError(405,'Method not allowed');
+  const activity=await all<any>("SELECT s.key,s.movie_id,s.rating,s.watched,s.liked,s.review,s.spoiler,s.updated_at,a.username FROM follows f JOIN social_state s ON s.user_id=f.following JOIN accounts a ON a.id=s.user_id WHERE f.follower=? AND (s.watched=1 OR s.liked=1 OR s.review!='') ORDER BY s.updated_at DESC LIMIT 30",[a.id]);
+  const rows=await Promise.all(activity.map(async row=>({...row,movie:await findFilm(row.movie_id)})));
+  return Response.json({activity:rows.filter(row=>row.movie)});
+ }
  if(path[0]==='movies'&&path.length===1)return Response.json(await movies(url));
  if(path[0]==='movies'&&path[1]){const id=Number(path[1]);if(!Number.isSafeInteger(id)||id<1)throw new ApiError(400,'Invalid film');const film=await findFilm(id);if(!film)throw new ApiError(404,'Film not found');
   if(path[2]==='providers')return Response.json(await providers(film,/^[A-Z]{2}$/.test(url.searchParams.get('region')||'')?url.searchParams.get('region')!:'IN'));
@@ -27,7 +34,10 @@ export async function social(req:Request,path:string[]){
  }
  if(path[0]==='me'){
   if(req.method==='GET')return Response.json({user:publicAccount(a)});
-  const p=z.object({name:z.string().trim().min(1).max(60),bio:z.string().max(300),languages:z.array(z.enum(['English','Telugu','Hindi','Tamil','Malayalam','Kannada','Korean','Japanese','French'])).min(1).max(9),onboarded:z.boolean().optional()}).parse(await body(req));await run('UPDATE accounts SET name=?,bio=?,languages=?,onboarded=? WHERE id=?',[p.name,p.bio,JSON.stringify(p.languages),p.onboarded?1:a.onboarded,a.id]);return Response.json({ok:true});
+  const p=z.object({username:usernameSchema.optional(),name:z.string().trim().min(1).max(60),bio:z.string().max(300),languages:z.array(z.enum(['English','Telugu','Hindi','Tamil','Malayalam','Kannada','Korean','Japanese','French'])).min(1).max(9),onboarded:z.boolean().optional()}).parse(await body(req));
+  const updated=await run('UPDATE OR IGNORE accounts SET username=?,name=?,bio=?,languages=?,onboarded=? WHERE id=?',[p.username||a.username,p.name,p.bio,JSON.stringify(p.languages),p.onboarded?1:a.onboarded,a.id]);
+  if(!updated.changes)throw new ApiError(409,'That username is already taken. Choose another.');
+  return Response.json({ok:true,username:p.username||a.username});
  }
  if(path[0]==='members'){
   if(!path[1]){const q=(url.searchParams.get('q')||'').trim().toLowerCase().replaceAll('%','').replaceAll('_','').slice(0,60);const members=await all<Account>('SELECT * FROM accounts WHERE lower(username) LIKE ? OR lower(name) LIKE ? ORDER BY created_at DESC LIMIT 40',['%'+q+'%','%'+q+'%']);return Response.json({members:members.map(publicAccount)});}
