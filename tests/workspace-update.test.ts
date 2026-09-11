@@ -71,3 +71,35 @@ await call('community-reviews/'+rating.id,'DELETE',undefined,seller.cookie);asse
 const privateRating={...rating,id:crypto.randomUUID(),publicConsent:false};await call('feedback','POST',privateRating,reader.cookie);assert.equal((await call('admin/publish-feedback','POST',{id:privateRating.id,publish:true},admin.cookie)).status,400);
 assert.equal((await call('feedback','POST',{...rating,id:crypto.randomUUID(),kind:'report'},reader.cookie)).status,400);
 console.log('PASS following-only Home, public rating-only profiles, multilingual catalog search, first-film picture matches, automatic admin recognition, approved-only discovery, real subscriptions and cancellation, bulk-notice replay protection, recipient privacy and opt-in public-rating publication/revocation');
+
+// Suggested people use existing accounts, and following still sends one notice.
+const nani=await account('nani'),darling=await account('darling'),bob=await account('urstruly_bob'),varun=await account('varun_bankaa');
+assert.equal((await call('members?suggested=1')).status,401);
+let suggested=await(await call('members?suggested=1','GET',undefined,reader.cookie)).json();
+assert.deepEqual(suggested.members.map((m:any)=>m.username),['nani','darling','urstruly_bob','varun_bankaa']);
+assert.ok(suggested.members.every((m:any)=>!('email' in m)));
+const selfSuggestions=await(await call('members?suggested=1','GET',undefined,nani.cookie)).json();assert.ok(!selfSuggestions.members.some((m:any)=>m.id===nani.id));
+await call('members/nani/follow','POST',{following:true},reader.cookie);await call('members/nani/follow','POST',{following:true},reader.cookie);
+assert.equal((await one<any>("SELECT COUNT(*) n FROM notifications WHERE user_id=? AND title='New follower'",[nani.id])).n,1);
+await run('INSERT INTO removed_accounts(user_id,removed_by,removed_at) VALUES(?,?,?)',[darling.id,admin.id,new Date().toISOString()]);
+suggested=await(await call('members?suggested=1','GET',undefined,reader.cookie)).json();assert.deepEqual(suggested.members.map((m:any)=>m.username),['urstruly_bob','varun_bankaa']);
+
+const halfRating={id:crypto.randomUUID(),kind:'rating',category:'feedback',rating:3.5,message:'Useful website, with room to improve.',publicConsent:true};
+assert.equal((await call('feedback','POST',halfRating,reader.cookie)).status,200);
+assert.equal((await one<any>('SELECT rating FROM member_feedback WHERE id=?',[halfRating.id])).rating,3.5);
+assert.ok(!(await(await call('community-reviews','GET',undefined,seller.cookie)).json()).reviews.some((r:any)=>r.id===halfRating.id),'Unapproved reviews remain private');
+assert.equal((await call('admin/publish-feedback','POST',{id:halfRating.id,publish:true},admin.cookie)).status,200);
+assert.equal((await(await call('community-reviews','GET',undefined,seller.cookie)).json()).reviews.find((r:any)=>r.id===halfRating.id).rating,3.5);
+const lowRating={...halfRating,id:crypto.randomUUID(),rating:2,publicConsent:false};
+assert.equal((await call('feedback','POST',lowRating,reader.cookie)).status,200);
+assert.equal((await call('admin/publish-feedback','POST',{id:lowRating.id,publish:true},admin.cookie)).status,400);
+assert.equal((await call('community-reviews/'+lowRating.id,'POST',{},reader.cookie)).status,200);
+assert.equal((await call('admin/publish-feedback','POST',{id:lowRating.id,publish:true},admin.cookie)).status,200);
+assert.equal((await(await call('community-reviews','GET',undefined,seller.cookie)).json()).reviews.find((r:any)=>r.id===lowRating.id).rating,2);
+assert.equal((await call('feedback','POST',{...halfRating,id:crypto.randomUUID(),rating:3.25},reader.cookie)).status,400);
+assert.equal((await call('feedback','POST',{...halfRating,id:crypto.randomUUID(),rating:5.5},reader.cookie)).status,400);
+await call('community-reviews/'+halfRating.id,'DELETE',undefined,reader.cookie);
+assert.ok(!(await(await call('community-reviews','GET',undefined,seller.cookie)).json()).reviews.some((r:any)=>r.id===halfRating.id));
+assert.equal((await call('movies/2','PUT',{rating:7},reader.cookie)).status,200);
+assert.equal((await(await call('movies/2','GET',undefined,reader.cookie)).json()).state.rating,7);
+console.log('PASS ordered real-account suggestions, self/followed/removed exclusion, follower notice deduplication, exact half-star storage and consent/approval for all review scores');
