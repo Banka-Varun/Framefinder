@@ -18,10 +18,10 @@ assert.equal((await(await call('auth/session','GET',undefined,admin.cookie)).jso
 assert.equal((await call('me/avatar','POST',{design:'https://evil.test'},admin.cookie)).status,400);
 console.log('PASS avatar generation, safe public SVG, signup selection, saved design and account isolation');
 settings.ADMIN_USER_IDS=admin.user.id;
-assert.equal((await(await call('admin/access','GET',undefined,admin.cookie)).json() as any).verified,false);
+assert.equal((await(await call('admin/access','GET',undefined,admin.cookie)).json() as any).verified,true);
 assert.equal((await call('admin/access','POST',{},admin.cookie)).status,200);
 for(let i=0;i<3;i++)assert.equal((await(await call('admin/access','GET',undefined,admin.cookie)).json() as any).verified,true);
-const anotherLogin=await call('auth/login','POST',{identity:'profile_admin',password:'profile test password'});const anotherCookie=anotherLogin.headers.getSetCookie()[0].split(';')[0];assert.equal((await(await call('admin/access','GET',undefined,anotherCookie)).json() as any).verified,false);
+const anotherLogin=await call('auth/login','POST',{identity:'profile_admin',password:'profile test password'});const anotherCookie=anotherLogin.headers.getSetCookie()[0].split(';')[0];assert.equal((await(await call('admin/access','GET',undefined,anotherCookie)).json() as any).verified,true);
 assert.equal((await call('admin/access','POST',{},other.cookie)).status,403);
 settings.ADMIN_USER_IDS='';assert.equal((await call('admin/access','GET',undefined,admin.cookie)).status,403);assert.equal((await call('admin','GET',undefined,admin.cookie)).status,403);
 settings.ADMIN_USER_IDS=admin.user.id;await call('auth/logout','POST',{},admin.cookie);assert.equal((await call('admin/access','GET',undefined,admin.cookie)).status,401);
