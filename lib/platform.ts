@@ -14,3 +14,5 @@ function assetUrl(key:string){const base=setting('SUPABASE_URL'),bucket=setting(
 function storageHeaders(){const key=setting('SUPABASE_SERVICE_ROLE_KEY');return {Authorization:'Bearer '+key,apikey:key};}
 export async function putAsset(key:string,bytes:ArrayBuffer,mime:string){const r=await fetch(assetUrl(key),{method:'POST',headers:{...storageHeaders(),'Content-Type':mime,'x-upsert':'false'},body:bytes});if(!r.ok)throw new Error('Image upload failed');}
 export async function getAsset(key:string){const r=await fetch(assetUrl(key),{headers:storageHeaders(),cache:'no-store'});if(r.status===404)return null;if(!r.ok)throw new Error('Image unavailable');return {body:r.body,mime:r.headers.get('Content-Type')||'application/octet-stream'};}
+
+export async function deleteAsset(key:string){const r=await fetch(assetUrl('').replace(/\/$/,''),{method:"DELETE",headers:{...storageHeaders(),'Content-Type':'application/json'},body:JSON.stringify({prefixes:[key]}),signal:AbortSignal.timeout(8000)});if(!r.ok&&r.status!==404)throw new Error("Image erasure deferred");}

@@ -1,7 +1,8 @@
 import seed from '@/data/movies.json';
 import {setting} from '@/lib/platform';
-export type Film=typeof seed[number]&{tmdbId?:number};
+export type Film={id:number;title:string;year:number;language:string;minutes:number;genres:string[];moods:string[];description:string;poster:string;source:string;tmdbId?:number;audienceRating?:number;audienceVotes?:number};
 export const catalog:Film[]=seed;
+export function audienceScore(m:Film){const votes=m.audienceVotes||0;return (votes*(m.audienceRating||6.5)+500*6.5)/(votes+500);}
 export const hasPoster=(m:Film)=>!!m.poster;
 const byId=new Map(catalog.map(m=>[m.id,m]));
 const codes:Record<string,string>={English:'en',Telugu:'te',Hindi:'hi',Tamil:'ta',Malayalam:'ml',Kannada:'kn',Korean:'ko',Japanese:'ja',French:'fr'};
@@ -13,19 +14,19 @@ export async function tmdb(path:string,params:Record<string,string>={}){
  if(!setting('TMDB_READ_TOKEN'))return null;const url=new URL('https://api.themoviedb.org/3/'+path);Object.entries(params).sort().forEach(([k,v])=>url.searchParams.set(k,v));const key=url.href,hit=providerCache.get(key);if(hit&&hit.expires>Date.now())return hit.data;if(providerPending.has(key))return providerPending.get(key);
  const work=(async()=>{const r=await fetch(url,{headers:{Authorization:'Bearer '+setting('TMDB_READ_TOKEN')},signal:AbortSignal.timeout(8000),next:{revalidate:900}});if(!r.ok)throw new Error('Movie catalog provider is temporarily unavailable.');const data=await r.json();if(providerCache.size>=300)providerCache.delete(providerCache.keys().next().value!);providerCache.set(key,{data,expires:Date.now()+900000});return data;})();providerPending.set(key,work);try{return await work;}finally{providerPending.delete(key);}
 }
-function normalize(m:any):Film{return {id:1000000+m.id,tmdbId:m.id,title:m.title,year:Number((m.release_date||'').slice(0,4))||0,language:Object.entries(codes).find(([,v])=>v===m.original_language)?.[0]||m.original_language,minutes:m.runtime||0,genres:(m.genres?.map((g:any)=>g.name)||m.genre_ids?.map((id:number)=>genreNames[id])||[]).filter(Boolean),moods:[],description:m.overview||'',poster:m.poster_path?'https://image.tmdb.org/t/p/w500'+m.poster_path:'',source:'https://www.themoviedb.org/movie/'+m.id};}
+function normalize(m:any):Film{return {id:1000000+m.id,tmdbId:m.id,audienceRating:Number(m.vote_average)||0,audienceVotes:Number(m.vote_count)||0,title:m.title,year:Number((m.release_date||'').slice(0,4))||0,language:Object.entries(codes).find(([,v])=>v===m.original_language)?.[0]||m.original_language,minutes:m.runtime||0,genres:(m.genres?.map((g:any)=>g.name)||m.genre_ids?.map((id:number)=>genreNames[id])||[]).filter(Boolean),moods:[],description:m.overview||'',poster:m.poster_path?'https://image.tmdb.org/t/p/w500'+m.poster_path:'',source:'https://www.themoviedb.org/movie/'+m.id};}
 export async function findFilm(id:number):Promise<Film|null>{const local=byId.get(id);if(local)return local;if(id<1000000)return null;const m=await tmdb('movie/'+(id-1000000));return m?normalize(m):null;}
 export async function movies(url:URL){
  const q=(url.searchParams.get('q')||'').normalize('NFKC').trim().toLowerCase().slice(0,120),language=url.searchParams.get('language')||'',page=Math.min(500,Math.max(1,Math.floor(Number(url.searchParams.get('page'))||1))),genre=url.searchParams.get('genre')||'';
- const localMatches=catalog.filter(m=>hasPoster(m)&&(!q||m.title.toLowerCase().includes(q))&&(!language||m.language===language)&&(!genre||m.genres.includes(genre)));
+ const localMatches=catalog.filter(m=>hasPoster(m)&&(!q||m.title.toLowerCase().includes(q))&&(!language||m.language===language)&&(!genre||m.genres.includes(genre))).sort((a,b)=>audienceScore(b)-audienceScore(a)||a.id-b.id);
  let notice='';
  if(setting('TMDB_READ_TOKEN')){try{
   const genreId=Object.entries(genreNames).find(([,name])=>name===genre)?.[0];
-  const remote=await tmdb(q?'search/movie':'discover/movie',{page:String(page),include_adult:'false',...(q?{query:q}:{sort_by:'popularity.desc','vote_count.gte':'50','vote_average.gte':'6','release_date.lte':new Date().toISOString().slice(0,10),...(language?{with_original_language:codes[language]||language}:{}),...(genreId?{with_genres:genreId}:{})})});
+  const remote=await tmdb(q?'search/movie':'discover/movie',{page:String(page),include_adult:'false',...(q?{query:q}:{sort_by:'vote_average.desc','vote_count.gte':language&&language!=='English'?'50':'300','vote_average.gte':'7','release_date.lte':new Date().toISOString().slice(0,10),...(language?{with_original_language:codes[language]||language}:{}),...(genreId?{with_genres:genreId}:{})})});
   let results:Film[]=remote.results.map(normalize).filter(hasPoster);if(q&&language)results=results.filter(m=>m.language===language);if(q&&genre)results=results.filter(m=>m.genres.includes(genre));
   // Preserve known IDs when the provider returns a bundled film already in members' diaries.
   results=results.map(m=>catalog.find(local=>local.title.toLowerCase()===m.title.toLowerCase()&&local.year===m.year&&local.language===m.language)||m);
-  return {movies:results,total:remote.total_results,pages:Math.min(remote.total_pages,500),page,source:'TMDB',notice:q?'Counts include provider search results before language and poster filters.':''};
+  results.sort((a,b)=>audienceScore(b)-audienceScore(a));return {movies:results,total:remote.total_results,pages:Math.min(remote.total_pages,500),page,source:'TMDB',notice:q?'Counts include provider search results before language and poster filters.':''};
  }catch{notice='The full catalog is temporarily unavailable. Showing included films.';}}
  else notice='Showing the included catalog. More films become available when the full catalog is connected.';
  return {movies:localMatches.slice((page-1)*24,page*24),total:localMatches.length,pages:Math.ceil(localMatches.length/24),page,source:'Included catalog',notice};

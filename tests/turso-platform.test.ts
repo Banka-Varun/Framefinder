@@ -18,3 +18,10 @@ assert.equal(calls[1].body.baton,'baton-1');
 assert.equal(calls[2].body.baton,'baton-2');
 assert.equal(calls[2].url,'https://sticky.turso.io/v2/pipeline');
 console.log('PASS Turso transactions follow rotated batons and sticky stream URLs');
+
+process.env.SUPABASE_URL='https://storage.example.com';process.env.SUPABASE_STORAGE_BUCKET='private-assets';process.env.SUPABASE_SERVICE_ROLE_KEY='test-service-key';
+const {deleteAsset}=await import('../lib/platform');
+globalThis.fetch=(async(input:any,init:any)=>{assert.equal(String(input),'https://storage.example.com/storage/v1/object/private-assets');assert.equal(init.method,'DELETE');assert.deepEqual(JSON.parse(init.body),{prefixes:['asset-to-erase']});return Response.json([]);}) as any;
+await deleteAsset('asset-to-erase');
+globalThis.fetch=(async()=>new Response('',{status:503})) as any;await assert.rejects(()=>deleteAsset('asset-to-erase'));
+console.log('PASS private-storage erasure uses the bucket removal endpoint and reports failures for durable retry');
