@@ -1,0 +1,2 @@
+import type {SVGProps} from 'react';
+export default function TicketIcon({size=20,...props}:SVGProps<SVGSVGElement>&{size?:number}){return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}><path d="M4 4h16a2 2 0 0 1 2 2v3a3 3 0 0 0 0 6v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a3 3 0 0 0 0-6V6a2 2 0 0 1 2-2Z"/><path d="M16 7v2m0 2v2m0 2v2"/></svg>;}

@@ -15,8 +15,8 @@ export async function accountLifecycle(req:Request,path:string[]){
  }
  const p=z.object({action:z.enum(['deactivate','delete']),confirmUsername:z.string(),password:z.string().max(128).optional(),code:z.string().regex(/^\d{6}$/).optional()}).strict().parse(await body(req));
  if(p.confirmUsername!==a.username)throw new ApiError(400,'Type your exact username to confirm.');
- if(a.password){if(!p.password||!await passwordMatches(p.password,a.password))throw new ApiError(401,'Enter your current password to confirm.');}
- else if(!p.code||!await one("SELECT token FROM auth_tokens WHERE token=? AND user_id=? AND purpose='account-action' AND expires>?",[hash(a.id+':account:'+p.code),a.id,now()]))throw new ApiError(401,'Enter the confirmation code sent to your email.');
+ if(p.action==='delete'){if(a.password){if(!p.password||!await passwordMatches(p.password,a.password))throw new ApiError(401,'Enter your current password to confirm.');}
+ else if(!p.code||!await one("SELECT token FROM auth_tokens WHERE token=? AND user_id=? AND purpose='account-action' AND expires>?",[hash(a.id+':account:'+p.code),a.id,now()]))throw new ApiError(401,'Enter the confirmation code sent to your email.');}
  const stamp=now();
  // This conditional tombstone is also the transaction guard for every erasure below.
  const gate="EXISTS(SELECT 1 FROM removed_accounts WHERE user_id=? AND removed_by=? AND removed_at=?)";
