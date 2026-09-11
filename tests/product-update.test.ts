@@ -1,0 +1,55 @@
+import assert from 'node:assert/strict';
+import {GET,POST,PUT,DELETE} from '../app/api/v1/[...path]/route';
+import {run,one,all,settings} from './platform';
+import {movies,tmdb} from '../server/catalog';
+import {signed} from '../server/security';
+import {countdown} from '../app/show-countdown';
+const base='https://framefinder.test';
+async function call(path:string,method='GET',data?:unknown,cookie=''){return ({GET,POST,PUT,DELETE} as any)[method](new Request(base+'/api/v1/'+path,{method,headers:{origin:base,cookie,'Content-Type':'application/json'},...(data===undefined?{}:{body:JSON.stringify(data)})}),{params:Promise.resolve({path:path.split('?')[0].split('/')})}) as Promise<Response>;}
+async function account(username:string,name:string){const r=await call('auth/signup','POST',{name,username,email:username+'@example.com',password:'a secure test password'});assert.equal(r.status,200);const cookie=r.headers.getSetCookie()[0].split(';')[0];return {cookie,...await one<any>('SELECT id FROM accounts WHERE username=?',[username])};}
+const seller=await account('ticket_seller','Seller Name'),buyer=await account('ticket_buyer','Buyer Name'),reviewer=await account('ticket_reviewer','Reviewer Name');settings.ADMIN_USER_IDS=reviewer.id;
+const ownMembers=await(await call('members','GET',undefined,seller.cookie)).json();assert.ok(!ownMembers.members.some((m:any)=>m.id===seller.id));assert.ok(ownMembers.members.some((m:any)=>m.id===buyer.id));
+await call('members/ticket_seller/follow','POST',{following:true},buyer.cookie);
+assert.equal((await call('members/ticket_seller/followers/'+buyer.id,'DELETE',undefined,reviewer.cookie)).status,403);
+assert.equal((await call('members/ticket_seller/followers/'+buyer.id,'DELETE',undefined,seller.cookie)).status,200);
+assert.equal(await one('SELECT key FROM follows WHERE follower=? AND following=?',[buyer.id,seller.id]),null);
+await call('movies/2','PUT',{liked:true,watched:true},seller.cookie);assert.equal((await one<any>('SELECT rating FROM social_state WHERE user_id=? AND movie_id=2',[seller.id])).rating,null);
+console.log('PASS own-account exclusion, follower removal ownership and watched without a rating');
+const ticketId=crypto.randomUUID(),proof=crypto.randomUUID();
+await run('INSERT INTO assets(id,user_id,kind,mime) VALUES(?,?,?,?)',[proof,seller.id,'proof','image/png']);
+await run('INSERT INTO tickets(id,seller_id,movie,theater,show_at,language,format,quantity,face_value,price,proof_id,reference_hash,created_at,is_public) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,1)',[ticketId,seller.id,'The Paradise','Test Cinema','2099-01-01T12:00:00Z','Telugu','2D',1,20000,18000,proof,'test-reference',new Date().toISOString()]);
+const thread=await(await call('conversations','POST',{ticketId},buyer.cookie)).json();
+const conversations=await(await call('conversations','GET',undefined,seller.cookie)).json();assert.equal(conversations.conversations[0].buyer_name,'Buyer Name');assert.ok('buyer_avatar' in conversations.conversations[0]);
+assert.equal((await call('conversations/'+thread.id,'GET',undefined,reviewer.cookie)).status,404);
+async function queue(){return (await(await call('admin','GET',undefined,reviewer.cookie)).json()).tickets;}
+assert.equal((await queue()).length,1);
+const review={ticketId,proofId:proof,decision:'needs_info',note:'Please include the booking date in the new proof.'};
+const outcomes=await Promise.all([call('admin/review','POST',review,reviewer.cookie),call('admin/review','POST',review,reviewer.cookie)]);assert.deepEqual(outcomes.map(r=>r.status).sort(),[200,409]);assert.equal((await queue()).length,0);
+const notification=await one<any>('SELECT * FROM notifications WHERE user_id=? AND title=?',[seller.id,'New booking proof requested']);assert.equal(notification.link,'/tickets/'+ticketId);assert.match(notification.message,/upload corrected/i);
+const replacement=crypto.randomUUID(),foreign=crypto.randomUUID();for(const [id,userId] of [[replacement,seller.id],[foreign,buyer.id]])await run('INSERT INTO assets(id,user_id,kind,mime) VALUES(?,?,?,?)',[id,userId,'proof','image/png']);
+assert.equal((await call('tickets/'+ticketId+'/proof','POST',{proofId:foreign},seller.cookie)).status,400);
+assert.equal((await call('tickets/'+ticketId+'/proof','POST',{proofId:foreign},buyer.cookie)).status,409);
+assert.equal((await call('tickets/'+ticketId+'/proof','POST',{proofId:proof},seller.cookie)).status,409);
+assert.equal((await call('tickets/'+ticketId+'/proof','POST',{proofId:replacement},seller.cookie)).status,200);
+settings.TICKET_WEBHOOK_SECRET='test-ticket-secret';const stale=JSON.stringify({listingId:ticketId,status:'verified',timestamp:Date.now()});const staleResponse=await POST(new Request(base+'/api/v1/webhooks/tickets',{method:'POST',headers:{'x-ticket-signature':signed(stale,settings.TICKET_WEBHOOK_SECRET)},body:stale}),{params:Promise.resolve({path:['webhooks','tickets']})});assert.equal(staleResponse.status,409);
+assert.equal((await queue()).length,1);assert.equal((await(await call('tickets/'+ticketId,'GET',undefined,seller.cookie)).json()).review,null);
+assert.equal((await call('admin/review','POST',review,reviewer.cookie)).status,409);
+assert.equal((await call('admin/review','POST',{...review,proofId:replacement,decision:'rejected'},reviewer.cookie)).status,200);assert.equal((await queue()).length,0);
+const finalProof=crypto.randomUUID();await run('INSERT INTO assets(id,user_id,kind,mime) VALUES(?,?,?,?)',[finalProof,seller.id,'proof','image/png']);assert.equal((await call('tickets/'+ticketId+'/proof','POST',{proofId:finalProof},seller.cookie)).status,200);
+assert.equal((await call('admin/review','POST',{...review,proofId:finalProof,decision:'approved'},reviewer.cookie)).status,200);assert.equal((await queue()).length,0);
+assert.equal((await one<any>('SELECT status FROM tickets WHERE id=?',[ticketId])).status,'pending_verification');
+await call('tickets/'+ticketId+'/visibility','POST',{publish:true},seller.cookie);
+const publicTicket=await(await call('tickets/'+ticketId,'GET',undefined,buyer.cookie)).json();assert.equal(publicTicket.review.decision,'approved');assert.equal(publicTicket.review.note,undefined);assert.equal(publicTicket.ticket.proof_id,undefined);
+console.log('PASS concurrent review deduplication, rejected/needs-info resubmission, stale-proof rejection, private notes and queue transitions');
+const plans=await(await call('billing','GET',undefined,seller.cookie)).json();assert.equal(plans.price,10000);assert.equal(plans.credits,10);assert.equal(plans.balance,3);assert.equal(plans.ready,false);assert.equal((await call('billing/order','POST',{},seller.cookie)).status,503);
+console.log('PASS ₹100/10-credit plan, starter balance and payment gate without provider credentials');
+const originalFetch=globalThis.fetch;let providerCalls=0;
+settings.TMDB_READ_TOKEN='test-product-catalog';
+globalThis.fetch=async(input:any)=>{providerCalls++;const url=new URL(String(input));assert.equal(url.searchParams.get('with_original_language'),'te');return Response.json({results:[{id:987654,title:'Test Movie',release_date:'2020-01-01',original_language:'te',genre_ids:[18],poster_path:'/test.jpg'},{id:987655,title:'Missing art',original_language:'te',genre_ids:[],poster_path:null}],total_results:2500,total_pages:125});};
+try{const catalog=await movies(new URL('https://local/?language=Telugu&page=3'));assert.equal(catalog.source,'TMDB');assert.equal(catalog.total,2500);assert.equal(catalog.movies.length,1);assert.ok(catalog.movies[0].poster);await Promise.all(Array.from({length:20},()=>movies(new URL('https://local/?language=Telugu&page=4'))));assert.equal(providerCalls,2);}finally{globalThis.fetch=originalFetch;delete settings.TMDB_READ_TOKEN;}
+console.log('PASS provider-backed Telugu pagination, missing-poster exclusion and 20 concurrent reads collapsed to one upstream request (mocked catalog)');
+assert.equal(countdown('2030-01-01T03:05:00Z',Date.parse('2030-01-01T00:00:00Z')),'Show begins in 3h 5m');assert.equal(countdown('2000-01-01',Date.now()),'Show has started');
+await run('DELETE FROM limits');
+const start=performance.now();const burst=await Promise.all(Array.from({length:110},()=>call('movies/2','PUT',{watched:true},buyer.cookie)));const accepted=burst.filter(r=>r.status===200),limited=burst.filter(r=>r.status===429);assert.equal(accepted.length,90);assert.equal(limited.length,20);for(const r of limited)assert.ok(Number(r.headers.get('retry-after'))>0);assert.equal((await one<any>('SELECT rating FROM social_state WHERE user_id=? AND movie_id=2',[buyer.id])).rating,null);
+const indexed=await all<any>("EXPLAIN QUERY PLAN SELECT id FROM tickets WHERE status='pending_verification' AND review_pending=1 ORDER BY created_at DESC LIMIT 100");assert.match(JSON.stringify(indexed),/idx_ticket_review_queue/);
+console.log(`PASS local concurrent burst: 110 writes, 90 accepted, 20 rate-limited with Retry-After, ${Math.round(performance.now()-start)}ms; review queue uses index (in-memory test, not production capacity)`);

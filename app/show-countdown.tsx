@@ -1,0 +1,4 @@
+'use client';
+import {useEffect,useState} from 'react';
+export function countdown(showAt:string,time:number){const difference=Date.parse(showAt)-time;if(!Number.isFinite(difference))return 'Show time unavailable';if(difference<=0)return 'Show has started';const minutes=Math.ceil(difference/60000),days=Math.floor(minutes/1440),hours=Math.floor((minutes%1440)/60),rest=minutes%60;return 'Show begins in '+(days?`${days}d `:'')+(hours?`${hours}h `:'')+`${rest}m`;}
+export default function ShowCountdown({showAt}:{showAt:string}){const[time,setTime]=useState<number|null>(null);useEffect(()=>{setTime(Date.now());const timer=setInterval(()=>setTime(Date.now()),30000);return()=>clearInterval(timer);},[]);return <p className="show-countdown">{time===null?'Checking show time…':countdown(showAt,time)}</p>;}
