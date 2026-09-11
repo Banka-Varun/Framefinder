@@ -1,4 +1,6 @@
 'use client';
+import {useState} from 'react';
+import SuggestedAccounts from './suggested-accounts';
 import {Film,ArrowRight,Bell,Users} from 'lucide-react';
 import Link from './app-link';
 import {useLoad} from './client-data';
@@ -6,7 +8,8 @@ import TicketIcon from './ticket-icon';
 import FilmActivity, {type FilmActivityItem} from './film-activity';
 
 export default function HomeFeed({name}:{name:string}) {
-  const {data,error}=useLoad('home');
+  const[revision,refresh]=useState(0);
+  const {data,error}=useLoad('home',revision);
   return <section className="section home-feed">
     <p className="eyebrow">MY HOME</p>
     <div className="section-heading"><div><h1>Welcome back, {name.split(' ')[0]}.</h1><p className="lede">See what your film people have been watching.</p></div><Link href="/for-you" className="button secondary">Find your next film <ArrowRight size={17}/></Link></div>
@@ -15,6 +18,7 @@ export default function HomeFeed({name}:{name:string}) {
       <Link className="panel" href="/tickets"><TicketIcon/><h2>Ticket Exchange</h2><p>Browse available tickets</p></Link>
       <Link className="panel" href="/my-list"><Film/><h2>My List</h2><p>Your saved films</p></Link>
     </div>
+    <SuggestedAccounts onFollow={()=>refresh(value=>value+1)}/>
     <div className="section-heading"><div><h2>Recently rated by people you follow</h2><p className="small">Their latest ratings and reviews, all in one place.</p></div><Link href="/members" className="button secondary"><Users size={17}/> Find people</Link></div>
     {error&&<p className="notice error" role="alert">{error}</p>}
     {!data&&!error&&<p role="status">Loading recent reviews…</p>}

@@ -1,0 +1,15 @@
+'use client';
+import {useState} from 'react';
+import {api,useLoad} from './client-data';
+import Link from './app-link';
+import ProfilePhoto from './profile-photo';
+import {RatingStars} from './star-rating';
+export default function CommunityReviews({revision=0,showRateLink=true}:{revision?:number;showRateLink?:boolean}) {
+ const[page,setPage]=useState(1);const{data,error}=useLoad('community-reviews?page='+page,revision);
+ return <section className="member-reviews" id="community-reviews"><div className="section-heading"><div><h2>Community reviews</h2><p className="small">What members think of FrameFinder.</p></div>{showRateLink&&<Link href="/rate" className="button secondary">Rate FrameFinder</Link>}</div>{error&&<p className="notice error" role="alert">{error}</p>}{!data&&!error&&<p role="status">Loading community reviews…</p>}<div className="community-review-grid">{data?.reviews.map((review:any)=><article className="panel community-review" key={review.id}><Link className="person-inline" href={'/members/'+review.username}><ProfilePhoto name={review.name} src={review.avatar}/><strong>{review.name}</strong></Link><RatingStars value={review.rating}/><p className="support-message">{review.message||'Shared a '+review.rating+'-star rating.'}</p><small>{new Date(review.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</small></article>)}</div>{data&&!data.reviews.length&&<p>No shared reviews here yet.</p>}{data&&(page>1||data.hasMore)&&<div className="pagination"><button className="button secondary" disabled={page===1} onClick={()=>setPage(p=>p-1)}>Previous reviews</button><button className="button secondary" disabled={!data.hasMore} onClick={()=>setPage(p=>p+1)}>More reviews</button></div>}</section>;
+}
+export function FeedbackPrivacy({revision=0,onChanged}:{revision?:number;onChanged?:()=>void}) {
+ const[refresh,setRefresh]=useState(0),[message,setMessage]=useState(''),[busy,setBusy]=useState(false);const{data,error}=useLoad('community-reviews',revision+refresh);
+ async function share(id:string,consent:boolean){setBusy(true);try{await api('community-reviews/'+id,consent?{}:undefined,consent?'POST':'DELETE');setRefresh(n=>n+1);onChanged?.();setMessage(consent?'Submitted for community review.':'Your feedback is now private.');}catch(e){setMessage((e as Error).message)}finally{setBusy(false)}}
+ return <details className="feedback-privacy"><summary>Manage feedback privacy</summary>{(error||message)&&<p role="status">{error||message}</p>}{data?.own.map((review:any)=><article className="panel" key={review.id}><RatingStars value={review.rating}/><p>{review.message||'Your FrameFinder rating.'}</p><p className="small">{review.consent?review.published?'Shared with the community':'Waiting for community review':'Private feedback'}</p><button type="button" disabled={busy} className="text-button" onClick={()=>share(review.id,!review.consent)}>{review.consent?'Make private':'Share with the community'}</button></article>)}{data&&!data.own.length&&<p>You haven’t submitted feedback yet.</p>}</details>;
+}

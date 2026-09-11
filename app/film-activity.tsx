@@ -1,4 +1,5 @@
 'use client';
+import {RatingStars} from './star-rating';
 import {Film, Heart} from 'lucide-react';
 import {useState} from 'react';
 import Link from './app-link';
@@ -26,7 +27,7 @@ export default function FilmActivity({item}: {item: FilmActivityItem}) {
       <p className="small">{item.watched_on ? 'Watched ' : ''}<time dateTime={item.watched_on || item.updated_at}>{date.toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric', timeZone:'UTC'})}</time></p>
       <Link href={'/films/' + item.movie.id}><h2>{item.movie.title} <small>{item.movie.year || ''}</small></h2></Link>
       <div className="activity-state">
-        {item.rating != null ? <span aria-label={item.rating / 2 + ' out of 5 stars'}>★ {item.rating / 2} / 5</span> : item.watched ? <span>Watched · Not rated yet</span> : null}
+        {item.rating != null ? <RatingStars value={item.rating/2}/> : item.watched ? <span>Watched · Not rated yet</span> : null}
         {!!item.liked && <span className="activity-loved"><Heart size={15} fill="currentColor" aria-hidden="true"/> Loved</span>}
       </div>
       {!!item.review && (item.spoiler ? <details><summary>Read review · Contains spoilers</summary><p>{item.review}</p></details> : <p>{item.review}</p>)}

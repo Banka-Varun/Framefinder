@@ -71,6 +71,13 @@ export async function social(req:Request,path:string[]){
   if(p.firstMovieId)await run('INSERT INTO taste_profiles(user_id,first_movie_id) VALUES(?,?) ON CONFLICT(user_id) DO UPDATE SET first_movie_id=excluded.first_movie_id',[a.id,p.firstMovieId]);
   return Response.json({ok:true,username:p.username||a.username});
  }
+ if(path[0]==='members'&&!path[1]&&url.searchParams.get('suggested')==='1'){
+  if(req.method!=='GET')throw new ApiError(405,'Method not allowed');
+  const handles=['nani','darling','urstrulybob','varunbankaa'];
+  const members=await all<Account>("SELECT a.* FROM accounts a WHERE replace(lower(a.username),'_','') IN (?,?,?,?) AND a.id!=? AND NOT EXISTS(SELECT 1 FROM removed_accounts WHERE user_id=a.id) AND NOT EXISTS(SELECT 1 FROM follows WHERE follower=? AND following=a.id)",[...handles,a.id,a.id]);
+  members.sort((left,right)=>handles.indexOf(left.username.toLowerCase().replaceAll('_',''))-handles.indexOf(right.username.toLowerCase().replaceAll('_','')));
+  return Response.json({members:members.map(publicAccount)});
+ }
  if(path[0]==='members'){
   if(!path[1]){const q=(url.searchParams.get('q')||'').trim().toLowerCase().slice(0,60);const members=await all<Account>('SELECT * FROM accounts WHERE NOT EXISTS(SELECT 1 FROM removed_accounts WHERE user_id=accounts.id) AND id != ? AND (instr(lower(username),?)>0 OR instr(lower(name),?)>0) ORDER BY created_at DESC LIMIT 40',[a.id,q,q]);return Response.json({members:members.map(publicAccount)});}
   const member=await one<Account>('SELECT * FROM accounts WHERE username=? COLLATE NOCASE AND NOT EXISTS(SELECT 1 FROM removed_accounts WHERE user_id=accounts.id)',[path[1].trim()]);if(!member)throw new ApiError(404,'Member not found');

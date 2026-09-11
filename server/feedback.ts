@@ -8,7 +8,7 @@ export async function feedback(req: Request) {
   const input = z.object({
     id: z.string().uuid(), kind: z.enum(['contact', 'report', 'rating']),
     category: z.enum(['general', 'account', 'upload', 'booking', 'notifications', 'listing', 'privacy', 'feedback']),
-    message: z.string().trim().max(2000), rating: z.number().int().min(1).max(5).optional(), publicConsent:z.boolean().default(false),
+    message: z.string().trim().max(2000), rating: z.number().min(1).max(5).multipleOf(0.5).optional(), publicConsent:z.boolean().default(false),
   }).strict().parse(await body(req));
   if (input.kind === 'rating' ? !input.rating : input.message.length < 10)
     throw new ApiError(400, input.kind === 'rating' ? 'Choose a rating from 1 to 5.' : 'Describe the issue in at least 10 characters.');
