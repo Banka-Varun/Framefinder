@@ -1,6 +1,23 @@
 'use client';
-import {Film,ArrowRight,Ticket,Bell} from 'lucide-react';
+import {Film,ArrowRight,Bell,Users} from 'lucide-react';
 import Link from './app-link';
 import {useLoad} from './client-data';
-import {MovieArtwork} from './movie-picker';
-export default function HomeFeed({name}:{name:string}){const{data,error}=useLoad('home');return <section className="section home-feed"><p className="eyebrow">MY HOME</p><div className="section-heading"><div><h1>Welcome back, {name.split(' ')[0]}.</h1><p className="lede">Your recent ratings and next movie plans.</p></div><Link href="/for-you" className="button secondary">Find your next film <ArrowRight size={17}/></Link></div><div className="home-shortcuts"><Link className="panel" href="/booking-alerts"><Bell/><h2>Booking Alerts</h2><p>Upcoming shows and unblocked seats</p></Link><Link className="panel" href="/tickets"><Ticket/><h2>Ticket Exchange</h2><p>Browse approved ticket listings</p></Link><Link className="panel" href="/my-list"><Film/><h2>My List</h2><p>{data?.stats?.watchlist??0} films saved</p></Link></div><h2>Recently rated by you</h2>{error&&<p className="notice error" role="alert">{error}</p>}{!data&&!error&&<p role="status">Loading your ratings…</p>}{data?.activity?.length?<div className="activity-list">{data.activity.map((item:any)=><article className="panel activity-card" key={item.key}><MovieArtwork title={item.movie.title}/><div><p className="small">{new Date(item.updated_at).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</p><Link href={'/films/'+item.movie.id}><h2>{item.movie.title}</h2></Link><p className="activity-state">{item.rating/2} / 5 ★</p>{item.review&&(item.spoiler?<details><summary>Your spoiler review</summary><p>{item.review}</p></details>:<p>{item.review}</p>)}</div></article>)}</div>:data&&<div className="panel"><h2>Your film diary starts here.</h2><p>Rate a film you have watched to see it on My Home.</p><Link className="button primary" href="/films">Find a film to rate</Link></div>}</section>;}
+import TicketIcon from './ticket-icon';
+import FilmActivity, {type FilmActivityItem} from './film-activity';
+
+export default function HomeFeed({name}:{name:string}) {
+  const {data,error}=useLoad('home');
+  return <section className="section home-feed">
+    <p className="eyebrow">MY HOME</p>
+    <div className="section-heading"><div><h1>Welcome back, {name.split(' ')[0]}.</h1><p className="lede">See what your film people have been watching.</p></div><Link href="/for-you" className="button secondary">Find your next film <ArrowRight size={17}/></Link></div>
+    <div className="home-shortcuts">
+      <Link className="panel" href="/booking-alerts"><Bell/><h2>Booking Alerts</h2><p>Upcoming shows and unblocked seats</p></Link>
+      <Link className="panel" href="/tickets"><TicketIcon/><h2>Ticket Exchange</h2><p>Browse available tickets</p></Link>
+      <Link className="panel" href="/my-list"><Film/><h2>My List</h2><p>Your saved films</p></Link>
+    </div>
+    <div className="section-heading"><div><h2>Recently rated by people you follow</h2><p className="small">Their latest ratings and reviews, all in one place.</p></div><Link href="/members" className="button secondary"><Users size={17}/> Find people</Link></div>
+    {error&&<p className="notice error" role="alert">{error}</p>}
+    {!data&&!error&&<p role="status">Loading recent reviews…</p>}
+    {data?.activity?.length ? <div className="activity-list">{data.activity.map((item:FilmActivityItem & {key:string})=><FilmActivity key={item.key} item={item}/>)}</div> : data && <div className="panel feed-empty"><Users/><h2>Find your film people.</h2><p>Follow members to see their latest ratings and reviews here.</p><Link className="button primary" href="/members">Discover members</Link></div>}
+  </section>;
+}

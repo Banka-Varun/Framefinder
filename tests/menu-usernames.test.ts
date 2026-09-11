@@ -42,6 +42,8 @@ console.log('PASS name-based handles, concurrent collisions, availability, renam
 assert.equal((await call('feed')).status,401);
 assert.equal((await (await call('feed','GET',undefined,stranger.cookie)).json()).activity.length,0);
 await call('members/varun_banka/follow','POST',{following:true},stranger.cookie);
+assert.equal((await (await call('feed','GET',undefined,stranger.cookie)).json()).activity.length,0);
+await call('movies/2','PUT',{rating:9},owner.cookie);
 const feed=await (await call('feed','GET',undefined,stranger.cookie)).json();
 assert.equal(feed.activity.length,1);assert.equal(feed.activity[0].username,'varun_banka');assert.equal(feed.activity[0].movie.id,2);
 console.log('PASS Home feed only includes followed members and requires a session');
