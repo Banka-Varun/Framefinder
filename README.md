@@ -193,7 +193,9 @@ The bundled catalog now includes 311 films, including 132 Telugu films with sour
 Ticket Exchange and listing details now display Admin approved when the latest manual review is approved, with issuer verification pending shown separately. Only the signed issuer callback can mark a ticket Verified by issuer and enable checkout. Uploading alone shows Awaiting review. Listing status refreshes on window focus and every 15 seconds while the page is visible. My Tickets also displays the latest review decision.
 # Navigation, usernames and member support
 
-The main navigation has Home, For You, Discover, Ticket Exchange and Messages. Signed-in Home shows recent public film activity from followed members; For You retains personalised recommendations. The three-dot More menu contains Tonight’s Pick, My List, booking and seat alerts, member discovery, Help & FAQs, reporting, contact, ratings, About, Terms, Privacy and sharing. Existing ticket cards and profile ticket navigation are preserved.
+The main navigation has Home, For You, Discover, Ticket Exchange and Messages. Signed-in Home shows recent public film activity from followed members; For You retains personalised recommendations. The labelled hamburger Menu before the logo opens a left-side drawer containing Tonight’s Pick, My List, booking and seat alerts, member discovery, Help & FAQs, reporting, contact, ratings, About, Terms, Privacy and sharing. Existing ticket cards and profile ticket navigation are preserved.
+
+The interface uses a charcoal and white palette with orange accents. Contact and rating confirmations do not display internal tracking IDs.
 
 Public help pages are available at `/help`, `/about`, `/contact`, `/report`, `/rate`, `/terms` and `/privacy`. FAQs can be searched and expanded. Sharing uses the device share sheet when available, with clipboard and selectable-link fallbacks. Support submissions and ratings require a signed-in account and are visible only in the admin support inbox. Admins can resolve or reopen requests; the existing notification form can be used to reply to members.
 
