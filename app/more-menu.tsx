@@ -30,7 +30,7 @@ export default function MoreMenu({route, signedIn}: {route: string; signedIn: bo
     catch {setCopyUrl(url); setMessage('Copy this link to share FrameFinder.');}
   }
   const groups = [
-    {label: 'Explore', links: [['tonight', 'Tonight’s Pick', Sparkles], ['my-list', 'My List', Bookmark], ['booking-alerts', 'Booking Alerts', Bell], ['subscriptions', 'Alert Plans', Ticket], ['seat-alerts', 'Unblocked Seats', Eye], ['members', 'Members', Users]]},
+    {label: 'Explore', links: [['', 'Home', Home], ['my-list', 'My List', Bookmark], ['tickets', 'Ticket Exchange', Ticket], ['booking-alerts', 'Booking Alerts', Bell], ['seat-alerts', 'Unblocked Seats', Eye]]},
     {label: 'Help & feedback', links: [['help', 'FAQs', HelpCircle], ['report', 'Report a Problem', Flag], ['contact', 'Contact Us', Mail], ['rate', 'Rate Us', Star]]},
     {label: 'FrameFinder', links: [['about', 'About Us', Info], ['terms', 'Terms & Conditions', FileText], ['privacy', 'Privacy Policy', Shield]]},
   ] as const;
