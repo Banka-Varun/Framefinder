@@ -1,3 +1,4 @@
+import {validPicture} from '@/lib/profile-pictures';
 import {parseAvatar,avatarUrl} from '@/lib/avatar';
 import {isAdmin} from './admin';
 import {z} from 'zod';
@@ -60,9 +61,9 @@ export async function auth(req:Request,path:string){
   const headers=new Headers();headers.append('Set-Cookie',await newSession(a.id));headers.append('Set-Cookie','ff_google_link=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0');return Response.json({ok:true,next:a.onboarded?'/for-you':'/onboarding'},{headers});
  }
  if(path==='signup'){
-  const p=z.object({email,username,password,avatarDesign:z.string().refine(v=>!!parseAvatar(v),'Choose a valid avatar').optional(),name:z.string().trim().min(1).max(60)}).parse(b);await captcha(req,b.captchaToken||'');
+  const p=z.object({email,username,password,profilePicture:z.string().refine(v=>v===''||validPicture(v),'Choose an available profile picture').optional(),avatarDesign:z.string().refine(v=>!!parseAvatar(v),'Choose a valid avatar').optional(),name:z.string().trim().min(1).max(60)}).parse(b);await captcha(req,b.captchaToken||'');
   if(await one('SELECT id FROM accounts WHERE email=? OR username=?',[p.email,p.username]))throw new ApiError(409,'That email or username is already registered.');
-  const id=crypto.randomUUID();const inserted=await run('INSERT INTO accounts(id,email,username,password,name,created_at) VALUES(?,?,?,?,?,?) ON CONFLICT DO NOTHING',[id,p.email,p.username,await passwordHash(p.password),p.name,now()]);if(!inserted.changes)throw new ApiError(409,'That email or username is already registered. Choose another username or sign in.');if(p.avatarDesign)await run('UPDATE accounts SET avatar=? WHERE id=?',[avatarUrl(parseAvatar(p.avatarDesign)!),id]);
+  const id=crypto.randomUUID();const inserted=await run('INSERT INTO accounts(id,email,username,password,name,created_at) VALUES(?,?,?,?,?,?) ON CONFLICT DO NOTHING',[id,p.email,p.username,await passwordHash(p.password),p.name,now()]);if(!inserted.changes)throw new ApiError(409,'That email or username is already registered. Choose another username or sign in.');if(p.profilePicture)await run('UPDATE accounts SET avatar=? WHERE id=?',[p.profilePicture,id]);else if(p.avatarDesign)await run('UPDATE accounts SET avatar=? WHERE id=?',[avatarUrl(parseAvatar(p.avatarDesign)!),id]);
   return Response.json({ok:true,next:'/onboarding'},{headers:{'Set-Cookie':await newSession(id)}});
  }
  if(path==='login'){

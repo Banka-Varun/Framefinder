@@ -11,7 +11,7 @@ export async function pushNotification(userId:string,id:string,event:{title:stri
  }catch{console.error('Push delivery unavailable');}
 }
 export async function notify(id:string,userId:string,title:string,message:string,link:string){
- try{const result=await run('INSERT OR IGNORE INTO notifications(id,user_id,title,message,link,created_at) VALUES(?,?,?,?,?,?)',[id,userId,title,message,link,now()]);if(result.changes)await pushNotification(userId,id,{title,message,link});}catch{console.error('Notification delivery unavailable');}
+ try{if(await one('SELECT user_id FROM removed_accounts WHERE user_id=?',[userId]))return;const result=await run('INSERT OR IGNORE INTO notifications(id,user_id,title,message,link,created_at) VALUES(?,?,?,?,?,?)',[id,userId,title,message,link,now()]);if(result.changes)await pushNotification(userId,id,{title,message,link});}catch{console.error('Notification delivery unavailable');}
 }
 export async function notifications(req:Request,path:string[]){const a=(await user(req))!;
  if(path[1]==='push'){
