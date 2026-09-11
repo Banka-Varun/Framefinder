@@ -1,21 +1,23 @@
 'use client';
 import {useEffect, useRef, useState} from 'react';
-import {MoreHorizontal, Bell, Eye, Sparkles, Bookmark, Users, HelpCircle, Flag, Info, Mail, Share2, Star, FileText, Shield} from 'lucide-react';
+import {Menu, X, Home, Compass, Film, Ticket, MessageCircle, Bell, Eye, Sparkles, Bookmark, Users, HelpCircle, Flag, Info, Mail, Share2, Star, FileText, Shield} from 'lucide-react';
 import Link from './app-link';
 
-export default function MoreMenu({route}: {route: string}) {
+export default function MoreMenu({route, signedIn}: {route: string; signedIn: boolean}) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [copyUrl, setCopyUrl] = useState('');
-  const root = useRef<HTMLDivElement>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   useEffect(() => {setOpen(false); setMessage(''); setCopyUrl('');}, [route]);
   useEffect(() => {
-    if (!open) return;
-    const close = (event: PointerEvent) => {if (!root.current?.contains(event.target as Node)) setOpen(false);};
-    const escape = (event: KeyboardEvent) => {if (event.key === 'Escape') {setOpen(false); trigger.current?.focus();}};
-    document.addEventListener('pointerdown', close); document.addEventListener('keydown', escape);
-    return () => {document.removeEventListener('pointerdown', close); document.removeEventListener('keydown', escape);};
+    const element = dialog.current;
+    if (!element) return;
+    if (!open) {if (element.open) element.close(); return;}
+    element.showModal();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {document.body.style.overflow = previousOverflow; if (element.open) element.close();};
   }, [open]);
   async function share() {
     const url = location.origin + '/';
@@ -28,17 +30,26 @@ export default function MoreMenu({route}: {route: string}) {
     catch {setCopyUrl(url); setMessage('Copy this link to share FrameFinder.');}
   }
   const groups = [
+    {label: 'Your pages', links: [['', 'Home', Home], ['for-you', 'For You', Compass], ['films', 'Discover Films', Film], ['tickets', 'Ticket Exchange', Ticket], ['messages', 'Messages', MessageCircle]]},
     {label: 'Explore', links: [['tonight', 'Tonight’s Pick', Sparkles], ['my-list', 'My List', Bookmark], ['booking-alerts', 'Booking Alerts', Bell], ['seat-alerts', 'Unblocked Seats', Eye], ['members', 'Members', Users]]},
-    {label: 'Help & feedback', links: [['help', 'Help & FAQs', HelpCircle], ['report', 'Report a Problem', Flag], ['contact', 'Contact Us', Mail], ['rate', 'Rate FrameFinder', Star]]},
+    {label: 'Help & feedback', links: [['help', 'FAQs', HelpCircle], ['report', 'Report a Problem', Flag], ['contact', 'Contact Us', Mail], ['rate', 'Rate Us', Star]]},
     {label: 'FrameFinder', links: [['about', 'About Us', Info], ['terms', 'Terms & Conditions', FileText], ['privacy', 'Privacy Policy', Shield]]},
   ] as const;
-  return <div ref={root} className="more-menu" onBlur={e => {if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false);}}>
-    <button ref={trigger} type="button" className="icon-button more-trigger" aria-label="More options" aria-expanded={open} aria-controls="more-options" onClick={() => setOpen(!open)}><MoreHorizontal size={24}/></button>
-    {open && <nav id="more-options" className="more-panel" aria-label="More options">
-      {groups.map(group => <div className="more-group" key={group.label}><p>{group.label}</p>{group.links.map(([href, label, Icon]) => <Link key={href} href={'/' + href} aria-current={route === href ? 'page' : undefined} onClick={() => setOpen(false)}><Icon size={17}/>{label}</Link>)}</div>)}
-      <button type="button" className="share-action" onClick={share}><Share2 size={17}/>Share FrameFinder</button>
-      {message && <p className="menu-status" role="status">{message}</p>}
-      {copyUrl && <input aria-label="Link to share" value={copyUrl} readOnly onFocus={e => e.target.select()}/>}
-    </nav>}
-  </div>;
+  return <>
+    <button ref={trigger} type="button" className="menu-trigger" aria-label="Open menu" aria-expanded={open} aria-controls="site-menu" aria-haspopup="dialog" onClick={() => setOpen(true)}><Menu size={23}/><span>Menu</span></button>
+    <dialog ref={dialog} id="site-menu" className="site-drawer" aria-labelledby="site-menu-title" onClose={() => {setOpen(false); trigger.current?.focus();}} onClick={e => {
+      if (e.target !== e.currentTarget) return;
+      const box = e.currentTarget.getBoundingClientRect();
+      if (e.clientX < box.left || e.clientX > box.right || e.clientY < box.top || e.clientY > box.bottom) setOpen(false);
+    }}>
+      <div className="drawer-heading"><h2 id="site-menu-title">Menu</h2><button type="button" className="drawer-close" aria-label="Close menu" onClick={() => setOpen(false)} autoFocus><X size={22}/></button></div>
+      <nav aria-label="Site menu" className="drawer-links">
+        {groups.map(group => <div className="drawer-group" key={group.label}><p>{group.label}</p>{group.links.map(([href, label, Icon]) => <Link key={href} href={'/' + href} aria-current={route.split('/')[0] === href ? 'page' : undefined} onClick={() => setOpen(false)}><Icon size={18}/>{label}</Link>)}</div>)}
+        <button type="button" className="drawer-share" onClick={share}><Share2 size={18}/>Share FrameFinder</button>
+        {message && <p className="menu-status" role="status">{message}</p>}
+        {copyUrl && <input aria-label="Link to share" value={copyUrl} readOnly onFocus={e => e.target.select()}/>}
+        {!signedIn && <div className="drawer-account"><Link className="button primary" href="/signup" onClick={() => setOpen(false)}>Create account</Link><Link href="/login" onClick={() => setOpen(false)}>Sign in</Link></div>}
+      </nav>
+    </dialog>
+  </>;
 }
