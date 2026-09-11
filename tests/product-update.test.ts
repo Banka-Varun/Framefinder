@@ -18,9 +18,11 @@ console.log('PASS own-account exclusion, follower removal ownership and watched 
 const ticketId=crypto.randomUUID(),proof=crypto.randomUUID();
 await run('INSERT INTO assets(id,user_id,kind,mime) VALUES(?,?,?,?)',[proof,seller.id,'proof','image/png']);
 await run('INSERT INTO tickets(id,seller_id,movie,theater,show_at,language,format,quantity,face_value,price,proof_id,reference_hash,created_at,is_public) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,1)',[ticketId,seller.id,'The Paradise','Test Cinema','2099-01-01T12:00:00Z','Telugu','2D',1,20000,18000,proof,'test-reference',new Date().toISOString()]);
+await run("UPDATE tickets SET status='verified' WHERE id=?",[ticketId]);
 const thread=await(await call('conversations','POST',{ticketId},buyer.cookie)).json();
 const conversations=await(await call('conversations','GET',undefined,seller.cookie)).json();assert.equal(conversations.conversations[0].buyer_name,'Buyer Name');assert.ok('buyer_avatar' in conversations.conversations[0]);
 assert.equal((await call('conversations/'+thread.id,'GET',undefined,reviewer.cookie)).status,404);
+await run("UPDATE tickets SET status='pending_verification' WHERE id=?",[ticketId]);
 async function queue(){return (await(await call('admin','GET',undefined,reviewer.cookie)).json()).tickets;}
 assert.equal((await queue()).length,1);
 settings.ADMIN_USER_IDS=reviewer.id+','+seller.id;
@@ -42,7 +44,7 @@ const finalProof=crypto.randomUUID();await run('INSERT INTO assets(id,user_id,ki
 assert.equal((await call('admin/review','POST',{...review,proofId:finalProof,decision:'approved'},reviewer.cookie)).status,200);assert.equal((await queue()).length,0);
 assert.equal((await one<any>('SELECT status FROM tickets WHERE id=?',[ticketId])).status,'pending_verification');
 await call('tickets/'+ticketId+'/visibility','POST',{publish:true},seller.cookie);
-const publicTicket=await(await call('tickets/'+ticketId,'GET',undefined,buyer.cookie)).json();assert.equal(publicTicket.review.decision,'approved');assert.equal(publicTicket.review.note,undefined);assert.equal(publicTicket.ticket.proof_id,undefined);
+const publicTicket=await(await call('tickets/'+ticketId,'GET',undefined,buyer.cookie)).json();assert.equal(publicTicket.review,null);assert.equal(publicTicket.ticket.proof_id,undefined);
 console.log('PASS concurrent review deduplication, rejected/needs-info resubmission, stale-proof rejection, private notes and queue transitions');
 const plans=await(await call('billing','GET',undefined,seller.cookie)).json();assert.equal(plans.price,10000);assert.equal(plans.credits,10);assert.equal(plans.balance,3);assert.equal(plans.ready,false);assert.equal((await call('billing/order','POST',{},seller.cookie)).status,503);
 console.log('PASS ₹100/10-credit plan, starter balance and payment gate without provider credentials');

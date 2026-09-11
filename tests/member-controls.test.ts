@@ -8,8 +8,8 @@ async function call(path:string,method='GET',data?:unknown,cookie=''){return ({G
 async function account(username:string,name:string,picture=''){const r=await call('auth/signup','POST',{name,username,email:username+'@example.com',password:'test account password',profilePicture:picture});assert.equal(r.status,200);return {cookie:r.headers.getSetCookie()[0].split(';')[0],...(await one<any>('SELECT id FROM accounts WHERE username=?',[username]))};}
 for(const files of Object.values(pictureCollections))for(const file of files)assert.ok(fs.existsSync('public'+picturePath(file)));
 assert.equal(visiblePicture('/api/v1/avatar?design=legacy'),'');
-assert.equal(pictureCatalog.length,33);
-assert.ok(suggestPictures(['Telugu'],[]).every(p=>p.group==='telugu'));
+assert.equal(pictureCatalog.length,45);
+assert.ok(suggestPictures(['Telugu'],[]).every(p=>p.languages.includes('Telugu')));
 assert.ok(suggestPictures(['Japanese'],[]).every(p=>p.group==='anime'));
 assert.equal(suggestPictures(['Telugu'],[{title:'Spider-Man: Homecoming',genres:['Action']}])[0].group,'superheroes');
 assert.equal(suggestPictures(['English'],[{title:'Khaleja',genres:['Action']}])[0].file,'khaleja.jpg');
@@ -25,9 +25,9 @@ assert.equal((await call('me/picture','POST',{picture:'/profile-pictures/m3.webp
 assert.equal((await call('me/picture','POST',{picture:'/profile-pictures/m3.webp'},member.cookie)).status,200);
 assert.equal((await(await call('auth/session','GET',undefined,member.cookie)).json()).user.avatar,'/profile-pictures/m3.webp');
 assert.equal((await call('me/picture','POST',{picture:''},member.cookie)).status,200);assert.equal((await(await call('auth/session','GET',undefined,member.cookie)).json()).user.avatar,'');
-console.log('PASS all 33 picture assets, persistent selected pictures, neutral fallback, display-name search and picture validation');
+console.log('PASS all 45 picture assets, persistent selected pictures, neutral fallback, display-name search and picture validation');
 await run('UPDATE accounts SET languages=? WHERE id=?',[JSON.stringify(['Telugu']),member.id]);
-const suggested=await(await call('me/picture','GET',undefined,member.cookie)).json();assert.equal(suggested.suggestions.length,5);assert.ok(suggested.suggestions.every((p:any)=>p.group==='telugu'));
+const suggested=await(await call('me/picture','GET',undefined,member.cookie)).json();assert.equal(suggested.suggestions.length,12);assert.ok(suggested.suggestions.every((p:any)=>p.languages.includes('Telugu')));
 assert.equal((await call('me/picture','POST',{picture:'/profile-pictures/khaleja.jpg'},member.cookie)).status,200);
 assert.equal((await(await call('auth/session','GET',undefined,member.cookie)).json()).user.avatar,'/profile-pictures/khaleja.jpg');
 console.log('PASS picture suggestions respect saved language and film interests without replacing the selected picture');
@@ -40,7 +40,9 @@ const ticket=crypto.randomUUID();await run('INSERT INTO tickets(id,seller_id,mov
 assert.equal((await call('admin/members','POST',payload,owner.cookie)).status,409);assert.equal(await one('SELECT user_id FROM removed_accounts WHERE user_id=?',[member.id]),null);
 await run("UPDATE tickets SET status='pending_verification' WHERE id=?",[ticket]);
 await call('members/controls_member/follow','POST',{following:true},stranger.cookie);await call('movies/2','PUT',{watched:true,review:'An earlier review.'},member.cookie);
+await run("UPDATE tickets SET status='verified' WHERE id=?",[ticket]);
 const conversation=await(await call('conversations','POST',{ticketId:ticket},stranger.cookie)).json();
+await run("UPDATE tickets SET status='pending_verification' WHERE id=?",[ticket]);
 assert.equal((await call('admin/members','POST',payload,owner.cookie)).status,200);
 assert.equal((await call('members/controls_member','GET',undefined,stranger.cookie)).status,404);
 assert.equal((await(await call('members?q=controls_member','GET',undefined,stranger.cookie)).json()).members.length,0);

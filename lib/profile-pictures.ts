@@ -1,10 +1,10 @@
-export const pictureCollections={male:['m1.jpg','m2.jpg','m3.webp','m4.webp','m5.jpg','m6.jpg','m8.jpg','m9.jpg'],female:['f1.jpg','f2.png','f3.png','f5.jpg','f6.png'],anime:["luffy-straw-hat.jpg", "anime-monochrome.jpg", "anime-freedom.jpg", "luffy-peace.jpg", "anime-headphones.jpg", "nobita-shades.jpg", "anime-western.jpg", "shinchan-suit.jpg"],superheroes:["spider-collage.jpg", "robin-blue.jpg", "robin-purple.jpg", "spider-suit.jpg"],cartoons:["cartoon-portrait.jpg", "illustrated-portrait.jpg", "musa.jpg"],telugu:["telugu-cinema-1.jpg", "telugu-cinema-2.jpg", "telugu-cinema-3.jpg", "telugu-cinema-4.jpg", "khaleja.jpg"]} as const;
+export const pictureCollections={male:['m1.jpg','m2.jpg','m3.webp','m4.webp','m5.jpg','m6.jpg','m8.jpg','m9.jpg'],female:['f1.jpg','f2.png','f3.png','f5.jpg','f6.png'],anime:["m5.jpg","m8.jpg","luffy-straw-hat.jpg", "anime-monochrome.jpg", "anime-freedom.jpg", "luffy-peace.jpg", "anime-headphones.jpg", "nobita-shades.jpg", "anime-western.jpg", "shinchan-suit.jpg"],superheroes:["m2.jpg","m3.webp","m4.webp","m9.jpg","f6.png","spider-collage.jpg", "robin-blue.jpg", "robin-purple.jpg", "spider-suit.jpg"],cartoons:["m1.jpg","m6.jpg","f1.jpg","f2.png","f3.png","f5.jpg","cartoon-portrait.jpg", "illustrated-portrait.jpg", "musa.jpg"],telugu:["telugu-cinema-1.jpg", "telugu-cinema-2.jpg", "telugu-cinema-3.jpg", "telugu-cinema-4.jpg", "khaleja.jpg"],heroes:["nani-portrait.jpg", "hero-portrait-1.jpg", "hero-portrait-2.jpg", "hero-portrait-3.jpg", "hero-portrait-4.jpg", "hero-illustration-1.jpg", "chatrapathi-portrait.jpg", "hero-illustration-2.jpg", "hero-portrait-5.jpg", "prabhas-portrait.jpg", "aa-portrait.jpg", "hero-portrait-6.jpg"],animation:["m1.jpg","m2.jpg","m3.webp","m4.webp","m5.jpg","m6.jpg","f5.jpg","f6.png","luffy-straw-hat.jpg","anime-monochrome.jpg","anime-freedom.jpg","luffy-peace.jpg","anime-headphones.jpg","nobita-shades.jpg","anime-western.jpg","shinchan-suit.jpg","spider-collage.jpg","robin-blue.jpg","robin-purple.jpg","spider-suit.jpg","cartoon-portrait.jpg","illustrated-portrait.jpg","musa.jpg","hero-illustration-1.jpg","hero-illustration-2.jpg"]} as const;
 export type PictureCollection=keyof typeof pictureCollections;
 export const picturePath=(file:string)=>'/profile-pictures/'+file;
 export function validPicture(value:unknown){return typeof value==='string'&&Object.values(pictureCollections).some(files=>(files as readonly string[]).some(file=>picturePath(file)===value));}
 export function visiblePicture(value:string|undefined|null){return value&&!value.startsWith('/api/v1/avatar')?value:'';}
 
-export const collectionLabels:Record<PictureCollection,string>={male:'Male collection',female:'Female collection',anime:'Anime',superheroes:'Superheroes',cartoons:'Cartoons',telugu:'Telugu cinema'};
+export const collectionLabels:Record<PictureCollection,string>={male:'Male collection',female:'Female collection',anime:'Anime',superheroes:'Superheroes',cartoons:'Cartoons',telugu:'Telugu cinema',heroes:'Hero portraits',animation:'Animation'};
 export type Picture={file:string;label:string;group:PictureCollection;titles:string[];languages:string[];genres:string[]};
 export const pictureCatalog:Picture[]=[
  ...pictureCollections.male.map((file,i)=>({file,label:'Original collection · '+(i+1),group:'male' as const,titles:[],languages:[],genres:[]})),
@@ -29,6 +29,18 @@ export const pictureCatalog:Picture[]=[
 {"file": "telugu-cinema-3.jpg", "label": "Telugu cinema · 3", "group": "telugu", "titles": [], "languages": ["Telugu"], "genres": ["Action"]},
 {"file": "telugu-cinema-4.jpg", "label": "Telugu cinema · 4", "group": "telugu", "titles": [], "languages": ["Telugu"], "genres": ["Action"]},
 {"file": "khaleja.jpg", "label": "Khaleja", "group": "telugu", "titles": ["khaleja"], "languages": ["Telugu"], "genres": ["Action"]}
+,{"file": "nani-portrait.jpg", "label": "Nani", "group": "heroes", "titles": ["hi nanna", "jersey"], "languages": ["Telugu"], "genres": []},
+{"file": "hero-portrait-1.jpg", "label": "Hero portrait \u00b7 1", "group": "heroes", "titles": [], "languages": ["Telugu"], "genres": []},
+{"file": "hero-portrait-2.jpg", "label": "Hero portrait \u00b7 2", "group": "heroes", "titles": [], "languages": ["Telugu"], "genres": []},
+{"file": "hero-portrait-3.jpg", "label": "Hero portrait \u00b7 3", "group": "heroes", "titles": [], "languages": ["Telugu"], "genres": []},
+{"file": "hero-portrait-4.jpg", "label": "Hero portrait \u00b7 4", "group": "heroes", "titles": [], "languages": ["Telugu"], "genres": []},
+{"file": "hero-illustration-1.jpg", "label": "Hero illustration \u00b7 1", "group": "heroes", "titles": [], "languages": ["Telugu"], "genres": []},
+{"file": "chatrapathi-portrait.jpg", "label": "Chatrapathi", "group": "heroes", "titles": ["chatrapathi", "chhatrapati", "salaar", "baahubali", "bahubali"], "languages": ["Telugu"], "genres": []},
+{"file": "hero-illustration-2.jpg", "label": "Hero illustration \u00b7 2", "group": "heroes", "titles": [], "languages": ["Telugu"], "genres": []},
+{"file": "hero-portrait-5.jpg", "label": "Hero portrait \u00b7 5", "group": "heroes", "titles": [], "languages": ["Telugu"], "genres": []},
+{"file": "prabhas-portrait.jpg", "label": "Prabhas", "group": "heroes", "titles": ["chatrapathi", "chhatrapati", "salaar", "baahubali", "bahubali"], "languages": ["Telugu"], "genres": []},
+{"file": "aa-portrait.jpg", "label": "AA", "group": "heroes", "titles": [], "languages": ["Telugu"], "genres": []},
+{"file": "hero-portrait-6.jpg", "label": "Hero portrait \u00b7 6", "group": "heroes", "titles": [], "languages": ["Telugu"], "genres": []}
 ];
 const normalized=(value:string)=>value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
 export function suggestPictures(languages:string[],favorites:{title:string;genres:string[]}[]){
@@ -38,4 +50,10 @@ export function suggestPictures(languages:string[],favorites:{title:string;genre
   const genre=picture.genres.find(genre=>favorites.some(f=>f.genres.includes(genre)));
   return {...picture,score:(movie?100:0)+(language?20:0)+(genre?5:0),reason:movie?'Because you like '+movie.title:language?'For your '+language+' interest':genre?'Inspired by your '+genre.toLowerCase()+' favorites':''};
  }).filter(p=>p.score>0).sort((a,b)=>b.score-a.score||a.file.localeCompare(b.file)).slice(0,12);
+}
+
+export function firstFilmPictures(movie:{title:string;language:string;genres:string[]}){
+ const matches=suggestPictures([movie.language],[movie]);
+ const exact=matches.filter(p=>p.score>=100);
+ return exact.length?exact:matches.filter(p=>p.languages.includes(movie.language));
 }

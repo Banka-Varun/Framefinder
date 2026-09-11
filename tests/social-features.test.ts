@@ -18,6 +18,7 @@ await call('members/buyer_test/follow','POST',{following:true},outsider.cookie);
 const mutual=await(await call('members/owner_test','GET',undefined,outsider.cookie)).json() as any;assert.equal(mutual.followedBy[0].username,'buyer_test');assert.equal(mutual.followerPreview[0].username,'buyer_test');const buyerProfile=await(await call('members/buyer_test','GET',undefined,owner.cookie)).json() as any;assert.equal(buyerProfile.followsYou,true);assert.deepEqual(buyerProfile.followedBy,[]);
 console.log('PASS partial mixed-case search, follower lists, mutual connections and follow deduplication');
 const tid=crypto.randomUUID(),proof=crypto.randomUUID();await run('INSERT INTO tickets(id,seller_id,movie,theater,show_at,language,format,quantity,face_value,price,proof_id,reference_hash,created_at,is_public) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,1)',[tid,ownerRow.id,'The Paradise','Test Cinema','2099-01-01T10:00:00Z','Telugu','2D',1,20000,18000,proof,crypto.randomUUID(),new Date().toISOString()]);
+await run("UPDATE tickets SET status='verified' WHERE id=?",[tid]);
 const thread=await(await call('conversations','POST',{ticketId:tid},buyer.cookie)).json() as any;assert.ok(thread.id);
 const list=await(await call('conversations','GET',undefined,owner.cookie)).json() as any;assert.equal(list.conversations[0].unread,1);
 for(const text of ['Call 9876543210','9 8 7 6 5 4 3 2 1 0','nine eight seven six five four three two one zero','pay varun@okaxis','varun (at) ybl','upi://pay?pa=test@ybl']){assert.equal(containsContactDetails(text),true,text);assert.equal((await call('conversations/'+thread.id+'/messages','POST',{message:text,nonce:crypto.randomUUID()},buyer.cookie)).status,422);}
@@ -37,13 +38,14 @@ assert.equal((await call('conversations/'+thread.id,'GET',undefined,outsider.coo
 console.log('PASS contact rejection before persistence, message unsend ownership, request badge, offer retries and read tracking');
 assert.equal((await call('admin','GET',undefined,owner.cookie)).status,403);
 assert.equal((await call('admin/access','POST',{},owner.cookie)).status,403);
+await run("UPDATE tickets SET status='pending_verification' WHERE id=?",[tid]);
 settings.ADMIN_USER_IDS=otherRow.id;
 assert.equal((await call('admin/access','POST',{},outsider.cookie)).status,200);
 assert.equal((await call('admin','GET',undefined,outsider.cookie)).status,200);
 assert.equal((await call('admin/review','POST',{ticketId:tid,proofId:proof,decision:'approved',note:'Booking proof reviewed.'},outsider.cookie)).status,200);
 assert.equal((await one<any>('SELECT status FROM tickets WHERE id=?',[tid]))!.status,'pending_verification');
-const reviewedList=await(await call('tickets','GET',undefined,buyer.cookie)).json() as any;assert.equal(reviewedList.tickets.find((t:any)=>t.id===tid).review_decision,'approved');
-const reviewedDetail=await(await call('tickets/'+tid,'GET',undefined,buyer.cookie)).json() as any;assert.equal(reviewedDetail.review.decision,'approved');assert.equal(reviewedDetail.ticket.status,'pending_verification');
+const reviewedList=await(await call('tickets','GET',undefined,buyer.cookie)).json() as any;assert.equal(reviewedList.tickets.find((t:any)=>t.id===tid).review_decision,undefined);
+const reviewedDetail=await(await call('tickets/'+tid,'GET',undefined,buyer.cookie)).json() as any;assert.equal(reviewedDetail.review,null);assert.equal(reviewedDetail.ticket.status,'pending_verification');
 assert.equal((await call('admin/notify','POST',{userId:ownerRow.id,title:'Review update',message:'Your proof has been reviewed.'},outsider.cookie)).status,200);
 settings.ADMIN_USER_IDS=ownerRow.id;
 assert.equal((await call('admin/review','POST',{ticketId:tid,proofId:proof,decision:'approved',note:'Own listing review.'},owner.cookie)).status,403);

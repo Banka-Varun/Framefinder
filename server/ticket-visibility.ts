@@ -1,0 +1,2 @@
+// Public enquiries require both publication and approval of the current proof.
+export const publicTicketSql=`t.is_public=1 AND t.show_at>? AND NOT EXISTS(SELECT 1 FROM removed_accounts WHERE user_id=t.seller_id) AND (t.status='verified' OR (t.status='pending_verification' AND t.review_pending=0 AND (SELECT decision FROM admin_reviews WHERE ticket_id=t.id AND proof_id=t.proof_id ORDER BY created_at DESC,id DESC LIMIT 1)='approved'))`;

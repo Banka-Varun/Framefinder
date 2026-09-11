@@ -1,4 +1,4 @@
-import {validPicture,suggestPictures} from '@/lib/profile-pictures';
+import {validPicture,suggestPictures,firstFilmPictures} from '@/lib/profile-pictures';
 import {usernameSchema} from '@/lib/username';
 import {parseAvatar,avatarUrl} from '@/lib/avatar';
 import {notify} from './notifications';
@@ -9,6 +9,13 @@ import {catalog,findFilm,movies,providers,hasPoster,type Film} from './catalog';
 const stateSchema=z.object({rating:z.number().int().min(1).max(10).nullable().optional(),liked:z.boolean().optional(),watched:z.boolean().optional(),watchlist:z.boolean().optional(),watchedOn:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable().optional(),review:z.string().max(3000).optional(),spoiler:z.boolean().optional()}).strict();
 export async function social(req:Request,path:string[]){
  const url=new URL(req.url);const a=(await user(req))!;if(req.method!=='GET')await limit('social-write:'+a.id,90,60);if(['movies','recommendations','members'].includes(path[0])&&req.method==='GET')await limit('browse:'+a.id,120,60);
+ if(path[0]==='home'){
+  if(req.method!=='GET')throw new ApiError(405,'Method not allowed');
+  const activity=await all<any>('SELECT key,movie_id,rating,review,spoiler,updated_at FROM social_state WHERE user_id=? AND rating IS NOT NULL ORDER BY updated_at DESC LIMIT 24',[a.id]);
+  const rows=await Promise.all(activity.map(async row=>({...row,movie:await findFilm(row.movie_id)})));
+  const stats=await one('SELECT COUNT(CASE WHEN rating IS NOT NULL THEN 1 END) ratings,COUNT(CASE WHEN watched=1 THEN 1 END) watched,COUNT(CASE WHEN watchlist=1 THEN 1 END) watchlist FROM social_state WHERE user_id=?',[a.id]);
+  return Response.json({activity:rows.filter(row=>row.movie),stats});
+ }
  if(path[0]==='feed'){
   if(req.method!=='GET')throw new ApiError(405,'Method not allowed');
   const activity=await all<any>("SELECT s.key,s.movie_id,s.rating,s.watched,s.liked,s.review,s.spoiler,s.updated_at,a.username,a.name,a.avatar FROM follows f JOIN social_state s ON s.user_id=f.following JOIN accounts a ON a.id=s.user_id WHERE f.follower=? AND NOT EXISTS(SELECT 1 FROM removed_accounts WHERE user_id=a.id) AND (s.watched=1 OR s.liked=1 OR s.review!='') ORDER BY s.updated_at DESC LIMIT 30",[a.id]);
@@ -30,15 +37,17 @@ export async function social(req:Request,path:string[]){
   const balanced=langs.length>1?Array.from({length:48},(_,i)=>langs.map(lang=>ranked.filter(m=>m.language===lang)[i])).flat().filter(Boolean).slice(0,48):ranked.slice(0,48);
   return Response.json({movies:balanced,method:'Genre similarity + language preferences',rated:history.length});
  }
- if(path[0]==='me'&&path[1]==='picture'){if(req.method==='GET'){await limit('picture-suggestions:'+a.id,60,60);const history=await all<{movie_id:number}>('SELECT movie_id FROM social_state WHERE user_id=? AND (liked=1 OR rating>=7) ORDER BY updated_at DESC LIMIT 40',[a.id]);const favorites=(await Promise.all(history.map(row=>findFilm(row.movie_id)))).filter(Boolean) as Film[];return Response.json({suggestions:suggestPictures(JSON.parse(a.languages),favorites)});}if(req.method!=='POST')throw new ApiError(405,'Method not allowed');const p=z.object({picture:z.string().refine(v=>v===''||validPicture(v),'Choose an available profile picture')}).strict().parse(await body(req));await run('UPDATE accounts SET avatar=? WHERE id=?',[p.picture,a.id]);return Response.json({ok:true});}
+ if(path[0]==='me'&&path[1]==='picture'){if(req.method==='GET'){await limit('picture-suggestions:'+a.id,60,60);const history=await all<{movie_id:number}>('SELECT movie_id FROM social_state WHERE user_id=? AND (liked=1 OR rating>=7) ORDER BY updated_at DESC LIMIT 40',[a.id]);const favorites=(await Promise.all(history.map(row=>findFilm(row.movie_id)))).filter(Boolean) as Film[];const taste=await one<{first_movie_id:number}>('SELECT first_movie_id FROM taste_profiles WHERE user_id=?',[a.id]);const first=taste?await findFilm(taste.first_movie_id):null;return Response.json({suggestions:first?firstFilmPictures(first):suggestPictures(JSON.parse(a.languages),favorites),firstMovie:first?.title||null});}if(req.method!=='POST')throw new ApiError(405,'Method not allowed');const p=z.object({picture:z.string().refine(v=>v===''||validPicture(v),'Choose an available profile picture')}).strict().parse(await body(req));await run('UPDATE accounts SET avatar=? WHERE id=?',[p.picture,a.id]);return Response.json({ok:true});}
  if(path[0]==='me'&&path[1]==='avatar'){
   if(req.method!=='POST')throw new ApiError(405,'Method not allowed');const p=await body(req);const design=parseAvatar(p.design);if(!design)throw new ApiError(400,'Choose a valid avatar');const avatar=avatarUrl(design);await run('UPDATE accounts SET avatar=? WHERE id=?',[avatar,a.id]);return Response.json({ok:true,avatar});
  }
  if(path[0]==='me'){
   if(req.method==='GET')return Response.json({user:publicAccount(a)});
-  const p=z.object({username:usernameSchema.optional(),name:z.string().trim().min(1).max(60),bio:z.string().max(300),languages:z.array(z.enum(['English','Telugu','Hindi','Tamil','Malayalam','Kannada','Korean','Japanese','French'])).min(1).max(9),onboarded:z.boolean().optional()}).parse(await body(req));
+  const p=z.object({username:usernameSchema.optional(),name:z.string().trim().min(1).max(60),bio:z.string().max(300),languages:z.array(z.enum(['English','Telugu','Hindi','Tamil','Malayalam','Kannada','Korean','Japanese','French'])).min(1).max(9),firstMovieId:z.number().int().positive().optional(),onboarded:z.boolean().optional()}).parse(await body(req));
+  if(p.firstMovieId&&!await findFilm(p.firstMovieId))throw new ApiError(400,'Choose an available favourite film.');
   const updated=await run('UPDATE OR IGNORE accounts SET username=?,name=?,bio=?,languages=?,onboarded=? WHERE id=?',[p.username||a.username,p.name,p.bio,JSON.stringify(p.languages),p.onboarded?1:a.onboarded,a.id]);
   if(!updated.changes)throw new ApiError(409,'That username is already taken. Choose another.');
+  if(p.firstMovieId)await run('INSERT INTO taste_profiles(user_id,first_movie_id) VALUES(?,?) ON CONFLICT(user_id) DO UPDATE SET first_movie_id=excluded.first_movie_id',[a.id,p.firstMovieId]);
   return Response.json({ok:true,username:p.username||a.username});
  }
  if(path[0]==='members'){

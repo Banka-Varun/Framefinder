@@ -1,6 +1,5 @@
 'use client';
-import {useEffect,useState} from 'react';
-import {api} from './client-data';
+import {useSession} from './session-provider';
 import Link from './app-link';
 import AdminPanel from './admin-panel';
-export default function AdminAccess(){const[verified,setVerified]=useState<boolean|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState('');useEffect(()=>{let active=true;api('admin/access').then(d=>{if(active)setVerified(d.verified);}).catch(()=>{if(active)setVerified(false);});return()=>{active=false;};},[]);async function verify(){setBusy(true);setError('');try{await api('admin/access',{});setVerified(true);}catch(e){setError((e as Error).message);}finally{setBusy(false);}}if(verified===null)return <p className="loading">Checking administrator session…</p>;if(verified)return <AdminPanel/>;return <section className="section"><p className="eyebrow">RESTRICTED ACCESS</p><h1>Are you an administrator?</h1><div className="panel"><p>Verify that your signed-in account has administrator access to continue.</p><button className="button primary" onClick={verify} disabled={busy}>{busy?'Checking access…':'Verify administrator access'}</button>{error&&<p className="notice error" role="alert">{error}</p>}<p><Link href="/for-you">Return home</Link></p></div></section>;}
+export default function AdminAccess({section='',recipientId=''}:{section?:string;recipientId?:string}){const{data,error}=useSession();if(!data)return <p role="status">{error||'Checking your account…'}</p>;if(!data.user?.admin)return <section className="section"><h1>Administrator access required</h1><p>Sign in with your administrator account.</p><Link href="/login">Sign in</Link></section>;return <AdminPanel section={section} recipientId={recipientId}/>;}
