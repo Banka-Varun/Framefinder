@@ -11,3 +11,5 @@ export async function batch(statements:{sql:string;args?:any[]}[]){db.exec('BEGI
 const assets=new Map<string,{bytes:ArrayBuffer;mime:string}>();
 export async function putAsset(key:string,bytes:ArrayBuffer,mime:string){assets.set(key,{bytes,mime});}
 export async function getAsset(key:string){const f=assets.get(key);return f?{body:f.bytes,mime:f.mime}:null;}
+
+export async function deleteAsset(key:string){assets.delete(key);}

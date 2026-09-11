@@ -1,3 +1,4 @@
+import {drainAssetErasures} from './account-lifecycle';
 import {validPicture} from '@/lib/profile-pictures';
 import {parseAvatar,avatarUrl} from '@/lib/avatar';
 import {isAdmin} from './admin';
@@ -15,7 +16,7 @@ export async function auth(req:Request,path:string){
   const available=!await one('SELECT id FROM accounts WHERE username=?',[candidate]);
   return Response.json({available,suggestion:available?candidate:await suggestUsername((params.get('name')||candidate).slice(0,60))});
  }
- if(path==='session'){const a=await user(req,false);return Response.json({user:a?{...publicAccount(a),email:a.email,verified:!!a.verified,admin:isAdmin(a)}:null});}
+ if(path==='session'){await drainAssetErasures();const a=await user(req,false);return Response.json({user:a?{...publicAccount(a),email:a.email,verified:!!a.verified,admin:isAdmin(a)}:null});}
  if(path==='config')return Response.json({google:!!setting('GOOGLE_CLIENT_ID')&&!!setting('GOOGLE_CLIENT_SECRET'),captchaSiteKey:setting('TURNSTILE_SITE_KEY'),email:!!setting('RESEND_API_KEY'),captchaRequired:setting('REQUIRE_CAPTCHA')==='true'});
  if(path==='logout'){const t=cookie(req,'ff_session');if(t){await run('DELETE FROM sessions WHERE token=?',[hash(t)]);await run('DELETE FROM auth_tokens WHERE token=? AND purpose=?',[hash('admin-access:'+t),'admin-access']);}return Response.json({ok:true},{headers:{'Set-Cookie':sessionCookie('',0)}});}
  if(path==='google'){

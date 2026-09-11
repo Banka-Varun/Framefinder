@@ -7,7 +7,7 @@ export async function manageMembers(req:Request,actorId:string){
  if(req.method!=='POST')throw new ApiError(405,'Method not allowed');await limit('manage-members:'+actorId,20,60);
  const p=z.object({userId:z.string().uuid(),action:z.enum(['remove','restore']),confirmUsername:z.string().min(1).max(30)}).strict().parse(await body(req));
  const member=await one<any>('SELECT id,username FROM accounts WHERE id=?',[p.userId]);if(!member)throw new ApiError(404,'Member not found');if(member.id===actorId||protectedIds.includes(member.id))throw new ApiError(403,'Owner and administrator accounts cannot be removed here.');if(p.confirmUsername!==member.username)throw new ApiError(400,'Type the exact username to confirm the selected member.');
- if(p.action==='restore'){await run('DELETE FROM removed_accounts WHERE user_id=?',[member.id]);return Response.json({ok:true,removed:false});}
+ if(p.action==='restore'){if(await one('SELECT user_id FROM account_lifecycle WHERE user_id=?',[member.id]))throw new ApiError(403,'Only the member can reactivate a temporarily deactivated account. Permanently deleted accounts cannot be restored.');await run('DELETE FROM removed_accounts WHERE user_id=?',[member.id]);return Response.json({ok:true,removed:false});}
  const stamp=now();await batch([
   {sql:"INSERT OR IGNORE INTO removed_accounts(user_id,removed_by,removed_at) SELECT ?,?,? WHERE NOT EXISTS(SELECT 1 FROM tickets WHERE (seller_id=? OR buyer_id=?) AND status IN ('verified','reserved'))",args:[member.id,actorId,stamp,member.id,member.id]},
   {sql:'DELETE FROM sessions WHERE user_id=? AND EXISTS(SELECT 1 FROM removed_accounts WHERE user_id=?)',args:[member.id,member.id]},
