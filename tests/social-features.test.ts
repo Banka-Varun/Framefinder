@@ -40,13 +40,13 @@ assert.equal((await call('admin/access','POST',{},owner.cookie)).status,403);
 settings.ADMIN_USER_IDS=otherRow.id;
 assert.equal((await call('admin/access','POST',{},outsider.cookie)).status,200);
 assert.equal((await call('admin','GET',undefined,outsider.cookie)).status,200);
-assert.equal((await call('admin/review','POST',{ticketId:tid,decision:'approved',note:'Booking proof reviewed.'},outsider.cookie)).status,200);
+assert.equal((await call('admin/review','POST',{ticketId:tid,proofId:proof,decision:'approved',note:'Booking proof reviewed.'},outsider.cookie)).status,200);
 assert.equal((await one<any>('SELECT status FROM tickets WHERE id=?',[tid]))!.status,'pending_verification');
 const reviewedList=await(await call('tickets','GET',undefined,buyer.cookie)).json() as any;assert.equal(reviewedList.tickets.find((t:any)=>t.id===tid).review_decision,'approved');
 const reviewedDetail=await(await call('tickets/'+tid,'GET',undefined,buyer.cookie)).json() as any;assert.equal(reviewedDetail.review.decision,'approved');assert.equal(reviewedDetail.ticket.status,'pending_verification');
 assert.equal((await call('admin/notify','POST',{userId:ownerRow.id,title:'Review update',message:'Your proof has been reviewed.'},outsider.cookie)).status,200);
 settings.ADMIN_USER_IDS=ownerRow.id;
-assert.equal((await call('admin/review','POST',{ticketId:tid,decision:'approved',note:'Own listing review.'},owner.cookie)).status,403);
+assert.equal((await call('admin/review','POST',{ticketId:tid,proofId:proof,decision:'approved',note:'Own listing review.'},owner.cookie)).status,403);
 for(const u of ['http://127.0.0.1/x','https://evil.test/x','https://fcm.googleapis.com.evil.test/fcm/send/a','https://fcm.googleapis.com:444/fcm/send/a'])assert.equal(validPushEndpoint(u),false);
 assert.equal(validPushEndpoint('https://fcm.googleapis.com/fcm/send/test'),true);
 assert.equal((await call('notifications/push','POST',{endpoint:'https://evil.test',keys:{p256dh:'a'.repeat(87),auth:'b'.repeat(22)}},buyer.cookie)).status,400);
@@ -63,7 +63,7 @@ console.log('PASS descriptive browser push payload, notification deduplication a
 const poster=await call('posters?title=THE%20PARADISE');assert.equal(poster.status,302);assert.ok(poster.headers.get('location')?.startsWith('https://m.media-amazon.com/'));assert.equal(poster.headers.get('cache-control'),'public, max-age=3600');console.log('PASS case-insensitive poster resolution and cacheable image redirect');
 
 const telugu=await(await call('movies?language=Telugu','GET',undefined,buyer.cookie)).json() as any;assert.ok(telugu.total>=100);assert.ok(telugu.movies.every((m:any)=>m.language==='Telugu'&&m.poster));
-settings.TMDB_READ_TOKEN='mock-catalog-token';const localTelugu=await(await call('movies?language=Telugu','GET',undefined,buyer.cookie)).json() as any;assert.ok(localTelugu.total>=100);delete settings.TMDB_READ_TOKEN;
+settings.TMDB_READ_TOKEN='mock-catalog-token';const catalogFetch=globalThis.fetch;globalThis.fetch=async()=>{throw new Error('Simulated catalog outage');};try{const localTelugu=await(await call('movies?language=Telugu','GET',undefined,buyer.cookie)).json() as any;assert.ok(localTelugu.total>=100);assert.match(localTelugu.notice,/temporarily unavailable/);}finally{globalThis.fetch=catalogFetch;delete settings.TMDB_READ_TOKEN;}
 const teluguRecs=await(await call('recommendations?language=Telugu','GET',undefined,buyer.cookie)).json() as any;assert.equal(teluguRecs.movies.length,48);assert.ok(teluguRecs.movies.every((m:any)=>m.language==='Telugu'&&m.poster));
 const emptyPoster=await(await call('movies?q=Forrest%20Gump','GET',undefined,buyer.cookie)).json() as any;assert.equal(emptyPoster.movies.length,0);
 console.log('PASS 100+ Telugu movies, language-specific recommendations and posterless catalog exclusion');

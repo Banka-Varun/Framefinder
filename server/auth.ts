@@ -53,7 +53,7 @@ export async function auth(req:Request,path:string){
   const link=JSON.parse(row.user_id);await limit('google-link:'+link.accountId,6);
   const a=await one<Account>('SELECT * FROM accounts WHERE id=?',[link.accountId]);
   const supplied=z.string().min(1).max(128).parse(b.password);
-  if(!a||a.email!==link.email||!a.password||!passwordMatches(supplied,a.password))throw new ApiError(401,'Incorrect Framefinder password. Try again or reset your password.');
+  if(!a||a.email!==link.email||!a.password||!(await passwordMatches(supplied,a.password)))throw new ApiError(401,'Incorrect Framefinder password. Try again or reset your password.');
   if(a.google_id&&a.google_id!==link.sub)throw new ApiError(409,'This account is already linked to a different Google identity.');
   const claimed=await run('DELETE FROM auth_tokens WHERE token=? AND purpose=? AND expires>?',[hash(pending),'google-link',now()]);if(!claimed.changes)throw new ApiError(400,'This confirmation has already been used.');
   const updated=await run('UPDATE accounts SET google_id=?,verified=1 WHERE id=? AND (google_id IS NULL OR google_id=?)',[link.sub,a.id,link.sub]);if(!updated.changes)throw new ApiError(409,'Account linking changed. Start Google sign-in again.');
@@ -62,13 +62,13 @@ export async function auth(req:Request,path:string){
  if(path==='signup'){
   const p=z.object({email,username,password,avatarDesign:z.string().refine(v=>!!parseAvatar(v),'Choose a valid avatar').optional(),name:z.string().trim().min(1).max(60)}).parse(b);await captcha(req,b.captchaToken||'');
   if(await one('SELECT id FROM accounts WHERE email=? OR username=?',[p.email,p.username]))throw new ApiError(409,'That email or username is already registered.');
-  const id=crypto.randomUUID();const inserted=await run('INSERT INTO accounts(id,email,username,password,name,created_at) VALUES(?,?,?,?,?,?) ON CONFLICT DO NOTHING',[id,p.email,p.username,passwordHash(p.password),p.name,now()]);if(!inserted.changes)throw new ApiError(409,'That email or username is already registered. Choose another username or sign in.');if(p.avatarDesign)await run('UPDATE accounts SET avatar=? WHERE id=?',[avatarUrl(parseAvatar(p.avatarDesign)!),id]);
+  const id=crypto.randomUUID();const inserted=await run('INSERT INTO accounts(id,email,username,password,name,created_at) VALUES(?,?,?,?,?,?) ON CONFLICT DO NOTHING',[id,p.email,p.username,await passwordHash(p.password),p.name,now()]);if(!inserted.changes)throw new ApiError(409,'That email or username is already registered. Choose another username or sign in.');if(p.avatarDesign)await run('UPDATE accounts SET avatar=? WHERE id=?',[avatarUrl(parseAvatar(p.avatarDesign)!),id]);
   return Response.json({ok:true,next:'/onboarding'},{headers:{'Set-Cookie':await newSession(id)}});
  }
  if(path==='login'){
   const p=z.object({identity:z.string().min(1).max(200),password:z.string().min(1).max(128)}).parse(b);await captcha(req,b.captchaToken||'');
   const a=await one<Account>('SELECT * FROM accounts WHERE email=? OR username=?',[p.identity.toLowerCase().trim(),p.identity.toLowerCase().trim()]);
-  const dummy='00000000000000000000000000000000:'+('0'.repeat(128));const valid=passwordMatches(p.password,a?.password||dummy);
+  const dummy='00000000000000000000000000000000:'+('0'.repeat(128));const valid=await passwordMatches(p.password,a?.password||dummy);
   if(!a||!a.password||!valid)throw new ApiError(401,'Incorrect email/username or password.');
   return Response.json({ok:true,next:a.onboarded?'/for-you':'/onboarding'},{headers:{'Set-Cookie':await newSession(a.id)}});
  }
@@ -79,7 +79,7 @@ export async function auth(req:Request,path:string){
  }
  if(path==='reset'){
   password.parse(b.password);const row=await one<{user_id:string}>('SELECT user_id FROM auth_tokens WHERE token=? AND purpose=? AND expires>?',[hash(String(b.token||'')),'reset',now()]);if(!row)throw new ApiError(400,'This reset link is invalid or expired.');
-  const claimed=await run('DELETE FROM auth_tokens WHERE token=?',[hash(b.token)]);if(!claimed.changes)throw new ApiError(400,'This reset link has already been used.');await batch([{sql:'UPDATE accounts SET password=? WHERE id=?',args:[passwordHash(b.password),row.user_id]},{sql:'DELETE FROM sessions WHERE user_id=?',args:[row.user_id]}]);return Response.json({ok:true,next:'/login'});
+  const claimed=await run('DELETE FROM auth_tokens WHERE token=?',[hash(b.token)]);if(!claimed.changes)throw new ApiError(400,'This reset link has already been used.');await batch([{sql:'UPDATE accounts SET password=? WHERE id=?',args:[await passwordHash(b.password),row.user_id]},{sql:'DELETE FROM sessions WHERE user_id=?',args:[row.user_id]}]);return Response.json({ok:true,next:'/login'});
  }
  if(path==='verify-email'){
   const a=(await user(req))!;const t=token();await run('INSERT INTO auth_tokens(token,user_id,purpose,expires) VALUES(?,?,?,?)',[hash(t),a.id,'verify',new Date(Date.now()+86400000).toISOString()]);await sendMail(a.email,'Verify your email',new URL('/verify-email?token='+t,req.url).href);return Response.json({message:'Verification email sent.'});
